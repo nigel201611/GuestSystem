@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>多用户留言系统-注册</title>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+	<style>
+		.confirmPwd{
+			display: none;
+		}
+	</style>
+	<body>
+		<div class="headerWrap"></div>
+		<div class="wrap login_wrap">
+			<div class="content">
+				
+				<div class="logo"></div> 
+				
+				<div class="login_box">	
+					
+					<div class="login_form">
+						<div class="login_title">
+							注册
+						</div>
+						<form action="#" method="post" id="register_form">
+							
+							<div class="form_text_ipt">
+								<input name="username" type="text" placeholder="手机号/邮箱">
+							</div>
+							<div class="ececk_warning"><span>手机或者邮箱不能为空</span></div>
+							<div class="form_text_ipt">
+								<input name="password" type="password" placeholder="密码">
+							</div>
+							<div class="ececk_warning"><span>密码不能为空</span></div>
+							<div class="form_text_ipt">
+								<input name="repassword" type="password" placeholder="重复密码">
+							</div>
+							<div class="ececk_warning"><span>密码不能为空</span></div>
+							<div class="ececk_warning confirmPwd"><span>确认密码和原密码不一致</span></div>
+							<div class="form_text_ipt">
+								<input name="code" type="text" placeholder="验证码">
+							</div>
+							<div class="ececk_warning"><span>验证码不能为空</span></div>
+							
+							<div class="form_btn">
+								<button type="submit">注册</button>
+							</div>
+							<div class="form_reg_btn">
+								<span>已有帐号？</span><a href="login.html">马上登录</a>
+							</div>
+						</form>
+						<div class="other_login">
+							<div class="left other_left">
+								<span>其它登录方式</span>
+							</div>
+							<div class="right other_right">
+								<a href="#">QQ登录</a>
+								<a href="#">微信登录</a>
+								<a href="#">微博登录</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="footerWrap"></div>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/common.js" ></script>
+<script>
+    $('.headerWrap').load('common.inc/header.html');
+    $('.footerWrap').load('common.inc/footer.html');
+
+	var $registerForm = $('#register_form');
+    var emailPreg = / ^[\w\-\.]{2,}@[\w\-\.]+(\.\w)+/;
+    var phonePreg = / ^[1-9]{1}[0-9]{10}$ /;
+
+    //如果用户输入的是邮箱，那么验证码输入框隐藏
+    $registerForm.on('blur','input[name=username]',function () {
+        var userAcount = $(this).val();
+        //隐藏验证码输入框
+        if(emailPreg.test(userAcount)){
+            $registerForm.find("input[name=code]").eq(0).hide();
+        }else{
+            $registerForm.find("input[name=code]").eq(0).show();
+        }
+    });
+
+    //确认密码是否一致
+    $registerForm.on('blur','input[name=repassword]',function () {
+        var repassword = $(this).val();
+        var password = $registerForm.find('input[name=password]').eq(0).val();
+     	if( repassword != password ){
+			$('.confirmPwd').show();
+     	    return;
+		}else{
+     	    $('.confirmPwd').hide();
+		}
+
+
+    });
+    $registerForm.on('submit',function(e){
+    	e.preventDefault();
+        var data = $(this).serializeArray();
+		var userAcount = data[0].value,
+			password = data[1].value;
+
+		//1 手机验证码验证，暂时跳过
+		//2 邮箱注册激活验证，才能登陆，暂时跳过
+		//3 调用接口,注册用户，添加用户
+
+		$.ajax({
+			type:'POST',
+			url:'data/register.php',
+			dataType:'JSON',
+			data:{
+                username: userAcount,
+                pwd: password
+			},
+			success:function (rsp) {
+                if(rsp.code == 0){ //注册成功
+					location.href = 'index.html'; //成功到首页
+                }
+            }
+		})
+
+
+
+
+
+    })
+</script>

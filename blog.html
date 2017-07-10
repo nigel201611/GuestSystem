@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <title>多用户留言系统-博友</title>
+</head>
+<style>
+    .pageBox .username{
+        font-size: 20px;
+        line-height: 40px;
+    }
+     ul,li{margin: 0;padding: 0;list-style: none;}
+    .pageMenu li::selection{background:transparent;}
+    .clearfix{zoom:1;}
+    .clearfix:after{content:"";display: block;clear: both;}
+    .pageDiv{width: 98.75%;background: #fff;padding-left: 1.25%;margin-bottom: 10px;}
+    .pageDiv li{margin-bottom: 10px;border:1px solid #dbdbdb;width: 21.5%;margin-right: 1.25%;float:left;margin-top: 10px;padding: 1%;text-align: center;}
+    .hide{display: none;}
+    .notContent{padding: 15px 0;text-align: center;}
+
+    .page{text-align: center;width: 100%;margin: 0 auto;}
+    .pageMenu{display: inline-block;width: 60%;}
+
+    .pageMenu li{border: solid thin #ddd;margin: 3px;float: left;padding: 5px 10px;cursor: pointer;background: #fff;}
+    .pageMenu li.firstPage{}
+    .pageMenu li.prevPage{}
+    .pageMenu li.pageNum{}
+    .pageMenu li.nextPage{}
+    .pageMenu li.lastPage{}
+    .pageMenu li.disabled{ background-color: #DDDDDD;   cursor: not-allowed;}
+    .pageMenu li.active{ border: solid thin #0099FF;background-color: #0099FF;color: white;}
+    .pageMenu li.last{background: transparent;border:0;position: relative;top: -4px;}
+    .page .keuInput{padding: 0 5px;width: 45px;border: solid thin #ddd;height: 32px;outline: none;text-align: center;font-size: 16px;}
+    .page .btnSure{
+        padding: 4px 8px;
+        border: solid thin #ddd;
+        outline: none;text-align: center;
+        font-size: 16px;
+        background: #fff;
+    }
+    .page .btnSure:hover{cursor: pointer;}
+</style>
+<body>
+<div class="headerWrap"></div>
+<div class="container">
+    <div class="pageBox">
+        <ul class="pageDiv clearfix">
+
+        </ul>
+        <div class="notContent hide">
+            无数据
+        </div>
+        <div class="page">
+            <ul class="pageMenu">
+                <li class="firstPage">首页</li>
+                <li class="prevPage"> < 上一页 </li>
+                <div class="pageObj ">
+
+                </div>
+                <li class="nextPage"> 下一页 > </li>
+                <li class="lastPage">尾页</li>
+                <li class="last" style="font-size: 14px;">
+                    共<span class="totalPage"></span>页，跳转至
+                    <input type="number" class="keuInput" value="1">
+                    <button type="button" class="btnSure">确定</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="footerWrap"></div>
+
+<!--登录模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">登录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="wrap login_wrap">
+                    <div class="content">
+                        <div class="logo"></div>
+                        <div class="login_box">
+                            <div class="login_form">
+                                <div class="login_title">
+                                    登录
+                                </div>
+                                <form action="#" method="post" id="login_form">
+                                    <div class="form_text_ipt">
+                                        <input name="username" type="text" placeholder="手机号/邮箱">
+                                    </div>
+                                    <div class="ececk_warning"><span>请输入手机号或邮箱</span></div>
+                                    <div class="ececk_warning loginUsername"><span>手机号或邮箱不存在</span></div>
+                                    <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号或邮箱</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="password" type="password" placeholder="密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>请输入密码</span></div>
+                                    <div class="ececk_warning passwordInput"><span>请检查密码是否输入正确</span></div>
+                                    <div class="form_check_ipt">
+                                        <div class="left check_left">
+                                            <label><input name="autoLogin" data-value="0" type="checkbox"> 下次自动登录</label>
+                                        </div>
+                                        <div class="right check_right">
+                                            <a href="#">忘记密码</a>
+                                        </div>
+                                    </div>
+                                    <div class="form_btn">
+                                        <button type="submit">登录</button>
+                                    </div>
+                                    <div class="form_reg_btn">
+                                        <span>还没有帐号？</span><a href="#" id="goRegister" data-toggle="modal" data-target="#registerModal">马上注册</a>
+                                    </div>
+                                </form>
+                                <div class="other_login">
+                                    <div class="left other_left">
+                                        <span>其它登录方式</span>
+                                    </div>
+                                    <div class="right other_right">
+                                        <a href="#">QQ登录</a>
+                                        <a href="#">微信登录</a>
+                                        <a href="#">微博登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--content -->
+                </div>
+            </div><!-- /.modal-body -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--注册模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="registerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">注册</h4>
+            </div>
+            <div class="modal-body">
+                <div class="wrap login_wrap">
+                    <div class="content">
+
+                        <div class="logo"></div>
+
+                        <div class="login_box">
+
+                            <div class="login_form">
+                                <div class="login_title">
+                                    注册
+                                </div>
+                                <form action="#" method="post" id="register_form">
+
+                                    <div class="form_text_ipt">
+                                        <input name="username" type="text" placeholder="手机号/邮箱">
+                                    </div>
+                                    <div class="ececk_warning"><span>手机或者邮箱不能为空</span></div>
+                                    <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号，邮箱</span></div>
+                                    <div class="ececk_warning repeatUser"><span>手机号，邮箱已存在</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="password" type="password" placeholder="密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>密码不能为空</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="repassword" type="password" placeholder="重复密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>密码不能为空</span></div>
+                                    <div class="ececk_warning confirmPwd"><span>确认密码和原密码不一致</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="code" type="text" placeholder="验证码">
+                                    </div>
+                                    <div class="ececk_warning"><span>验证码不能为空</span></div>
+
+                                    <div class="form_btn">
+                                        <button type="submit">注册</button>
+                                    </div>
+                                    <div class="form_reg_btn">
+                                        <span>已有帐号？</span><a href="#" id="goLogin" data-toggle="modal" data-target="#loginModal">马上登录</a>
+                                    </div>
+                                </form>
+                                <div class="other_login">
+                                    <div class="left other_left">
+                                        <span>其它登录方式</span>
+                                    </div>
+                                    <div class="right other_right">
+                                        <a href="#">QQ登录</a>
+                                        <a href="#">微信登录</a>
+                                        <a href="#">微博登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/login_register.js"></script>
+<script src="js/page.js"></script>
+<script>
+    $('.headerWrap').load('common.inc/header.html',function () {
+        var userInfo;
+        if(window.localStorage.getItem('userInfo')){
+            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+        }
+        if(userInfo && userInfo.username){
+            $('.headerWrap').find('.username').text(userInfo.username);
+            $('.headerWrap').find('.login').hide();
+            $('.headerWrap').find('.register').hide();
+            $('.headerWrap').find(".loginOut").removeClass('hidden');
+        }
+    });
+    $('.footerWrap').load('common.inc/footer.html');
+
+    $(function(){
+        $(".pageBox").pageFun({
+            interFace:"data/getBloger2.php",  /*接口*/
+            displayCount:6,  /*每页显示总条数*/
+            maxPage:5,/*每次最多加载多少页*/
+            dataFun:function(data){
+//                console.log(data);
+                var index = Math.floor(Math.random()*6+1);
+                var dataHtml = `<div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                    <img src="img/headPhoto/${index}.jpg" alt="${index}.jpg" style="width: 200px;height: 200px;">
+                    <div class="caption">
+                    <h3 class="username">${data.username}</h3>
+                    <p>
+                    <a href="#" class="btn btn-primary" role="button">发消息</a>
+                    <a href="#" class="btn btn-default pull-right" role="button">加好友</a>
+                    <a href="#" class="btn btn-primary" role="button">写留言</a>
+                    <a href="#" class="btn btn-default pull-right" role="button">送花</a>
+                    </p>
+                    </div>
+                    </div></div>`;
+                return dataHtml;
+            },
+            pageFun:function(i){
+                var pageHtml = '<li class="pageNum">'+i+'</li>';
+                return pageHtml;
+            }
+        })
+    })
+
+</script>
+
+</html>
