@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>拖放实现文件上传</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <style>
+        body{
+            margin-top: 50px;
+        }
+        .pic{
+            padding: 2em 0;
+            border: 1px solid transparent;
+            margin: 1em 0;
+        }
+        .pic:hover{
+            background-color: #fbfdfb;
+            border: 1px solid #d4d4d4;
+            margin: 1em 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <p class="navbar-brand">拖放实现图片上传</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div id="pic" class="pic text-center">
+            <h3>拖放图片到这里实现上传</h3>
+            <img src="" alt=""/>
+        </div>
+    </div>
+
+</body>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    var file ;
+    document.ondragover = function(e){
+        e.preventDefault();
+    };
+    document.ondrop = function (e) {
+        e.preventDefault();
+    };
+    pic = document.getElementById('pic');
+    pic.ondragover = function (e) {
+        e.preventDefault();
+       // console.log($(this));
+        $("#pic").find('h3').text('松开鼠标实现图片上传');
+    };
+    pic.ondragleave = function (e) {
+        $("#pic").find('h3').text('拖放图片到这里实现上传');
+    };
+    pic.ondrop = function (e) {
+        file = e.dataTransfer.files[0];
+       // console.log(file);
+        uploadImg();
+    };
+    function uploadImg(){
+        var fd = new FormData();
+        fd.append('userfile',file);
+        console.log(fd);
+        $.ajax({
+            url:'data/upload.php',
+            type:"post",
+            data:fd,
+            processData : false,
+            contentType : false,
+            success: function (responseData) {
+                console.log(responseData);
+               // $("#pic").find('img').attr("src",responseData);
+            }
+        });
+    }
+</script>
+</html>

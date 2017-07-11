@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="cdf65e80-713c-4029-8e6b-bf8dedb5827e" name="nigel" url="http://localhost:90/GuestSystem/">
+      <webServer id="cdf65e80-713c-4029-8e6b-bf8dedb5827e" name="nigel" url="http://localhost/EXERSIZE/GuestSystem">
         <fileTransfer port="0" accessType="LOCAL" />
       </webServer>
     </option>

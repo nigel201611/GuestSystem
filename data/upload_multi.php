@@ -2,6 +2,7 @@
 function getArrFile(){
     //单文件和多文件获取名字合一
     foreach($_FILES as $key => $value){
+        //$key == 'userfile',$value=array();
         if( is_string($value['name'])){  //字符串-单文件上传 $value = $_FILES['userfile'];
             $newArr[] = $value;
         }else{
@@ -18,6 +19,7 @@ function getArrFile(){
             }
         }
     }//foreach
+
     return $newArr;
 }
 
@@ -30,8 +32,6 @@ function getFN($filename){
     $newName = md5(microtime(true).mt_rand(0, 10000)).'.'.$ext;
     return $newName;
 }
-
-
 function uploadFile(){
     $uploadFileResult = ['code'=>-1,'msg'=>'','imgPath'=>''];
     $files = getArrFile();
@@ -41,7 +41,7 @@ function uploadFile(){
         $suc = move_uploaded_file($filename, $target);
         if($suc){
             $uploadFileResult['code'] = 0;
-            $uploadFileResult['code'] = 'success';
+            $uploadFileResult['msg'] = 'success';
             $uploadFileResult['imgPath'] = $target;
             //上传成功后，将user表中的head_img设置成$target
 
@@ -49,6 +49,7 @@ function uploadFile(){
         echo json_encode($uploadFileResult);
     }
 }
+
 uploadFile();
 
 ?>
