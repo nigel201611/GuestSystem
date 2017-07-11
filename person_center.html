@@ -199,7 +199,7 @@
 
                             <div class="form-group">
                                     <label class="col-sm-2 control-label">个人头像</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <div id="zyupload" class="zyupload"></div>
                                     </div>
                             </div>
@@ -576,12 +576,19 @@
             del              :   true,                    // 是否可以删除文件
             finishDel        :   false,  				  // 是否在上传文件完成后删除预览
             /* 外部获得的回调接口 */
-            onSuccess: function(file, response){          // 文件上传成功的回调方法
-                console.info(response);
-                $("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
+            onSuccess: function(file, rsp){          // 文件上传成功的回调方法
+                var rsp = JSON.parse(rsp);
+                console.info(rsp);
+                if( rsp.code == 0 ){
+                    $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                }else if( rsp.code == 1 ){
+                    $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                }else if( rsp.code == -1 ){
+                    $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                }
             },
             onFailure: function(file, response){          // 文件上传失败的回调方法
-                console.info("此文件上传失败：");
+                $("#uploadInf").html("<p class='text-danger'>上传失败</p>");
             }
         });
 
