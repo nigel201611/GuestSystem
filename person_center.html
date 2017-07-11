@@ -125,7 +125,7 @@
                                 <li class="list-group-item">
                                     <span class="label-title">头像:</span>
                                     <span class="label-content">
-                                        <img class="person_img" src="img/headPhoto/1.jpg" alt="个人头像" style="width:40px;height:40px;">
+                                        <img class="person_img" src="img/headPhoto/1.jpg" alt="个人头像" style="width:60px;height:60px;">
                                     </span>
                                 </li>
                                 <li class="list-group-item person_info">
@@ -396,14 +396,21 @@
             if(data.code == 0){// 请求信息成功
                 $(".loadingWrap").hide();
                 var rsp = data.info;
+                var head_imgSrc = "img/headPhoto/";
+                if(rsp[0].head_img){
+                    head_imgSrc += rsp[0].head_img;
+                }
+                console.log(head_imgSrc);
                 rsp[0].username?$(".personInfoWrap").find('li.username .label-content').eq(0).text(rsp[0].username):"";
                 rsp[0].email?$(".personInfoWrap").find('li.email .label-content').eq(0).text(rsp[0].email):"";
                 rsp[0].qq?$(".personInfoWrap").find('li.qq .label-content').eq(0).text(rsp[0].qq):"";
 
                 rsp[0].time?$(".personInfoWrap").find('li.register_time .label-content').eq(0).text(rsp[0].time):"";
                 rsp[0].login_count?$(".personInfoWrap").find('li.login_count .label-content').eq(0).text(rsp[0].login_count):"";
-                rsp[0].head_img?$(".personInfoWrap").find('li.person_img .label-content').eq(0).text(rsp[0].head_img):"";
                 rsp[0].person_info?$(".personInfoWrap").find('li.person_info .label-content').text(rsp[0].person_info):"";
+
+                //显示用户头像
+                rsp[0].head_img?$(".personInfoWrap").find('.person_img').eq(0).attr('src',head_imgSrc):$(".personInfoWrap").find('.person_img').eq(0).attr('src','');
             }
         });
     }
@@ -569,7 +576,7 @@
             itemHeight       :   "80px",                 // 文件项的高度
             url              :   "data/up.php",              // 上传文件的路径
             fileType         :   ["jpg","png","jpeg","gif","bmp"],// 上传文件的类型
-            fileSize         :   51200000,                // 上传文件的大小5M
+            fileSize         :   51200,                // 头像的大小5KB
             multiple         :   false,                    // 是否可以多个文件上传
             dragDrop         :   false,                   // 是否可以拖动上传文件
             tailor           :   false,                   // 是否可以裁剪图片
