@@ -12,8 +12,8 @@ include_once 'common.php';
 session_start();
 
 
-$username = trim($_POST['username']);
-$pwd = trim($_POST['pwd']);
+$username = trim($_GET['username']);
+$pwd = trim($_GET['pwd']);
 
 $result = [];
 //判断用户名（手机号，邮箱名）是否存在
@@ -29,6 +29,7 @@ if($num1 == 0){
     echo json_encode($result);
     exit; //退出
 }
+mysqli_stmt_close($stmt1);
 
 
 
@@ -42,11 +43,17 @@ mysqli_stmt_bind_result($stmt,$id,$uniq);
 mysqli_stmt_store_result($stmt); //保存结果集
 mysqli_stmt_fetch($stmt);
 $num = mysqli_stmt_num_rows($stmt);//获取查询的结果集的行数
+mysqli_stmt_close($stmt);
 
 if($num == 1){
     //用户登录成功后，保存用户登录信息
     $_SESSION['uniq'] = $uniq;
     $_SESSION['username'] = $username;
+
+    //登录成功后，应该是登录次数增加一次
+    $updateSql = "update user set login_count=login_count+1 where username='$username'";
+    mysqli_query($link,$updateSql);
+
 
     //用户名和uniq保存到cookie中，有效时间为1个小时
 //    setcookie('username',$username,time()+3600,'/');

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="zyupload/skins/zyupload-1.0.0.min.css " type="text/css">
     <title>多用户留言系统-个人中心</title>
 </head>
 
@@ -196,20 +197,12 @@
                                 </div>
                             </form>
 
-                            <form class="form-horizontal" id="uploadFileForm" name='uploadFile' action="#" method="POST" enctype="multipart/form-data">
-
-                                <div class="form-group">
+                            <div class="form-group">
                                     <label class="col-sm-2 control-label">个人头像</label>
                                     <div class="col-sm-6">
-                                        <!--文件长传成功后，返回文件路径-->
-                                        <input type="hidden" name="personImg">
-                                        <input class="form-control" name='userfile' type="file"/>
+                                        <div id="zyupload" class="zyupload"></div>
                                     </div>
-                                    <div class="col-sm-2">
-                                        <button type="submit" class="btn btn-success">上传</button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -392,13 +385,11 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/login_register.js"></script>
+<script type="text/javascript" src="zyupload/zyupload.basic-1.0.0.min.js"></script>
 <script>
     //个人中心，首先需要登录，用户表，增加1 注册时间字段，用户2 客户端所在ip字段，3 登录次数字段，uinique,active等字段
     //其中unique用来安全防护，active用来激活邮箱用
     //另外增加可选的邮箱，qq，头像，个人简介字段
-
-
-    var headImg = '';//头像路径，默认空
     function getPersonInfo(username){
         //请求个人信息接口
         $.getJSON('data/getUserInfo.php?username='+username,function (data) {
@@ -565,17 +556,35 @@
             }
         });
     });
-    //文件上传处理
-    $("#uploadFileForm").on('submit',function (e) {
-        e.preventDefault();
-        $.ajax({
-            type:"POST",
-            url:"data/upload_multi.php",
-            dataType:"JSON",
-            success:function (rsp) {
-                console.log(rsp);
+
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        // 初始化插件
+        $("#zyupload").zyUpload({
+            width            :   "100%",                 // 宽度
+            height           :   "400px",                 // 宽度
+            itemWidth        :   "100px",                 // 文件项的宽度
+            itemHeight       :   "80px",                 // 文件项的高度
+            url              :   "data/up.php",              // 上传文件的路径
+            fileType         :   ["jpg","png","jpeg","gif","bmp"],// 上传文件的类型
+            fileSize         :   51200000,                // 上传文件的大小5M
+            multiple         :   false,                    // 是否可以多个文件上传
+            dragDrop         :   false,                   // 是否可以拖动上传文件
+            tailor           :   false,                   // 是否可以裁剪图片
+            del              :   true,                    // 是否可以删除文件
+            finishDel        :   false,  				  // 是否在上传文件完成后删除预览
+            /* 外部获得的回调接口 */
+            onSuccess: function(file, response){          // 文件上传成功的回调方法
+                console.info(response);
+                $("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
+            },
+            onFailure: function(file, response){          // 文件上传失败的回调方法
+                console.info("此文件上传失败：");
             }
         });
+
     });
 
 </script>
