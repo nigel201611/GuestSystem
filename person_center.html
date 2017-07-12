@@ -51,6 +51,7 @@
         top:0;
         left:0;
         background: rgba(0,0,0,0.3);
+        display: none;
     }
     .loadingWrap img{
         position: absolute;
@@ -468,7 +469,7 @@
         this.src= "data/yzCode.php";
     });
 
-    $("#modifyinfoForm input[name=yzcode]").blur(function () {
+    $("#modifyinfoForm").on('blur keyup','input[name=yzcode]',function () {
         var yzcode = $(this).val();
         //验证用户输入的验证码是否和服务器端生成的一样
         if(yzcode != getCookie('yzcode')){

@@ -12,8 +12,8 @@ include_once 'common.php';
 session_start();
 
 
-$username = trim($_GET['username']);
-$pwd = trim($_GET['pwd']);
+$username = trim($_POST['username']);
+$pwd = trim($_POST['pwd']);
 
 $result = [];
 //判断用户名（手机号，邮箱名）是否存在
