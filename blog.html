@@ -43,6 +43,14 @@
         background: #fff;
     }
     .page .btnSure:hover{cursor: pointer;}
+
+    .yzcodeImg{
+        cursor: pointer;
+    }
+    .errcheck{
+        color: #FF0000;
+        display: none;
+    }
 </style>
 <body>
 <div class="headerWrap"></div>
@@ -58,7 +66,7 @@
             <ul class="pageMenu">
                 <li class="firstPage">首页</li>
                 <li class="prevPage"> < 上一页 </li>
-                <div class="pageObj ">
+                <div class="pageObj">
 
                 </div>
                 <li class="nextPage"> 下一页 > </li>
@@ -205,20 +213,98 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!--测试git-->
+
+<!--发送信息模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="sendMessageModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">发送消息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="sendMessageForm">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">接收人</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="to_user">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">消息内容</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" name="content"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck contentEmptyErr" >
+                            消息内容不能为空
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-default sendMessage">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </body>
 <script src="js/jquery-1.11.3.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/login_register.js"></script>
 <script src="js/page.js"></script>
+<script src="js/themes/default.js"></script>
+<script src="js/noty.min.js"></script>
+
+
+
+
 <script>
+
+    function notyInfo(data){
+        noty({
+            text: data,
+            layout: "center",
+            type: "warning",
+            modal: true,
+            buttons: [
+                {
+                    addClass: 'btn btn-primary btn-xs',
+                    text: '关闭',
+                    onClick: function ($noty) {
+                        $noty.close();
+                    }
+                }
+            ]
+        });
+    }
+    var username;
     $('.headerWrap').load('common.inc/header.html',function () {
         var userInfo;
         if(window.localStorage.getItem('userInfo')){
             userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
         }
         if(userInfo && userInfo.username){
+            username = userInfo.username;
             $('.headerWrap').find('.username').text(userInfo.username);
             $('.headerWrap').find('.login').hide();
             $('.headerWrap').find('.register').hide();
@@ -233,18 +319,24 @@
             displayCount:6,  /*每页显示总条数*/
             maxPage:5,/*每次最多加载多少页*/
             dataFun:function(data){
-                console.log(data);
                 var index = Math.floor(Math.random()*6+1);
+                var imgSrc = "";
+                //如果用户没有上传头像，那么使用随机的头像
+                if(!data.head_img){
+                    imgSrc = `img/headPhoto/${index}.jpg`;
+                }else{
+                    imgSrc = `img/headPhoto/${data.head_img}`;
+                }
                 var dataHtml = `<div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                    <img src="img/headPhoto/${index}.jpg" alt="${index}.jpg" style="width: 200px;height: 200px;">
+                    <img src="${imgSrc}" alt="${data.username}" style="width: 200px;height: 200px;">
                     <div class="caption">
                     <h3 class="username">${data.username}</h3>
                     <p>
-                    <a href="#" class="btn btn-primary" role="button">发消息</a>
-                    <a href="#" class="btn btn-default pull-right" role="button">加好友</a>
-                    <a href="#" class="btn btn-primary" role="button">写留言</a>
-                    <a href="#" class="btn btn-default pull-right" role="button">送花</a>
+                    <a href="#" class="btn btn-primary sendMessage" role="button" data-id="${data.id}">发消息</a>
+                    <a href="#" class="btn btn-default pull-right" role="button" data-id="${data.id}">加好友</a>
+                    <a href="#" class="btn btn-primary" role="button" data-id="${data.id}">写留言</a>
+                    <a href="#" class="btn btn-default pull-right" role="button" data-id="${data.id}">送花</a>
                     </p>
                     </div>
                     </div></div>`;
@@ -256,6 +348,81 @@
             }
         })
     })
+
+    //发送消息
+    $(".pageBox").on('click','.sendMessage',function () {
+        //打开发送消息模态框
+        var to_user = $(this).parents(".thumbnail").find(".username").eq(0).text();
+        var from_user = username;
+        //判断发送者不能和接收者相同
+        if(to_user==from_user){
+            notyInfo('不能向自己发送消息');
+            return;
+        }
+        $("#sendMessageModal").modal('show');
+        //将接收者填入到接收输入框，并且接收入框只读
+
+        var $sendMessageForm = $("#sendMessageForm");
+        $sendMessageForm.find("input[name=to_user]").attr('readonly',true);
+        $sendMessageForm.find("input[name=to_user]").val(to_user);
+
+        //提交数据，发送消息
+        $sendMessageForm.submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serializeArray();
+            var content = data[1].value,
+                yzcode = data[2].value;
+
+            if(yzcode != getCookie('yzcode') || yzcode==''){
+                $(".yzcodeErr").show();
+                //提交禁用
+                $sendMessageForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".yzcodeErr").hide();
+                //提交禁用
+                $sendMessageForm.find("button[type=submit]").attr('disabled',false);
+            }
+            //发送的消息内容不能为空
+            if(!content){
+                $('.contentEmptyErr').show();
+                return;
+            }else{
+                $('.contentEmptyErr').hide();
+            }
+
+            $.POST('data/sendMessage.php',{'to_user':to_user,'content':content},function (rsp) {
+
+            })
+        });
+
+
+//验证码判断
+        $sendMessageForm.on('blur keyup','input[name=yzcode]',function () {
+            var yzcode = $(this).val();
+            //验证用户输入的验证码是否和服务器端生成的一样
+            if(yzcode != getCookie('yzcode')){
+                $(".yzcodeErr").show();
+                //提交禁用
+                $sendMessageForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".yzcodeErr").hide();
+                $sendMessageForm.find("button[type=submit]").attr('disabled',false);
+            }
+        });
+        $("#sendMessageForm input[name=yzcode]").focus(function () {
+            $(".yzcodeErr").hide();
+        });
+//单击验证码，刷新验证码
+        $("#sendMessageForm .yzcodeImg").click(function () {
+            this.src= "data/yzCode.php";
+        });
+
+    });
+
+
+
 
 </script>
 

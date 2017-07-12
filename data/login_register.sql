@@ -21,4 +21,14 @@ ALTER TABLE user ADD (
 );
 
 
+CREATE TABLE IF NOT EXISTS message(
+	id INT PRIMARY KEY auto_increment,
+	to_user VARCHAR(100),
+	from_user VARCHAR(100),
+	message_date DATETIME,
+	message_content TEXT,
+	message_state TINYINT(1)
+);
+
+
 INSERT INTO user VALUE(NULL,'18300093372','123456');
