@@ -223,7 +223,7 @@
                 <h4 class="modal-title">发送消息</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="sendMessageForm">
+                <form class="form-horizontal" id="sendMessageForm" >
                     <div class="form-group">
                         <label class="col-sm-2 control-label">接收人</label>
                         <div class="col-sm-6">
@@ -313,6 +313,7 @@
     });
     $('.footerWrap').load('common.inc/footer.html');
 
+    //分页加载
     $(function(){
         $(".pageBox").pageFun({
             interFace:"data/getBloger2.php",  /*接口*/
@@ -359,10 +360,11 @@
             notyInfo('不能向自己发送消息');
             return;
         }
-        $("#sendMessageModal").modal('show');
+        var $sendMessageModal = $("#sendMessageModal");
         //将接收者填入到接收输入框，并且接收入框只读
-
         var $sendMessageForm = $("#sendMessageForm");
+
+        $sendMessageModal.modal('show');
         $sendMessageForm.find("input[name=to_user]").attr('readonly',true);
         $sendMessageForm.find("input[name=to_user]").val(to_user);
 
@@ -373,6 +375,7 @@
             var content = data[1].value,
                 yzcode = data[2].value;
 
+            //验证码判断
             if(yzcode != getCookie('yzcode') || yzcode==''){
                 $(".yzcodeErr").show();
                 //提交禁用
@@ -391,9 +394,31 @@
                 $('.contentEmptyErr').hide();
             }
 
-            $.POST('data/sendMessage.php',{'to_user':to_user,'content':content},function (rsp) {
+            //发送之前禁止发送消息按钮
+            $.ajax({
+                type:"POST",
+                url:"data/sendMessage.php",
+                dataType:"JSON",
+                data:{
+                    'to_user':to_user,
+                    'content':content
+                },
+                success:function (rsp) {
+                    if(rsp.code == 1){
+                        //关闭发送消息模态框
+                        $sendMessageModal.modal("hide");
+                        notyInfo("发送成功");
+                        //使能发送消息按钮
+                    }else if(rsp.code == 2){
+                        //登录状态失效，重新登录
+                        $sendMessageModal.modal("hide");
+                        $("#loginModal").modal('show');
+                    }else if(rsp.code == -1){
+                        notyInfo("发送失败");
+                    }
+                }
+            });
 
-            })
         });
 
 

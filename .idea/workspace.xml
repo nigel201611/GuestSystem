@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68d5847e-3562-4bf9-a746-3ae868a334fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/phpClass/MySQL.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/phpClass/Verify.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/sendMessage.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/noty.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/themes/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/themes/default.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/themes/relax.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog.html" afterPath="$PROJECT_DIR$/blog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/login_register.sql" afterPath="$PROJECT_DIR$/data/login_register.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/sendMessage.php" afterPath="$PROJECT_DIR$/data/sendMessage.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,16 +35,16 @@
       <file leaf-file-name="blog.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="286" column="26" lean-forward="false" selection-start-line="286" selection-start-column="26" selection-end-line="286" selection-end-column="26" />
+            <state relative-caret-position="525">
+              <caret line="416" column="41" lean-forward="true" selection-start-line="416" selection-start-column="41" selection-end-line="416" selection-end-column="41" />
               <folding>
                 <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1499865563964" expanded="true" signature="14752:15540" ph="..." />
-                <marker date="1499865563964" expanded="true" signature="14796:15534" ph="..." />
-                <marker date="1499865563964" expanded="false" signature="14869:14896" ph="..." />
-                <marker date="1499865563964" expanded="true" signature="14939:15507" ph="..." />
-                <marker date="1499865563964" expanded="true" signature="15026:15480" ph="..." />
+                <marker date="1499868795104" expanded="true" signature="14764:15552" ph="..." />
+                <marker date="1499868795104" expanded="true" signature="14808:15546" ph="..." />
+                <marker date="1499868795104" expanded="false" signature="14881:14908" ph="..." />
+                <marker date="1499868795104" expanded="true" signature="14951:15519" ph="..." />
+                <marker date="1499868795104" expanded="true" signature="15038:15492" ph="..." />
               </folding>
             </state>
           </provider>
@@ -62,25 +54,8 @@
         <entry file="file://$PROJECT_DIR$/data/sendMessage.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="275">
-              <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+              <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MySQL.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/phpClass/MySQL.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-              <folding>
-                <marker date="1499860541749" expanded="true" signature="539:589" ph="insert into $... " />
-                <marker date="1499860541749" expanded="true" signature="807:835" ph="delete from " />
-                <marker date="1499860541749" expanded="true" signature="883:895" ph="delete from " />
-                <marker date="1499860541749" expanded="true" signature="1344:1382" ph="update ${{$t... " />
-                <marker date="1499860541749" expanded="true" signature="1403:1424" ph="update ${{$t... " />
-                <marker date="1499860541749" expanded="true" signature="1616:1638" ph="select ${{$f... " />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -228,24 +203,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GuestSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GuestSystem" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phpClass" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -372,18 +329,18 @@
       <workItem from="1499761233669" duration="38000" />
       <workItem from="1499767331830" duration="10106000" />
       <workItem from="1499821552562" duration="3752000" />
-      <workItem from="1499825799000" duration="9606000" />
+      <workItem from="1499825799000" duration="12834000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41509000" />
+    <option name="totallyTimeSpent" value="44737000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17313915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18689321" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292232" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -752,10 +709,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/noty.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1140">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/themes/default.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3384">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/phpClass/MySQL.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        <state relative-caret-position="399">
+          <caret line="26" column="35" lean-forward="false" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="35" />
           <folding>
             <marker date="1499860541749" expanded="true" signature="539:589" ph="insert into $... " />
             <marker date="1499860541749" expanded="true" signature="807:835" ph="delete from " />
@@ -770,41 +745,23 @@
     <entry file="file://$PROJECT_DIR$/data/sendMessage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
-          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/noty.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1140">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/themes/default.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3384">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="286" column="26" lean-forward="false" selection-start-line="286" selection-start-column="26" selection-end-line="286" selection-end-column="26" />
+        <state relative-caret-position="525">
+          <caret line="416" column="41" lean-forward="true" selection-start-line="416" selection-start-column="41" selection-end-line="416" selection-end-column="41" />
           <folding>
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1499865563964" expanded="true" signature="14752:15540" ph="..." />
-            <marker date="1499865563964" expanded="true" signature="14796:15534" ph="..." />
-            <marker date="1499865563964" expanded="false" signature="14869:14896" ph="..." />
-            <marker date="1499865563964" expanded="true" signature="14939:15507" ph="..." />
-            <marker date="1499865563964" expanded="true" signature="15026:15480" ph="..." />
+            <marker date="1499868795104" expanded="true" signature="14764:15552" ph="..." />
+            <marker date="1499868795104" expanded="true" signature="14808:15546" ph="..." />
+            <marker date="1499868795104" expanded="false" signature="14881:14908" ph="..." />
+            <marker date="1499868795104" expanded="true" signature="14951:15519" ph="..." />
+            <marker date="1499868795104" expanded="true" signature="15038:15492" ph="..." />
           </folding>
         </state>
       </provider>
