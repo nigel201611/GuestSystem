@@ -27,7 +27,12 @@ if(isset($_SESSION['username']) && !empty($_SESSION['username'])){
 $datetime = date("Y:m:d H:i:s");
 $conn = MySQL::getObj('localhost','root','root','nigel');
 
-$data = ['to_user'=>$to_user,'from_user'=>$from_user,'message_date'=>$datetime,'message_content'=>$content];
+$data = [
+    'to_user'=>$to_user,
+    'from_user'=>$from_user,
+    'message_date'=>$datetime,
+    'message_content'=>$content
+];
 //添加消息
 $num = $conn->insert('message',$data);
 

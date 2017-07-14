@@ -15,7 +15,7 @@ date_default_timezone_set('prc');
 class MySQL{
     public $link;
     public $mode;
-    private static $obj;
+    private static $obj = null;
     private function __construct($server,$username,$password,$dbname){
         $this->link = mysqli_connect($server,$username,$password,$dbname);
     }
@@ -107,6 +107,7 @@ class MySQL{
 
         return $query;
     }
+
     private function __clone(){
 
     }

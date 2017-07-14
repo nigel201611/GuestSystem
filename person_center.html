@@ -86,10 +86,10 @@
                     </div>
                     <div class="panel-body othersManage">
                         <ul class="list-group">
-                            <li class="list-group-item"><a href="#">短信查阅</a></li>
-                            <li class="list-group-item"><a href="#">好友设置</a></li>
-                            <li class="list-group-item"><a href="#">查询花朵</a></li>
-                            <li class="list-group-item"><a href="#">个人相册</a></li>
+                            <li class="list-group-item"><a href="#showMessageWrap">短信查阅</a></li>
+                            <li class="list-group-item"><a href="#friendWrap">好友设置</a></li>
+                            <li class="list-group-item"><a href="#flowerWrap">查询花朵</a></li>
+                            <li class="list-group-item"><a href="#personPhotoWrap">个人相册</a></li>
                         </ul>
                     </div>
                 </div>
@@ -100,6 +100,7 @@
                         会员管理中心
                     </div>
                     <div class="panel-body">
+<!--账号管理-->
                         <!--个人信息展示-->
                         <div class="personInfoWrap wrapItem active">
                             <ul class="list-group">
@@ -204,10 +205,24 @@
                                     </div>
                             </div>
                         </div>
+
+<!--其他管理-->
                         <!--短信查询-->
-                        <div class="showMessageWrap wrapItem">
+                        <div class="showMessageWrap wrapItem" id="showMessageWrap">
                            <!--datatables 展示信息，只展示别人发给自己的消息-->
                             展示信息
+                        </div>
+                        <!--好友设置-->
+                        <div class="friendWrap wrapItem" id="friendWrap">
+                            好友设置
+                        </div>
+                        <!--查询花朵-->
+                        <div class="flowerWrap wrapItem" id="flowerWrap">
+                            查询花朵
+                        </div>
+                        <!--个人相册-->
+                        <div class="personPhotoWrap wrapItem" id="personPhotoWrap">
+                            个人相册
                         </div>
                     </div>
                 </div>
@@ -405,7 +420,6 @@
                 if(rsp[0].head_img){
                     head_imgSrc += rsp[0].head_img;
                 }
-                console.log(head_imgSrc);
                 rsp[0].username?$(".personInfoWrap").find('li.username .label-content').eq(0).text(rsp[0].username):"";
                 rsp[0].email?$(".personInfoWrap").find('li.email .label-content').eq(0).text(rsp[0].email):"";
                 rsp[0].qq?$(".personInfoWrap").find('li.qq .label-content').eq(0).text(rsp[0].qq):"";
@@ -471,7 +485,10 @@
     //单击其他管理下的相应菜单，显示对应内容
     $(".othersManage").on('click','li.list-group-item>a',function (e) {
         e.preventDefault();
-        console.log("ok");
+        $wrapId = $($(this).attr('href'));
+        $(".wrapItem").removeClass('active');
+        $wrapId.addClass('active');
+
     });
 
     //2 增加验证码验证
@@ -596,7 +613,6 @@
             /* 外部获得的回调接口 */
             onSuccess: function(file, rsp){          // 文件上传成功的回调方法
                 var rsp = JSON.parse(rsp);
-                console.info(rsp);
                 if( rsp.code == 0 ){
                     $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
                 }else if( rsp.code == 1 ){
