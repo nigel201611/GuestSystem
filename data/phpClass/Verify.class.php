@@ -19,13 +19,13 @@ class Verify{
     private $height;
     private $length;
 
-    private $yzcode;
-
     private $config = array(
         'width'=>80,
         'height'=>30,
         'length'=>4
     );
+
+    private $bgs=array();
 
     function __construct($config=array())
     {
@@ -37,17 +37,42 @@ class Verify{
 
         $this->backGround();
         $this->getWord();
-        $this->distrub();
-
-        //将验证码文字存储到cookie中
-        $this->saveCodeInCookie();
-
+//        $this->distrub();
         $this->entry();
     }
     private function backGround(){
-        $this->img = imagecreatetruecolor($this->width,$this->height);
-        $bgColor = imagecolorallocate($this->img,mt_rand(200,255),mt_rand(200,255),mt_rand(200,255));
-        imagefill($this->img,0,0,$bgColor);
+//        $this->img = imagecreatetruecolor($this->width,$this->height);
+//        $bgColor = imagecolorallocate($this->img,mt_rand(200,255),mt_rand(200,255),mt_rand(200,255));
+//        imagefill($this->img,0,0,$bgColor);
+
+        //获取指定目录下的图片
+        $this->getImgFile();
+    //从数组$bgs[]随机取一张图片
+        $type_array = array(1=>"gif",2=>"jpeg",3=>"png");
+        $bgsFile = $this->bgs[array_rand($this->bgs)];
+        list($src_width,$src_height,$type)=getimagesize($bgsFile);
+    //需要分析背景图片格式
+    //获取GD资源
+        $fun = "imagecreatefrom";
+        $funName = $fun.$type_array[$type];
+        $src_img = $funName($bgsFile);
+        $this->img = imagecreatetruecolor($this->config['width'],$this->config['height']);
+
+
+ //将背景图片缩放到指定验证码大小
+        imagecopyresampled($this->img,$src_img,0,0,0,0,
+            $this->config['width'],$this->config['height'],$src_width,$src_height);
+
+    }
+    private function getImgFile(){
+        $bgsPath = "bgs/";
+        $dir = opendir($bgsPath);
+        while(($filename=readdir($dir))!==false){
+            if($filename!='.'&&$filename!=".."){
+                $this->bgs[] = $bgsPath.$filename;
+            }
+        }
+        closedir($dir);
     }
     //文字
     private function getWord(){
@@ -58,7 +83,6 @@ class Verify{
             $code = substr($string,mt_rand(0,strlen($string)-1),1);
             $x = ($this->width/$this->length)*$i+5;
             $y = mt_rand(5,8);
-            $this->yzcode .= $code;
             imagestring($this->img,$font,$x,$y,$code,$color);
         }
     }
@@ -83,14 +107,6 @@ class Verify{
             imageline($this->img,$x1,$y1,$x2,$y2,$color);
         }
     }
-    //获取验证码文字
-    function getCode(){
-        return $this->yzcode;
-    }
-    //将验证码存储到cookie中
-    private function saveCodeInCookie(){
-        setcookie("yz_classcode",$this->yzcode,time()+3600,'/');
-    }
     //输出
     private function entry(){
         header('content-type:image/png');
@@ -100,8 +116,12 @@ class Verify{
     {
         imagedestroy($this->img);
     }
-
 }
 
-//生成验证码
-$yzcode = new Verify();
+$config = ['width'=>100,'height'=>25,'length'=>5];
+$yzcode = new Verify($config);
+//$yzcode = new Verify();
+//$yzcode->backGround();
+//$yzcode->getWord();
+//$yzcode->distrub();
+//$yzcode->entry();

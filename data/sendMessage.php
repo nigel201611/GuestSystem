@@ -25,7 +25,7 @@ if(isset($_SESSION['username']) && !empty($_SESSION['username'])){
     exit;
 }
 $datetime = date("Y:m:d H:i:s");
-$conn = new MySQL('localhost','root','root','nigel');
+$conn = MySQL::getObj('localhost','root','root','nigel');
 
 $data = ['to_user'=>$to_user,'from_user'=>$from_user,'message_date'=>$datetime,'message_content'=>$content];
 //添加消息

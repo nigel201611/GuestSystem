@@ -5,7 +5,7 @@
  * Date: 2017/7/11
  * Time: 11:43
  */
-//定义数据库类
+//定义数据库类,设计模式--单例模式
 
 /*
  * 增删改查
@@ -14,8 +14,23 @@ header('content-type:text/html;charset=utf-8');
 date_default_timezone_set('prc');
 class MySQL{
     public $link;
-    function __construct($server,$username,$password,$dbname){
+    public $mode;
+    private static $obj;
+    private function __construct($server,$username,$password,$dbname){
         $this->link = mysqli_connect($server,$username,$password,$dbname);
+    }
+    static function getObj($server,$username,$password,$dbname){
+        if(is_null(self::$obj)){
+            self::$obj = new MySQL($server,$username,$password,$dbname);
+        }
+        return self::$obj;
+    }
+    function setMode($mode){
+        if($mode!=MYSQLI_BOTH&&$mode!=MYSQLI_ASSOC&&$mode!=MYSQLI_NUM) {
+            $this->mode = MYSQLI_ASSOC;
+        }else{
+            $this->mode = $mode;
+        }
     }
     //增
     function insert($tbname,$data){
@@ -51,10 +66,28 @@ class MySQL{
         mysqli_query($this->link,$query);
         return mysqli_affected_rows($this->link);
     }
-    //查
-    function select($tbname,$fileds,$config=array()){
-
-        $query = "select {$fileds} from {$tbname}";
+    //获取查到的所有结果行
+    function fetchAll($tbname,$config){
+        $query = $this->buildQuery($tbname,$config);
+        $result = mysqli_query($this->link,$query);
+        //从结果集中获取关联数组
+        //设置获取模式
+        $this->setMode($config['mode']);
+        $sets = mysqli_fetch_all($result,$this->mode);
+        return $sets;
+    }
+    //获取一行
+    function fetchOne($tbname,$config){
+        $query = $this->buildQuery($tbname,$config);
+        $result = mysqli_query($this->link,$query);
+        //从结果集中获取关联数组
+        //设置获取模式
+        $this->setMode($config['mode']);
+        $sets = mysqli_fetch_array($result,$this->mode);
+        return $sets;
+    }
+    function buildQuery($tbname,$config){
+        $query = "select {$config['fileds']} from {$tbname}";
         if( isset($config['where'])&&$config['where'] ){
             $query .= " where ".$config['where'];
         }
@@ -71,13 +104,12 @@ class MySQL{
         if( isset($config['limits'])&&$config['limits'] ){
             $query .= " limit ".$config['limits'];
         }
-        echo $query;
-        $result = mysqli_query($this->link,$query);
-        //从结果集中获取关联数组
-        $sets = mysqli_fetch_all($result,MYSQLI_ASSOC);
-        return $sets;
+
+        return $query;
+    }
+    private function __clone(){
+
     }
 }
-
 
 

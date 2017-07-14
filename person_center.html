@@ -84,7 +84,7 @@
                     <div class="panel-heading">
                         其他管理
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body othersManage">
                         <ul class="list-group">
                             <li class="list-group-item"><a href="#">短信查阅</a></li>
                             <li class="list-group-item"><a href="#">好友设置</a></li>
@@ -140,7 +140,6 @@
                                 <img src="img/loading.gif" alt="加载中...">
                             </div>
                         </div>
-
                         <!--修改资料-->
                         <div class="modifyWrap wrapItem">
                             <form class="form-horizontal" id="modifyinfoForm">
@@ -204,6 +203,11 @@
                                         <div id="zyupload" class="zyupload"></div>
                                     </div>
                             </div>
+                        </div>
+                        <!--短信查询-->
+                        <div class="showMessageWrap wrapItem">
+                           <!--datatables 展示信息，只展示别人发给自己的消息-->
+                            展示信息
                         </div>
                     </div>
                 </div>
@@ -462,6 +466,12 @@
         e.preventDefault();
         $('.wrapItem').removeClass('active');
         $(".wrapItem").eq(1).addClass('active');
+    });
+
+    //单击其他管理下的相应菜单，显示对应内容
+    $(".othersManage").on('click','li.list-group-item>a',function (e) {
+        e.preventDefault();
+        console.log("ok");
     });
 
     //2 增加验证码验证
