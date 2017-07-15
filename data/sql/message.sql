@@ -1,0 +1,16 @@
+INSERT INTO `message` VALUES (2, 'nigel11', 'luoxianglian_nigel', '2017-7-12 22:11:49', 'hello,nigel', 0);
+INSERT INTO `message` VALUES (3, 'nigel11', 'luoxianglian_nigel', '2017-7-12 22:13:31', 'hello,nigel_lksks', 0);
+INSERT INTO `message` VALUES (4, 'nigel_jack', 'luoxianglian_nigel', '2017-7-12 22:13:32', 'hello,nigel_lksks', 0);
+INSERT INTO `message` VALUES (5, '18300093372', 'luoxianglian_nigel', '2017-7-12 22:13:46', 'ssdsdsd', 0);
+INSERT INTO `message` VALUES (6, 'nigel11', 'luoxianglian_nigel', '2017-7-13 09:36:10', 'hello world', 0);
+INSERT INTO `message` VALUES (7, '18300093372', 'luoxianglian_nigel', '2017-7-14 14:31:48', 'dssdsd', 0);
+INSERT INTO `message` VALUES (8, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:21:38', 'hello luoxianglian_nigel,can i make friends with you', 0);
+INSERT INTO `message` VALUES (9, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:21:50', 'friends with you', 0);
+INSERT INTO `message` VALUES (10, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:21:51', 'friends with you', 0);
+INSERT INTO `message` VALUES (11, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:21:58', 'friends with youdsdss', 0);
+INSERT INTO `message` VALUES (12, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:21:59', 'friends with youdsdss', 0);
+INSERT INTO `message` VALUES (13, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:22:01', 'friends with youdsdss', 0);
+INSERT INTO `message` VALUES (14, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:22:14', 'friends with youdsdsss', 0);
+INSERT INTO `message` VALUES (15, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:22:15', 'friends with youdsdsss', 0);
+INSERT INTO `message` VALUES (16, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:22:16', 'friends with youdsdsss', 0);
+INSERT INTO `message` VALUES (17, 'luoxianglian_nigel', 'blackjack52', '2017-7-14 16:22:17', 'friends with youdsdsss', 0);

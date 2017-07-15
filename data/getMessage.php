@@ -15,10 +15,11 @@ $db = MySQL::getObj('localhost','root','root','nigel');
 $messageArr = [
     'code'=>-1,
     'msg'=>"",
-    'pageSize'=>5,     //当前页记录数
+    'pageSize'=>4,     //当前页记录数
     'recordCount'=>0,  //总记录数，
     'pagesCount'=>0,   //总页数
     'curPage'=>1,      //当前页
+    'pages'=>[],
     'info'=>[]          //获取到的结果
 ];
 if(isset( $_SESSION['username']) && !empty( $_SESSION['username'])){
@@ -37,10 +38,11 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
 //获取总记录数
 $config = [
     'mode'=>MYSQLI_ASSOC,
-    'fileds'=>"to_user",
-    'where'=>"to_user={$to_user}",  //条件是，别人发给自己的
+    'fileds'=>"id",
+    'where'=>"to_user='{$to_user}'",  //条件是，别人发给自己的
 ];
 $result = $db->fetchAll('message',$config);
+
 if($result){
     $messageArr['recordCount'] = count($result);
 }
@@ -53,20 +55,18 @@ $start = ($messageArr['curPage']-1)*$messageArr['pageSize'];
 $config1 = [
     'mode'=>MYSQLI_ASSOC,
     'fileds'=>"*",
-    'where'=>"to_user={$to_user}",
+    'where'=>"to_user='{$to_user}'",
     'limits'=>"{$start},{$messageArr['pageSize']}"
 ];
 
 $result1 = $db->fetchAll('message',$config1);
+if($result1){
+    $messageArr['code'] = 0;//成功获取到分页数据
+    $messageArr['msg'] = "success";
+    foreach ($result1 as $key => $value){
+        $messageArr['info'][] = $value;
+    }
+}
 
-print_r($result1);
+echo json_encode($messageArr);
 
-
-
-
-
-
-
-
-
-//$db->fetchAll()
