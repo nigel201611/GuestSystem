@@ -73,6 +73,13 @@
         line-height: 30px;
         padding:0 5px;
     }
+    .buttonList{
+        float: right;
+    }
+    .buttonList label{
+        position: relative;
+        top:-2px;
+    }
 
 </style>
 <body>
@@ -236,10 +243,12 @@
 
                                     </tbody>
                                 </table>
-                                <label class="form-control">
-                                    <input type="checkbox" class="allCheck">
-                                    删除全部
-                                </label>
+                                <div class="buttonList">
+                                    <div class="deleteAll">
+                                        <input type="checkbox" class="allCheck">
+                                        <label>删除本页</label>
+                                    </div>
+                                </div>
                                 <!--分页list-->
                                 <div class="pagelist text-center">
                                     <nav aria-label="Page navigation" class="Page">
@@ -462,6 +471,33 @@
             ]
         });
     }
+
+    function notyInfo2(data){
+        noty({
+            text: data,
+            layout: "center",
+            type: "warning",
+            modal: true,
+            buttons: [
+                {
+                    addClass: 'btn btn-success btn-xs',
+                    text: '确认',
+                    onClick: function ($noty) {
+                        //删除记录
+                        $noty.close();
+                    }
+                },
+                {
+                    addClass: 'btn btn-primary btn-xs',
+                    text: '取消',
+                    onClick: function ($noty) {
+                        $noty.close();
+                    }
+                }
+            ]
+        });
+    }
+
     //个人中心，首先需要登录，用户表，增加1 注册时间字段，用户2 客户端所在ip字段，3 登录次数字段，uinique,active等字段
     //其中unique用来安全防护，active用来激活邮箱用
     //另外增加可选的邮箱，qq，头像，个人简介字段
@@ -650,7 +686,7 @@
                                         <td>${data[i].message_content}</td>
                                         <td>${data[i].message_date}</td>
                                         <td>${data[i].message_state}</td>
-                                        <td><label><input type="checkbox" class="delete"></label></td>
+                                        <td><label><input title="单击可以删除该条信息" type="checkbox" class="delete"></label></td>
                                         </tr>`;
                     }
                     $("#showMessageWrap table>tbody").html(html);
@@ -706,7 +742,6 @@
         e.preventDefault();
         console.log(curPage);
         curPage--;
-
         if(curPage>0){
             showMessage();
         }else{
@@ -721,6 +756,16 @@
             showMessage();
         }else{
             curPage = totalPages;
+        }
+    });
+
+    //单击操作复选框
+    $("#showMessageWrap").on('click','input.delete',function () {
+      //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
+        if($(this).is(":checked")){
+            //删除记录
+            console.log($(this).prop("checked"));
+            notyInfo2("确认删除该条信息");
         }
     });
 
