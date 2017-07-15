@@ -474,7 +474,7 @@
 
     function notyInfo2(data){
         noty({
-            text: data,
+            text: data.msg,
             layout: "center",
             type: "warning",
             modal: true,
@@ -484,6 +484,21 @@
                     text: '确认',
                     onClick: function ($noty) {
                         //删除记录
+                        $.ajax({
+                            type:"GET",
+                            url:"data/deleteMessage.php?ids="+data.ids,
+                            dataType:"json",
+                            success:function (rsp) {
+                                if(rsp.code == 0){  //删除成功
+                                    notyInfo("删除成功");
+                                    showMessage();
+                                }else if(rsp.code == 1){  //重新登录
+                                    $("#loginModal").modal('show');
+                                }else{
+                                    notyInfo("删除失败");
+                                }
+                            }
+                        });
                         $noty.close();
                     }
                 },
@@ -686,7 +701,7 @@
                                         <td>${data[i].message_content}</td>
                                         <td>${data[i].message_date}</td>
                                         <td>${data[i].message_state}</td>
-                                        <td><label><input title="单击可以删除该条信息" type="checkbox" class="delete"></label></td>
+                                        <td><label><input title="单击可以删除该条信息" type="checkbox" class="delete"  data-id="${data[i].id}"></label></td>
                                         </tr>`;
                     }
                     $("#showMessageWrap table>tbody").html(html);
@@ -759,13 +774,44 @@
         }
     });
 
-    //单击操作复选框
+    //单击操作复选框,删除单条记录
     $("#showMessageWrap").on('click','input.delete',function () {
       //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
         if($(this).is(":checked")){
             //删除记录
-            console.log($(this).prop("checked"));
-            notyInfo2("确认删除该条信息");
+            var id = $(this).attr("data-id");
+            console.log(id);
+            var data = {
+                ids:id,
+                msg:"确认删除该条信息"
+            };
+            notyInfo2(data);
+        }
+    });
+
+    //批量删除
+    $("#showMessageWrap").on('click','input.allCheck',function () {
+        //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
+        var checkList = $("#showMessageWrap").find("input.delete");
+        if($(this).is(":checked")){
+            //删除记录
+            var id = "";
+            for(var i=0;i<checkList.length-1;i++){
+                $(checkList[i]).prop("checked",true);
+                id +=  $(checkList[i]).attr('data-id')+",";
+            }
+            $(checkList[i]).prop("checked",true);
+            id +=  $(checkList[i]).attr('data-id');
+            console.log(id);
+            var data = {
+                ids:id,
+                msg:"确认删除该条信息"
+            };
+            notyInfo2(data);
+        }else{
+            for(var i=0;i<checkList.length;i++){
+                $(checkList[i]).prop("checked",false);
+            }
         }
     });
 
