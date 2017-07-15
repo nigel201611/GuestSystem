@@ -121,7 +121,7 @@
                     <div class="panel-body">
 <!--账号管理-->
                         <!--个人信息展示-->
-                        <div class="personInfoWrap wrapItem active">
+                        <div class="personInfoWrap wrapItem">
                             <ul class="list-group">
                                 <li class="list-group-item username">
                                     <span class="label-title">用户名:</span>
@@ -227,7 +227,7 @@
 
 <!--其他管理-->
                         <!--短信查询-->
-                            <div class="showMessageWrap wrapItem" id="showMessageWrap">
+                        <div class="showMessageWrap wrapItem" id="showMessageWrap">
                                 <table class="table table-responsive table-hover table-bordered">
                                     <thead>
                                         <tr>
@@ -471,7 +471,6 @@
             ]
         });
     }
-
     function notyInfo2(data){
         noty({
             text: data.msg,
@@ -512,6 +511,12 @@
             ]
         });
     }
+    //1-代表当前active,分别对应个人信息，修改资料，短信查询，好友设置，查询花朵，个人相册
+    var menuList = [0,0,0,0,0,0];
+    //从本地存储读取menuList
+
+
+
 
     //个人中心，首先需要登录，用户表，增加1 注册时间字段，用户2 客户端所在ip字段，3 登录次数字段，uinique,active等字段
     //其中unique用来安全防护，active用来激活邮箱用
@@ -544,12 +549,39 @@
         if(window.localStorage.getItem('userInfo')){
             userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
         }
-        if( userInfo &&  userInfo.username){
+        if( userInfo && userInfo.username){
             $('.headerWrap').find('.username').text(userInfo.username);
             $('.headerWrap').find('.login').hide();
             $('.headerWrap').find('.register').hide();
             $('.headerWrap').find(".loginOut").removeClass('hidden');
-            getPersonInfo(userInfo.username);
+            if(localStorage.getItem("menuList")){
+                menuList = JSON.parse(localStorage.getItem("menuList"));
+                $(".wrapItem").removeClass("active");
+                for(var i=0;i<menuList.length;i++){
+                    switch (i){
+                        case 0://个人信息
+                            getPersonInfo(userInfo.username);
+                            break;
+                        case 2://短信查询
+                            showMessage();
+                            break;
+                        case 3://好友查询
+                            break;
+                        case 4://花朵查询
+                            break;
+                        case 5://个人相册
+                            break;
+                    }
+                    if(menuList[i] == 1){
+                        $(".wrapItem").eq(i).addClass('active');
+                    }
+                }
+            }else{
+                menuList = [1,0,0,0,0,0];
+                localStorage.setItem("menuList",JSON.stringify(menuList));
+                getPersonInfo(userInfo.username);
+            }
+
         }else{
             //请登录后操作
             //使用unique防止伪登录
@@ -568,6 +600,9 @@
     //否则修改的时候会有问题
     $("#personInfo").click(function (e) {
         e.preventDefault();
+        menuList = [1,0,0,0,0,0];
+        //将menuList保存到本地存储
+        localStorage.setItem("menuList",JSON.stringify(menuList));
         $('.wrapItem').removeClass('active');
         $(".wrapItem").eq(0).addClass('active');
         var userInfo;
@@ -584,6 +619,8 @@
     //修改资料，2 增加验证码验证
     $("#modifyInfo").click(function (e) {
         e.preventDefault();
+        menuList = [0,1,0,0,0,0];
+        localStorage.setItem("menuList",JSON.stringify(menuList));
         $('.wrapItem').removeClass('active');
         $(".wrapItem").eq(1).addClass('active');
     });
@@ -705,21 +742,19 @@
                                         </tr>`;
                     }
                     $("#showMessageWrap table>tbody").html(html);
-
                     //生成分页list
                     $(".pagelist .Page").html(pages());
-
                 }else if(rsp.code==2){
                     //重新登录
                     $("#loginModal").modal('show');
                 }else if(rsp.code==-1){
-                    //
                     notyInfo("获取消息失败，请尝试关闭浏览器重新登录试试！");
                 }
             }
         });
     }
 
+    //其他管理，子菜单
     $(".othersManage").on('click','li.list-group-item>a',function (e) {
         e.preventDefault();
         var $wrapId = $($(this).attr('href')),
@@ -727,6 +762,12 @@
 
         $(".wrapItem").removeClass('active');
         $wrapId.addClass('active');
+        var index = $(this).parent().index();
+        console.log(index);
+        menuList = [0,0,0,0,0,0];
+        menuList[index+2] = 1;
+        //将menuList保存到本地存储
+        localStorage.setItem("menuList",JSON.stringify(menuList));
         var page = 1;
         switch ( wrapId ){
             case "#showMessageWrap":
@@ -788,7 +829,6 @@
             notyInfo2(data);
         }
     });
-
     //批量删除
     $("#showMessageWrap").on('click','input.allCheck',function () {
         //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
@@ -914,6 +954,9 @@
             }
         });
     });
+
+    //每次刷新,从本地存储中取上次所在的导航页，而不是每次都是个人信息页
+
 
 </script>
 
