@@ -213,7 +213,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 <!--发送信息模态框-->
 <div class="modal fade" tabindex="-1" role="dialog" id="sendMessageModal">
     <div class="modal-dialog" role="document">
@@ -265,6 +264,57 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!--加好友模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="addFriendModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">加好友</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addFriendForm" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">昵称</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="to_user" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">加好友信息</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" name="content" autocomplete="off">您好，期待认识您!</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck contentEmptyErr" >
+                            消息内容不能为空
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-default">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </body>
 <script src="js/jquery-1.11.3.js"></script>
@@ -275,56 +325,145 @@
 <script src="js/themes/default.js"></script>
 <script src="js/noty.min.js"></script>
 <script>
-
-    function notyInfo(data){
-        noty({
-            text: data,
-            layout: "center",
-            type: "warning",
-            modal: true,
-            buttons: [
-                {
-                    addClass: 'btn btn-primary btn-xs',
-                    text: '关闭',
-                    onClick: function ($noty) {
-                        $noty.close();
-                    }
-                }
-            ]
+    (function () {
+        $('.headerWrap').load('common.inc/header.html',function () {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if(userInfo && userInfo.username){
+                username = userInfo.username;
+                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+            }
         });
-    }
-    var username;
-    $('.headerWrap').load('common.inc/header.html',function () {
-        var userInfo;
-        if(window.localStorage.getItem('userInfo')){
-            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
-        }
-        if(userInfo && userInfo.username){
-            username = userInfo.username;
-            $('.headerWrap').find('.username').text(userInfo.username);
-            $('.headerWrap').find('.login').hide();
-            $('.headerWrap').find('.register').hide();
-            $('.headerWrap').find(".loginOut").removeClass('hidden');
-        }
-    });
-    $('.footerWrap').load('common.inc/footer.html');
+        $('.footerWrap').load('common.inc/footer.html');
+        var username;
+        var to_user;
+        //   关闭模态框，清空数据
+        function clearModal($modal){
+            $modal.on('show.bs.modal',function () {
+                //输入之前，清空表单内容
+                $modal.find("input[name=to_user]").eq(0).val("");
+                $modal.find("textarea[name=content]").eq(0).val("");
+                $modal.find("input[name=yzcode]").eq(0).val("");
+                $modal.find("img.yzcodeImg").eq(0).attr('src',"data/yzCode.php");
 
-    //分页加载
-    $(function(){
-        $(".pageBox").pageFun({
-            interFace:"data/getBloger2.php",  /*接口*/
-            displayCount:6,  /*每页显示总条数*/
-            maxPage:5,/*每次最多加载多少页*/
-            dataFun:function(data){
-                var index = Math.floor(Math.random()*6+1);
-                var imgSrc = "";
-                //如果用户没有上传头像，那么使用随机的头像
-                if(!data.head_img){
-                    imgSrc = `img/headPhoto/${index}.jpg`;
+                $modal.find(".errcheck").hide();
+            });
+        }
+        //   验证码验证相关函数
+        function yzcodeCheck($form){
+            //验证码判断
+            $form.on('blur keyup','input[name=yzcode]',function () {
+                var yzcode = $(this).val();
+                //验证用户输入的验证码是否和服务器端生成的一样
+                if(yzcode != getCookie('yzcode')){
+                    $form.find(".yzcodeErr").show();
+                    //提交禁用
+                    $form.find("button[type=submit]").attr('disabled',true);
+                    return;
                 }else{
-                    imgSrc = `img/headPhoto/${data.head_img}`;
+                    $form.find(".yzcodeErr").hide();
+                    $form.find("button[type=submit]").attr('disabled',false);
                 }
-                var dataHtml = `<div class="col-sm-6 col-md-4">
+            });
+            $form.on('focus','input[name=yzcode]',function () {
+                $form.find(".yzcodeErr").hide();
+            });
+            $form.on('click','.yzcodeImg',function () {
+                this.src= "data/yzCode.php";
+            });
+        }
+        //   提示函数
+        function notyInfo(data){
+            noty({
+                text: data,
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '关闭',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
+                    }
+                ]
+            });
+        }
+        //   表单提交--信息提交和加好友
+        function formSubmit($form,$modal,url){
+            $form.submit(function (e) {
+                e.preventDefault();
+                var data = $(this).serializeArray();
+                var content = data[1].value,
+                    yzcode = data[2].value;
+
+                //验证码判断
+                if(yzcode != getCookie('yzcode') || yzcode==''){
+                    $form.find(".yzcodeErr").show();
+                    //提交禁用
+                    $form.find("button[type=submit]").attr('disabled',true);
+                    return;
+                }else{
+                    $form.find(".yzcodeErr").hide();
+                    //提交禁用
+                    $form.find("button[type=submit]").attr('disabled',false);
+                }
+                //发送的消息内容不能为空
+                if(!content){
+                    $form.find(".contentEmptyErr").show();
+                    return;
+                }else{
+                    $form.find(".contentEmptyErr").hide();
+                }
+
+                $.ajax({
+                    type:"POST",
+                    url:url,
+                    dataType:"JSON",
+                    data:{
+                        'to_user':to_user,
+                        'content':content
+                    },
+                    success:function (rsp) {
+                        if(rsp.code == 1){
+                            //关闭发送消息模态框
+                            $modal.modal("hide");
+                            notyInfo("发送成功");
+                            //使能发送消息按钮
+                        }else if(rsp.code == 2){
+                            //登录状态失效，重新登录
+                            $modal.modal("hide");
+                            $("#loginModal").modal('show');
+                        }else if(rsp.code == -1){
+                            notyInfo("发送失败");
+                        }
+                    }
+                });
+
+            });
+        }
+        //分页加载
+        $(function(){
+            $(".pageBox").pageFun({
+                interFace:"data/getBloger2.php",  /*接口*/
+                displayCount:6,  /*每页显示总条数*/
+                maxPage:5,/*每次最多加载多少页*/
+                dataFun:function(data){
+                    var index = Math.floor(Math.random()*6+1);
+                    var imgSrc = "";
+                    //如果用户没有上传头像，那么使用随机的头像
+                    if(!data.head_img){
+                        imgSrc = `img/headPhoto/${index}.jpg`;
+                    }else{
+                        imgSrc = `img/headPhoto/${data.head_img}`;
+                    }
+                    var dataHtml = `<div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                     <img src="${imgSrc}" alt="${data.username}" style="width: 200px;height: 200px;">
                     <div class="caption">
@@ -337,121 +476,65 @@
                     </p>
                     </div>
                     </div></div>`;
-                return dataHtml;
-            },
-            pageFun:function(i){
-                var pageHtml = '<li class="pageNum">'+i+'</li>';
-                return pageHtml;
-            }
-        })
-    })
-
-    //发送消息,还有点小问题??,会重复发送
-    var $sendMessageModal = $("#sendMessageModal");
-    var $sendMessageForm = $("#sendMessageForm");
-    var to_user;
-    $(".pageBox").on('click','.sendMessage',function () {
-        //打开发送消息模态框
-        to_user = $(this).parents(".thumbnail").find(".username").eq(0).text();
-        var from_user = username;
-        //判断发送者不能和接收者相同
-        if(to_user==from_user){
-            notyInfo('不能向自己发送消息');
-            return;
-        }
-        $sendMessageModal.modal('show');
-        $sendMessageForm.find("input[name=to_user]").attr('readonly',true);
-        $sendMessageForm.find("input[name=to_user]").val(to_user);
-    });
-
-    //提交数据，发送消息
-    $sendMessageForm.submit(function (e) {
-        e.preventDefault();
-        var data = $(this).serializeArray();
-        var content = data[1].value,
-            yzcode = data[2].value;
-
-        //验证码判断
-        if(yzcode != getCookie('yzcode') || yzcode==''){
-            $(".yzcodeErr").show();
-            //提交禁用
-            $sendMessageForm.find("button[type=submit]").attr('disabled',true);
-            return;
-        }else{
-            $(".yzcodeErr").hide();
-            //提交禁用
-            $sendMessageForm.find("button[type=submit]").attr('disabled',false);
-        }
-        //发送的消息内容不能为空
-        if(!content){
-            $('.contentEmptyErr').show();
-            return;
-        }else{
-            $('.contentEmptyErr').hide();
-        }
-
-        $.ajax({
-            type:"POST",
-            url:"data/sendMessage.php",
-            dataType:"JSON",
-            data:{
-                'to_user':to_user,
-                'content':content
-            },
-            success:function (rsp) {
-                if(rsp.code == 1){
-                    //关闭发送消息模态框
-                    $sendMessageModal.modal("hide");
-                    notyInfo("发送成功");
-                    //使能发送消息按钮
-                }else if(rsp.code == 2){
-                    //登录状态失效，重新登录
-                    $sendMessageModal.modal("hide");
-                    $("#loginModal").modal('show');
-                }else if(rsp.code == -1){
-                    notyInfo("发送失败");
+                    return dataHtml;
+                },
+                pageFun:function(i){
+                    var pageHtml = '<li class="pageNum">'+i+'</li>';
+                    return pageHtml;
                 }
+            })
+        })
+        /*---------------------发信息--------------------------------------*/
+        //发送消息
+        var $sendMessageModal = $("#sendMessageModal");
+        var $sendMessageForm = $("#sendMessageForm");
+
+        $(".pageBox").on('click','.sendMessage',function () {
+            //打开发送消息模态框
+            to_user = $(this).parents(".thumbnail").find(".username").eq(0).text();
+            var from_user = username;
+            //判断发送者不能和接收者相同
+            if(to_user==from_user){
+                notyInfo('不能向自己发送消息');
+                return;
             }
+            $sendMessageModal.modal('show');
+            $sendMessageForm.find("input[name=to_user]").attr('readonly',true);
+            $sendMessageForm.find("input[name=to_user]").val(to_user);
         });
+        //提交数据，发送消息
+        var messageurl = "data/sendMessage.php";
+        formSubmit($sendMessageForm,$sendMessageModal,messageurl);
+        //验证码相关判断
+        yzcodeCheck($sendMessageForm);
+        //关闭模态框，清空数据
+        clearModal($sendMessageModal);
+        /*---------------------加好友--------------------------------------*/
+        var $addFriendModal = $("#addFriendModal");
+        var $addFriendForm = $("#addFriendForm");
 
-    });
-    //验证码判断
-    $sendMessageForm.on('blur keyup','input[name=yzcode]',function () {
-        var yzcode = $(this).val();
-        //验证用户输入的验证码是否和服务器端生成的一样
-        if(yzcode != getCookie('yzcode')){
-            $(".yzcodeErr").show();
-            //提交禁用
-            $sendMessageForm.find("button[type=submit]").attr('disabled',true);
-            return;
-        }else{
-            $(".yzcodeErr").hide();
-            $sendMessageForm.find("button[type=submit]").attr('disabled',false);
-        }
-    });
-    $("#sendMessageForm input[name=yzcode]").focus(function () {
-        $(".yzcodeErr").hide();
-    });
-    //单击验证码，刷新验证码
-    $("#sendMessageForm .yzcodeImg").click(function () {
-        this.src= "data/yzCode.php";
-    });
-
-    $("#sendMessageModal").on('show.bs.modal',function () {
-        //输入之前，清空表单内容
-        $("#sendMessageModal").find("input[name=to_user]").eq(0).val("");
-        $("#sendMessageModal").find("textarea[name=content]").eq(0).val("");
-        $("#sendMessageModal").find("input[name=yzcode]").eq(0).val("");
-
-        $("#sendMessageModal").find("img.yzcodeImg").eq(0).attr('src',"data/yzCode.php");
-
-    });
-
-
-
-
-
-
+        $(".pageBox").on('click','.addFriend',function (e) {
+            e.preventDefault();
+            //打开发送消息模态框
+            to_user = $(this).parents(".thumbnail").find(".username").eq(0).text();
+            var from_user = username;
+            //判断发送者不能和接收者相同
+            if(to_user==from_user){
+                notyInfo('不能和自己加好友');
+                return;
+            }
+            $addFriendModal.modal('show');
+            $addFriendForm.find("input[name=to_user]").attr('readonly',true);
+            $addFriendForm.find("input[name=to_user]").val(to_user);
+        });
+        var friendUrl = "data/addFriend.php";
+        // 发送好友请求
+        formSubmit($addFriendForm,$addFriendModal,friendUrl);
+        //提交数据前验证码验证
+        yzcodeCheck($addFriendForm);
+        //关闭模态框失，清空数据
+        clearModal($addFriendModal);
+    })();
 
 </script>
 

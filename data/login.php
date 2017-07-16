@@ -7,11 +7,7 @@
  */
 
 include_once 'common.php';
-
-
 session_start();
-
-
 $username = trim($_POST['username']);
 $pwd = trim($_POST['pwd']);
 
@@ -31,8 +27,6 @@ if($num1 == 0){
 }
 mysqli_stmt_close($stmt1);
 
-
-
 $insertSql = "select id,uniq from user where username=? and pwd=?";
 
 $stmt = mysqli_prepare($link,$insertSql);//预编译
@@ -49,12 +43,9 @@ if($num == 1){
     //用户登录成功后，保存用户登录信息
     $_SESSION['uniq'] = $uniq;
     $_SESSION['username'] = $username;
-
     //登录成功后，应该是登录次数增加一次
     $updateSql = "update user set login_count=login_count+1 where username='$username'";
     mysqli_query($link,$updateSql);
-
-
     //用户名和uniq保存到cookie中，有效时间为1个小时
 //    setcookie('username',$username,time()+3600,'/');
 //    setcookie('uniq',$uniq,time()+3600,'/');

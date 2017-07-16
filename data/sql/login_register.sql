@@ -31,4 +31,15 @@ CREATE TABLE IF NOT EXISTS message(
 );
 
 
+CREATE TABLE IF NOT EXISTS friend(
+	id INT PRIMARY KEY auto_increment,
+	to_user VARCHAR(100),
+	from_user VARCHAR(100),
+ 	friend_date DATETIME,
+ 	friend_content TEXT,
+ 	friend_state TINYINT(1) DEFAULT 0
+ );
+
+
+
 INSERT INTO user VALUE(NULL,'18300093372','123456');
