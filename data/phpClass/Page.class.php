@@ -1,119 +1,151 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: nigel
- * Date: 2017/7/14
- * Time: 11:20
- */
-header('content-type:text/html;charset=utf-8');
-class Page{
-    public $pageSize;
-    public $total;
-    public $curPage;//用于保存当前页，这样不需要重复调用函数来得到
-    public $totalPage;
-    public $offset;
-
-    function __construct($pageSize,$total)
-    {
-        $this->pageSize = $pageSize;
-        $this->total = $total;
-        $this->getTotalPage();
-        $this->getCurPage();
-        $this->getOffset();
-    }
-
-    //共*页
-    function getTotalPage(){
-        //总页数 = ceil(总记录数/每页显示记录数)
-        $this->totalPage = ceil($this->total/$this->pageSize);
-    }
-    //当前第*几页
-    function  getCurPage(){
-        $curPage = isset($_GET['page']) ? $_GET['page']:1;
-        if($curPage<1){
-            $curPage = 1;
-        }else if( $curPage>$this->totalPage && $this->totalPage!=0){
-            $curPage = $this->totalPage;
-        }
-        //对当前页加限制
-        $this->curPage = $curPage;
-
-    }
-    //首页，上一页
-    function flist(){
-        //上一页 = 当前页-1
-        if($this->curPage != 1){
-            $prev = $this->curPage-1;
-        }else{
-            $prev = 1;
-        }
-        $list = "<a href='?page=1'>首页</a> <a href='?page=".$prev."'>上一页 </a>";
-        echo $list;
-    }
-
-    //尾页，下一页
-    function llist(){
-        if($this->curPage != $this->totalPage){
-            $next = $this->curPage+1;
-        }else{
-            $next = $this->totalPage;
-        }
-        $list = "<a href='?page={$this->totalPage}'> 尾页</a> <a href='?page=".$next."'>下一页</a>";
-        echo $list;
-    }
-
-    //文字分页
-    function mlist(){
-        $num = 2;
-        $list = "";
-        //1,2,
-        if($this->curPage>$num && $this->curPage<=$this->totalPage-$num){ //正常情况下
-            for($i=$num;$i>0;$i--){
-                $n = $this->curPage-$i;
-                $list .= "&nbsp;<a href='?page={$n}'>".$n."</a>&nbsp;";
-            }
-            $list .= "&nbsp;<a style='color:red;' href='?page={$this->curPage}'>".$this->curPage."</a>&nbsp;";
-            //3,4
-            for($i=1;$i<=$num;$i++){
-                $n = $this->curPage+$i;
-                $list .= "&nbsp;<a href='?page={$n}'>".$n."</a>&nbsp;";
-            }
-        }else if($this->curPage<=$num){//如果当前页小于$num，也要同时显示5个
-            for($i=$this->curPage-1;$i>0;$i--){
-                $n = $this->curPage-$i;
-                $list .= "&nbsp;<a href='?page={$n}'>".$n."</a>&nbsp;";
-            }
-            $list .= "&nbsp;<a style='color:red;' href='?page={$this->curPage}'>".$this->curPage."</a>&nbsp;";
-            //3,4
-            for($i=1;$i<=$num+($num-$this->curPage+1);$i++){//!!!
-                $n = $this->curPage+$i;
-                $list .= "&nbsp;<a href='?page={$n}'>".$n."</a>&nbsp;";
-            }
-        }else if( $this->curPage>$this->totalPage-$num ){ //如果当前页大于于$totoalPage，也要同时显示5个
-            for($i=$num+($this->curPage-$this->totalPage+$num);$i>0;$i--){ //16,17,18||16,17,18,19--19-3,20-4
-                $n = $this->curPage-$i;
-                $list .= "&nbsp;<a href='?page={$n}'>".$n."</a>&nbsp;";
-            }
-            $list .= "&nbsp;<a style='color:red;' href='?page={$this->curPage}'>".$this->curPage."</a>&nbsp;";
-            //3,4
-            for($i=($this->curPage-$this->totalPage+$num);$i<$num;$i++){ //19-1,20-0
-                $n = $this->curPage+$i;
-                $list .= "&nbsp;<a href='?page={$n}'>".$n."</a>&nbsp;";
-            }
-        }
-        echo $list;
-    }
-    function getOffset(){
-        $this->offset = $this->pageSize*($this->curPage-1);
-    }
-
-    //写一个出口程序
-    function pages(){
-        echo "共".$this->totalPage."页 ";
-        echo "当前第".$this->curPage."页 ";
-        echo $this->flist();//首页 上一页
-        echo $this->mlist();//1 2 3 4 5
-        echo $this->llist();//下一页 尾页
-    }
+<?php 
+//分页类
+// 共*页 当前第*页 首页 上一页 1 2 3 4 5 6 7 下一页 尾页
+class  Page{
+     //声明分页类的成员属性
+     public $totalPage; //总页数
+     public $curPage; //当前页
+     public $total; //总记录数
+     public $pageSize; //每页显示记录数
+     public $offset; //存储偏移量
+     public $url; //存储URL地址
+     
+     //定义构造函数,给成员属性赋初值
+     function __construct($pageSize,$total){
+         $this->pageSize = $pageSize;
+         $this->total = $total;
+         //计算总页数
+         $this->totalPage = $this->getTotalPage();
+         $this->curPage = $this->getCurPage();
+         $this->offset = $this->getOffset();
+         $this->url = $this->getUrl();
+     }
+         
+     function getUrl(){
+         //获取地址栏中路径和参数的成员方法.         
+         //获取URL地址
+         $url = $_SERVER['REQUEST_URI'];
+         //将获取到的地址进行拆分
+         $parse = parse_url($url);
+         //若parse数组中仅仅含有下标path,那么翻页的url地址与翻页
+         //参数之间的连接符号就是"?"
+         if(isset($parse['query'])){
+             //如果请求的地址中含有query,去掉query中的page参数
+             //将参数转换为数组
+             parse_str($parse['query'],$result);
+             //将数组中的下标page去掉
+             unset($result['page']);
+             if(empty($result)){
+                 //请求的url地址里面只有page一个参数
+                 $url = $parse['path']."?";
+             }else{
+                 var_dump($result);
+                 $query = http_build_query($result);
+                 $url = $parse['path'].'?'.$query."&";
+             }
+             
+         }else{
+             $url = $parse['path']."?";
+         }
+         return $url;
+     }
+     //计算偏移量$offset
+     function getOffset(){
+         //偏移量 = (当前页-1)*每页显示记录数
+         return ($this->curPage-1)*$this->pageSize;
+     }
+     function getTotalPage(){
+         //总页数 = ceil(总记录数/每页显示记录数)
+         return ceil($this->total/$this->pageSize);
+     }
+     
+     //获取当前页
+     function getCurPage(){
+         $curPage = isset($_GET['page'])?$_GET['page']:1;
+         
+         /*
+          * 最小值 1
+          * 最大值总页数
+          */
+         //$curPage = 1 0
+         if($curPage<1){
+             $curPage = 1;
+         }else if($curPage>$this->totalPage&&$this->totalPage!=0){
+             $curPage = $this->totalPage;//0
+         }         
+         return $curPage;
+     }
+     
+     //首页 上一页
+     function flist(){
+         //上一页 = 当前页 -1 
+         $prev = $this->curPage - 1;//1-1 = 0
+                                    //2-1 = 1
+         $list = "";
+         if($prev>=1){
+             $list = "<a href='".$this->url."page=1'>首页</a>&nbsp;
+                  <a href='".$this->url."page=$prev'>上一页</a>";
+         }
+         return $list;
+     }
+     
+     // 1 2 3 4 5 6 7
+     function mlist(){
+         $num = 3;
+         $list = "";
+         // 1 2 3
+         for($i=$num;$i>=1;$i--){
+             $n = $this->curPage - $i;
+             if($n>=1){
+                $list.= "&nbsp;<a href='".$this->url."page=$n'>$n</a>&nbsp;";
+             }
+         }
+         
+         $list .= $this->curPage; //4
+         //5 6 7
+         for($i=1;$i<=$num;$i++){
+             $n = $this->curPage + $i;//21
+             if($n<=$this->totalPage){
+                $list .= "&nbsp;<a href='".$this->url."page=$n'>$n</a>&nbsp;";
+             }
+         }
+         return $list;
+     }
+     
+     //下一页 尾页
+     function llist(){
+         //下一页 = 当前页+1; //19+1 = 20 
+                             //20+1 = 21 
+         $next = $this->curPage + 1;
+         //当 next的值小于等于总页数时,可以出现文字链接
+         $list = "";
+         if($next<=$this->totalPage){
+            $list = "<a href='".$this->url."page=$next'>下一页</a>&nbsp;
+                  <a href='".$this->url."page=$this->totalPage'>尾页</a>";
+         }
+         return $list;
+     }
+     
+     function  pages(){
+         echo "共".$this->totalPage."页&nbsp;";
+         echo "第".$this->curPage."页&nbsp;";
+         echo $this->flist();//首页 上一页
+         echo $this->mlist();//1 2 3 4 5 6 7 
+         echo $this->llist();//下一页 尾页
+     }     
 }
+
+//$p->getCurPage();
+
+
+
+
+
+
+
+
+
+
+
+
 

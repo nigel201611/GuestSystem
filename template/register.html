@@ -1,0 +1,67 @@
+<!--注册模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="registerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">注册</h4>
+            </div>
+            <div class="modal-body">
+                <div class="wrap login_wrap">
+                    <div class="content">
+
+                        <div class="logo"></div>
+
+                        <div class="login_box">
+
+                            <div class="login_form">
+                                <div class="login_title">
+                                    注册
+                                </div>
+                                <form action="#" method="post" id="register_form">
+
+                                    <div class="form_text_ipt">
+                                        <input name="username" type="text" placeholder="手机号/邮箱">
+                                    </div>
+                                    <div class="ececk_warning"><span>手机或者邮箱不能为空</span></div>
+                                    <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号，邮箱</span></div>
+                                    <div class="ececk_warning repeatUser"><span>手机号，邮箱已存在</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="password" type="password" placeholder="密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>密码不能为空</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="repassword" type="password" placeholder="重复密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>密码不能为空</span></div>
+                                    <div class="ececk_warning confirmPwd"><span>确认密码和原密码不一致</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="code" type="text" placeholder="验证码">
+                                    </div>
+                                    <div class="ececk_warning"><span>验证码不能为空</span></div>
+
+                                    <div class="form_btn">
+                                        <button type="submit">注册</button>
+                                    </div>
+                                    <div class="form_reg_btn">
+                                        <span>已有帐号？</span><a href="#" id="goLogin" data-toggle="modal" data-target="#loginModal">马上登录</a>
+                                    </div>
+                                </form>
+                                <div class="other_login">
+                                    <div class="left other_left">
+                                        <span>其它登录方式</span>
+                                    </div>
+                                    <div class="right other_right">
+                                        <a href="#">QQ登录</a>
+                                        <a href="#">微信登录</a>
+                                        <a href="#">微博登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
