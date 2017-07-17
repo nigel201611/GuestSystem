@@ -14,7 +14,6 @@ date_default_timezone_set('prc');
 @$content = $_POST['content'];
 @$to_user = $_POST['to_user'];
 
-//加的时候，需要判断是否已经是好友，已经是好友，就没必要加了
 
 
 $insertRsp = ['code'=>-1,'msg'=>""];
