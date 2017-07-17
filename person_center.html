@@ -453,232 +453,230 @@
 <script src="js/themes/default.js"></script>
 <script src="js/noty.min.js"></script>
 <script>
-
-    function notyInfo(data){
-        noty({
-            text: data,
-            layout: "center",
-            type: "warning",
-            modal: true,
-            buttons: [
-                {
-                    addClass: 'btn btn-primary btn-xs',
-                    text: '关闭',
-                    onClick: function ($noty) {
-                        $noty.close();
+    (function(){
+        function notyInfo(data){
+            noty({
+                text: data,
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '关闭',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
                     }
-                }
-            ]
-        });
-    }
-    function notyInfo2(data){
-        noty({
-            text: data.msg,
-            layout: "center",
-            type: "warning",
-            modal: true,
-            buttons: [
-                {
-                    addClass: 'btn btn-success btn-xs',
-                    text: '确认',
-                    onClick: function ($noty) {
-                        //删除记录
-                        $.ajax({
-                            type:"GET",
-                            url:"data/deleteMessage.php?ids="+data.ids,
-                            dataType:"json",
-                            success:function (rsp) {
-                                if(rsp.code == 0){  //删除成功
-                                    notyInfo("删除成功");
-                                    showMessage();
-                                }else if(rsp.code == 1){  //重新登录
-                                    $("#loginModal").modal('show');
-                                }else{
-                                    notyInfo("删除失败");
+                ]
+            });
+        }
+        function notyInfo2(data){
+            noty({
+                text: data.msg,
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-success btn-xs',
+                        text: '确认',
+                        onClick: function ($noty) {
+                            //删除记录
+                            $.ajax({
+                                type:"GET",
+                                url:"data/deleteMessage.php?ids="+data.ids,
+                                dataType:"json",
+                                success:function (rsp) {
+                                    if(rsp.code == 0){  //删除成功
+                                        notyInfo("删除成功");
+                                        showMessage(1);//从第一页开始
+                                    }else if(rsp.code == 1){  //重新登录
+                                        $("#loginModal").modal('show');
+                                    }else{
+                                        notyInfo("删除失败");
+                                    }
                                 }
-                            }
-                        });
-                        $noty.close();
+                            });
+                            $noty.close();
+                        }
+                    },
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '取消',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
                     }
-                },
-                {
-                    addClass: 'btn btn-primary btn-xs',
-                    text: '取消',
-                    onClick: function ($noty) {
-                        $noty.close();
-                    }
-                }
-            ]
-        });
-    }
-    //1-代表当前active,分别对应个人信息，修改资料，短信查询，好友设置，查询花朵，个人相册
-    var menuList = [0,0,0,0,0,0];
-    //从本地存储读取menuList
-
-    //个人中心，首先需要登录，用户表，增加1 注册时间字段，用户2 客户端所在ip字段，3 登录次数字段，uinique,active等字段
-    //其中unique用来安全防护，active用来激活邮箱用
-    //另外增加可选的邮箱，qq，头像，个人简介字段
-    function getPersonInfo(username){
-        //请求个人信息接口
-        $.getJSON('data/getUserInfo.php?username='+username,function (data) {
-            if(data.code == 0){// 请求信息成功
-                $(".loadingWrap").hide();
-                var rsp = data.info;
-                var head_imgSrc = "img/headPhoto/";
-                if(rsp[0].head_img){
-                    head_imgSrc += rsp[0].head_img;
-                }
-                rsp[0].username?$(".personInfoWrap").find('li.username .label-content').eq(0).text(rsp[0].username):"";
-                rsp[0].email?$(".personInfoWrap").find('li.email .label-content').eq(0).text(rsp[0].email):"";
-                rsp[0].qq?$(".personInfoWrap").find('li.qq .label-content').eq(0).text(rsp[0].qq):"";
-
-                rsp[0].time?$(".personInfoWrap").find('li.register_time .label-content').eq(0).text(rsp[0].time):"";
-                rsp[0].login_count?$(".personInfoWrap").find('li.login_count .label-content').eq(0).text(rsp[0].login_count):"";
-                rsp[0].person_info?$(".personInfoWrap").find('li.person_info .label-content').text(rsp[0].person_info):"";
-
-                //显示用户头像
-                rsp[0].head_img?$(".personInfoWrap").find('.person_img').eq(0).attr('src',head_imgSrc):$(".personInfoWrap").find('.person_img').eq(0).attr('src','');
-            }
-        });
-    }
-    $('.headerWrap').load('common.inc/header.html',function () {
-        var userInfo;
-        if(window.localStorage.getItem('userInfo')){
-            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+                ]
+            });
         }
-        if( userInfo && userInfo.username){
-            $('.headerWrap').find('.username').text(userInfo.username);
-            $('.headerWrap').find('.login').hide();
-            $('.headerWrap').find('.register').hide();
-            $('.headerWrap').find(".loginOut").removeClass('hidden');
-            if(localStorage.getItem("menuList")){
-                menuList = JSON.parse(localStorage.getItem("menuList"));
-                $(".wrapItem").removeClass("active");
-                for(var i=0;i<menuList.length;i++){
-                    switch (i){
-                        case 0://个人信息
-                            getPersonInfo(userInfo.username);
-                            break;
-                        case 2://短信查询
-                            showMessage();
-                            break;
-                        case 3://好友查询
-                            break;
-                        case 4://花朵查询
-                            break;
-                        case 5://个人相册
-                            break;
+        //1-代表当前active,分别对应个人信息，修改资料，短信查询，好友设置，查询花朵，个人相册
+        var menuList = [0,0,0,0,0,0];
+        //从本地存储读取menuList
+
+        //个人中心，首先需要登录，用户表，增加1 注册时间字段，用户2 客户端所在ip字段，3 登录次数字段，uinique,active等字段
+        //其中unique用来安全防护，active用来激活邮箱用
+        //另外增加可选的邮箱，qq，头像，个人简介字段
+        function getPersonInfo(username){
+            //请求个人信息接口
+            $.getJSON('data/getUserInfo.php?username='+username,function (data) {
+                if(data.code == 0){// 请求信息成功
+                    $(".loadingWrap").hide();
+                    var rsp = data.info;
+                    var head_imgSrc = "img/headPhoto/";
+                    if(rsp[0].head_img){
+                        head_imgSrc += rsp[0].head_img;
                     }
-                    if(menuList[i] == 1){
-                        $(".wrapItem").eq(i).addClass('active');
-                    }
+                    rsp[0].username?$(".personInfoWrap").find('li.username .label-content').eq(0).text(rsp[0].username):"";
+                    rsp[0].email?$(".personInfoWrap").find('li.email .label-content').eq(0).text(rsp[0].email):"";
+                    rsp[0].qq?$(".personInfoWrap").find('li.qq .label-content').eq(0).text(rsp[0].qq):"";
+
+                    rsp[0].time?$(".personInfoWrap").find('li.register_time .label-content').eq(0).text(rsp[0].time):"";
+                    rsp[0].login_count?$(".personInfoWrap").find('li.login_count .label-content').eq(0).text(rsp[0].login_count):"";
+                    rsp[0].person_info?$(".personInfoWrap").find('li.person_info .label-content').text(rsp[0].person_info):"";
+
+                    //显示用户头像
+                    rsp[0].head_img?$(".personInfoWrap").find('.person_img').eq(0).attr('src',head_imgSrc):$(".personInfoWrap").find('.person_img').eq(0).attr('src','');
                 }
+            });
+        }
+        $('.headerWrap').load('common.inc/header.html',function () {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if( userInfo && userInfo.username){
+                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+                if(localStorage.getItem("menuList")){
+                    menuList = JSON.parse(localStorage.getItem("menuList"));
+                    $(".wrapItem").removeClass("active");
+                    for(var i=0;i<menuList.length;i++){
+                        switch (i){
+                            case 0://个人信息
+                                getPersonInfo(userInfo.username);
+                                break;
+                            case 2://短信查询
+                                showMessage(1);
+                                break;
+                            case 3://好友查询
+                                break;
+                            case 4://花朵查询
+                                break;
+                            case 5://个人相册
+                                break;
+                        }
+                        if(menuList[i] == 1){
+                            $(".wrapItem").eq(i).addClass('active');
+                        }
+                    }
+                }else{
+                    menuList = [1,0,0,0,0,0];
+                    localStorage.setItem("menuList",JSON.stringify(menuList));
+                    getPersonInfo(userInfo.username);
+                }
+
             }else{
-                menuList = [1,0,0,0,0,0];
-                localStorage.setItem("menuList",JSON.stringify(menuList));
+                //请登录后操作
+                //使用unique防止伪登录
+                //注册时生成唯一unique,登录时，将unique存在cookie或者session中
+                //登录需要对密码进行加密-暂时不做
+                //未激活不能登录，激活过的用户，active设置为空，邮箱激活或者手机验证码激活--暂时不做
+
+                //做资料修改的时候，需要进行敏感验证，必须比对cookie和数据库的唯一标识符，防止伪造登录cookie
+                //如果做到更安全，在敏感操作后，可以重新生成唯一标识符，并且写入数据库写入cookie
+                $("#loginModal").modal('show');
+            }
+        });
+        $('.footerWrap').load('common.inc/footer.html');
+
+        //单击个人信息，请求个人信息接口,添加加载动画,如果之前关闭了浏览器，那么需要重新登录下
+        //否则修改的时候会有问题
+        $("#personInfo").click(function (e) {
+            e.preventDefault();
+            menuList = [1,0,0,0,0,0];
+            //将menuList保存到本地存储
+            localStorage.setItem("menuList",JSON.stringify(menuList));
+            $('.wrapItem').removeClass('active');
+            $(".wrapItem").eq(0).addClass('active');
+            var userInfo;
+
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if( userInfo &&  userInfo.username){
                 getPersonInfo(userInfo.username);
+            }else{
+                $("#loginModal").modal('show');
             }
+        });
+        //修改资料，2 增加验证码验证
+        $("#modifyInfo").click(function (e) {
+            e.preventDefault();
+            menuList = [0,1,0,0,0,0];
+            localStorage.setItem("menuList",JSON.stringify(menuList));
+            $('.wrapItem').removeClass('active');
+            $(".wrapItem").eq(1).addClass('active');
+        });
 
-        }else{
-            //请登录后操作
-            //使用unique防止伪登录
-            //注册时生成唯一unique,登录时，将unique存在cookie或者session中
-            //登录需要对密码进行加密-暂时不做
-            //未激活不能登录，激活过的用户，active设置为空，邮箱激活或者手机验证码激活--暂时不做
-
-            //做资料修改的时候，需要进行敏感验证，必须比对cookie和数据库的唯一标识符，防止伪造登录cookie
-            //如果做到更安全，在敏感操作后，可以重新生成唯一标识符，并且写入数据库写入cookie
-            $("#loginModal").modal('show');
-        }
-    });
-    $('.footerWrap').load('common.inc/footer.html');
-
-    //单击个人信息，请求个人信息接口,添加加载动画,如果之前关闭了浏览器，那么需要重新登录下
-    //否则修改的时候会有问题
-    $("#personInfo").click(function (e) {
-        e.preventDefault();
-        menuList = [1,0,0,0,0,0];
-        //将menuList保存到本地存储
-        localStorage.setItem("menuList",JSON.stringify(menuList));
-        $('.wrapItem').removeClass('active');
-        $(".wrapItem").eq(0).addClass('active');
-        var userInfo;
-
-        if(window.localStorage.getItem('userInfo')){
-            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
-        }
-        if( userInfo &&  userInfo.username){
-            getPersonInfo(userInfo.username);
-        }else{
-            $("#loginModal").modal('show');
-        }
-    });
-    //修改资料，2 增加验证码验证
-    $("#modifyInfo").click(function (e) {
-        e.preventDefault();
-        menuList = [0,1,0,0,0,0];
-        localStorage.setItem("menuList",JSON.stringify(menuList));
-        $('.wrapItem').removeClass('active');
-        $(".wrapItem").eq(1).addClass('active');
-    });
-
-    //单击其他管理下的相应菜单，显示对应内容
-    //分页相关函数
-    var curPage = 1;
-    var totalPages;
-    function mlist(list,totalPages) {
-        if(totalPages>=5){  //总页数大于等于5的情况下
-            var num = 2;//一个中间分隔数
-            //1,2,
-            if(curPage>num && curPage<=(totalPages-num) ){ //正常情况下
-                for(var i=num;i>0;i--){
-                    var n = curPage-i;
-                    list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+        //单击其他管理下的相应菜单，显示对应内容
+        //分页相关函数
+        function mlist(list,totalPages,curPage) {
+            if(totalPages>=5){  //总页数大于等于5的情况下
+                var num = 2;//一个中间分隔数
+                //1,2,
+                if(curPage>num && curPage<=(totalPages-num) ){ //正常情况下
+                    for(var i=num;i>0;i--){
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=1;i<=num;i++){
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                }else if(curPage<=num){//如果当前页小于$num，也要同时显示5个
+                    for(var i=curPage-1;i>0;i--){
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=1;i<=num+(num-curPage+1);i++){//!!! 2-3,1-4
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                }else if( curPage>totalPages-num ){ //如果当前页大于于$totoalPage，也要同时显示5个
+                    for(var i=num+(curPage-totalPages+num);i>0;i--){ //16,17,18||16,17,18,19--19-3,20-4
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=(curPage-totalPages+num);i<num;i++){ //19-1,20-0
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                }
+            }else{ //总页数小于5时
+                for(var i=1;i<curPage;i++){
+                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
                 }
                 list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                //3,4
-                for(var i=1;i<=num;i++){
-                    var n = curPage+i;
-                    list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                for(var i=curPage+1;i<=totalPages;i++){
+                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
                 }
-            }else if(curPage<=num){//如果当前页小于$num，也要同时显示5个
-                for(var i=curPage-1;i>0;i--){
-                    var n = curPage-i;
-                    list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                }
-                list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                //3,4
-                for(var i=1;i<=num+(num-curPage+1);i++){//!!! 2-3,1-4
-                    var n = curPage+i;
-                    list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                }
-            }else if( curPage>totalPages-num ){ //如果当前页大于于$totoalPage，也要同时显示5个
-                for(var i=num+(curPage-totalPages+num);i>0;i--){ //16,17,18||16,17,18,19--19-3,20-4
-                    var n = curPage-i;
-                    list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                }
-                list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                //3,4
-                for(var i=(curPage-totalPages+num);i<num;i++){ //19-1,20-0
-                    var n = curPage+i;
-                    list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                }
-            }
-        }else{ //总页数小于5时
-            for(var i=1;i<curPage;i++){
-                list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
-            }
-            list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-            for(var i=curPage+1;i<=totalPages;i++){
-                list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
-            }
 
+            }
+            return list;
         }
-        return list;
-    }
-    function flist(list, totalPages) {
-        list += `<ul class="pagination">
-                             <span class="totalPage">共${totalPages}页</span>
+        function flist(list, totalPages,curPage) {
+            list += `<ul class="pagination">
+                             <span class="totalPage" data-total="${totalPages}">共${totalPages}页</span>
                              <span class="curPage">当前第${curPage}页</span>
                              <li>
                              <a href="#" aria-label="first" data-page="1">
@@ -689,10 +687,10 @@
                              <a href="#" aria-label="Previous" class="prev">
                              <span aria-hidden="true">上一页</span>
                              </a>`;
-        return list;
-    }
-    function llist(list,totalPages){
-        list += `<li>
+            return list;
+        }
+        function llist(list,totalPages){
+            list += `<li>
                              <a href="#" aria-label="Next" class="next">
                              <span aria-hidden="true">下一页</span>
                              </a>
@@ -702,34 +700,34 @@
                              <span aria-hidden="true">尾页</span>
                              </a>
                              </li>`;
-        return list;
-    }
-    function pages() {
-        var list = "";
-        //首页，上一页
-        list = flist(list,totalPages);
-        //中间分页
-        list =mlist(list,totalPages);
-        //下一页尾页
-        list =llist(list,totalPages);
+            return list;
+        }
+        function pages(totalPages,curPage) {
+            var list = "";
+            //首页，上一页
+            list = flist(list,totalPages,curPage);
+            //中间分页
+            list =mlist(list,totalPages,curPage);
+            //下一页尾页
+            list =llist(list,totalPages);
 
-        return list;
-    }
-
-    function showMessage() {
-        $.ajax({
-            type:"GET",
-            url:"data/getMessage.php?page="+curPage,
-            dataType:"JSON",
-            async:false,
-            success:function (rsp) {
-                if(rsp.code==0){
-                    totalPages = rsp.pagesCount;
-                    var data = rsp.info;
-                    //显示消息数据
-                    var html = "";
-                    for(var i=0;i<data.length;i++){
-                        html += `<tr data-id="${data[i].id}">
+            return list;
+        }
+//显示消息
+        function showMessage(curPage) {
+            $.ajax({
+                type:"GET",
+                url:"data/getMessage.php?page="+curPage,
+                dataType:"JSON",
+                async:false,
+                success:function (rsp) {
+                    if(rsp.code==0){
+                        var totalPages = rsp.pagesCount;
+                        var data = rsp.info;
+                        //显示消息数据
+                        var html = "";
+                        for(var i=0;i<data.length;i++){
+                            html += `<tr data-id="${data[i].id}">
                                         <td>${data[i].from_user}</td>
                                         <td>${data[i].to_user}</td>
                                         <td>${data[i].message_content}</td>
@@ -737,226 +735,229 @@
                                         <td>${data[i].message_state}</td>
                                         <td><label><input title="单击可以删除该条信息" type="checkbox" class="delete"  data-id="${data[i].id}"></label></td>
                                         </tr>`;
+                        }
+                        $("#showMessageWrap table>tbody").html(html);
+                        //生成分页list
+                        $(".pagelist .Page").html(pages(totalPages,curPage));
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }else if(rsp.code==-1){
+                        notyInfo("获取消息失败，请尝试关闭浏览器重新登录试试！");
                     }
-                    $("#showMessageWrap table>tbody").html(html);
-                    //生成分页list
-                    $(".pagelist .Page").html(pages());
-                }else if(rsp.code==2){
-                    //重新登录
-                    $("#loginModal").modal('show');
-                }else if(rsp.code==-1){
-                    notyInfo("获取消息失败，请尝试关闭浏览器重新登录试试！");
+                }
+            });
+        }
+
+
+        //其他管理，子菜单
+        $(".othersManage").on('click','li.list-group-item>a',function (e) {
+            e.preventDefault();
+            var $wrapId = $($(this).attr('href')),
+                wrapId = $(this).attr('href');
+
+            $(".wrapItem").removeClass('active');
+            $wrapId.addClass('active');
+            var index = $(this).parent().index();
+
+            menuList = [0,0,0,0,0,0];
+            menuList[index+2] = 1;
+            //将menuList保存到本地存储
+            localStorage.setItem("menuList",JSON.stringify(menuList));
+            var page = 1;
+            switch ( wrapId ){
+                case "#showMessageWrap":
+                    //展示信息
+                    showMessage(1);
+                    break;
+                case "#friendWrap":
+                    showFriend();
+                    break;
+                case "#flowerWrap":
+                    break;
+                case "#personPhotoWrap":
+                    break;
+            }
+
+        });
+
+        //单击pagelist上的分页
+        var $pagelist = $(".pagelist");
+        $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
+            e.preventDefault();
+            var curPage = parseInt($(this).attr('data-page'));
+            showMessage(curPage);
+        });
+
+        //上一页，下一页
+        $pagelist.on('click','.prev',function (e) {
+            e.preventDefault();
+            var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+            curPage--;
+            if(curPage>0){
+                showMessage(curPage);
+            }else{
+                showMessage(1);
+            }
+        });
+        $pagelist.on('click','.next',function (e) {
+            e.preventDefault();
+            //获取当前页curPage
+            var totalPages = $pagelist.find(".totalPage").attr('data-total');
+            var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+            curPage++;
+            if(curPage<=totalPages){
+                showMessage(curPage);
+            }else{
+                //获取中页数
+                showMessage(totalPages);
+            }
+        });
+
+        //单击操作复选框,删除单条记录
+        $("#showMessageWrap").on('click','input.delete',function () {
+            //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
+            if($(this).is(":checked")){
+                //删除记录
+                var id = $(this).attr("data-id");
+                console.log(id);
+                var data = {
+                    ids:id,
+                    msg:"确认删除该条信息"
+                };
+                notyInfo2(data);
+            }
+        });
+        //批量删除
+        $("#showMessageWrap").on('click','input.allCheck',function () {
+            //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
+            var checkList = $("#showMessageWrap").find("input.delete");
+            if($(this).is(":checked")){
+                //删除记录
+                var id = "";
+                for(var i=0;i<checkList.length-1;i++){
+                    $(checkList[i]).prop("checked",true);
+                    id +=  $(checkList[i]).attr('data-id')+",";
+                }
+                $(checkList[i]).prop("checked",true);
+                id +=  $(checkList[i]).attr('data-id');
+                console.log(id);
+                var data = {
+                    ids:id,
+                    msg:"确认删除该条信息"
+                };
+                notyInfo2(data);
+            }else{
+                for(var i=0;i<checkList.length;i++){
+                    $(checkList[i]).prop("checked",false);
                 }
             }
         });
-    }
-
-    //其他管理，子菜单
-    $(".othersManage").on('click','li.list-group-item>a',function (e) {
-        e.preventDefault();
-        var $wrapId = $($(this).attr('href')),
-            wrapId = $(this).attr('href');
-
-        $(".wrapItem").removeClass('active');
-        $wrapId.addClass('active');
-        var index = $(this).parent().index();
-        console.log(index);
-        menuList = [0,0,0,0,0,0];
-        menuList[index+2] = 1;
-        //将menuList保存到本地存储
-        localStorage.setItem("menuList",JSON.stringify(menuList));
-        var page = 1;
-        switch ( wrapId ){
-            case "#showMessageWrap":
-                //展示信息
-                showMessage();
-                break;
-            case "#friendWrap":
-                break;
-            case "#flowerWrap":
-                break;
-            case "#personPhotoWrap":
-                break;
-        }
-
-    });
-
-    //单击pagelist上的分页
-    var $pagelist = $(".pagelist");
-    $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
-        e.preventDefault();
-        var page = parseInt($(this).attr('data-page'));
-        curPage = page;
-        showMessage();
-    });
-
-    //上一页，下一页
-    $pagelist.on('click','.prev',function (e) {
-        e.preventDefault();
-        console.log(curPage);
-        curPage--;
-        if(curPage>0){
-            showMessage();
-        }else{
-            curPage = 1;
-        }
-    });
-    $pagelist.on('click','.next',function (e) {
-        e.preventDefault();
-        console.log(curPage);
-        curPage++;
-        if(curPage<=totalPages){
-            showMessage();
-        }else{
-            curPage = totalPages;
-        }
-    });
-
-    //单击操作复选框,删除单条记录
-    $("#showMessageWrap").on('click','input.delete',function () {
-      //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
-        if($(this).is(":checked")){
-            //删除记录
-            var id = $(this).attr("data-id");
-            console.log(id);
-            var data = {
-                ids:id,
-                msg:"确认删除该条信息"
-            };
-            notyInfo2(data);
-        }
-    });
-    //批量删除
-    $("#showMessageWrap").on('click','input.allCheck',function () {
-        //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
-        var checkList = $("#showMessageWrap").find("input.delete");
-        if($(this).is(":checked")){
-            //删除记录
-            var id = "";
-            for(var i=0;i<checkList.length-1;i++){
-                $(checkList[i]).prop("checked",true);
-                id +=  $(checkList[i]).attr('data-id')+",";
-            }
-            $(checkList[i]).prop("checked",true);
-            id +=  $(checkList[i]).attr('data-id');
-            console.log(id);
-            var data = {
-                ids:id,
-                msg:"确认删除该条信息"
-            };
-            notyInfo2(data);
-        }else{
-            for(var i=0;i<checkList.length;i++){
-                $(checkList[i]).prop("checked",false);
-            }
-        }
-    });
-
-    //2 增加验证码验证
-    $("#modifyinfoForm .yzcodeImg").click(function () {
-        this.src= "data/yzCode.php";
-    });
-    $("#modifyinfoForm").on('blur keyup','input[name=yzcode]',function () {
-        var yzcode = $(this).val();
-        //验证用户输入的验证码是否和服务器端生成的一样
-        if(yzcode != getCookie('yzcode')){
-            $(".yzcodeErr").show();
-            //提交禁用
-            $("#modifyinfoForm").find("button[type=submit]").attr('disabled',true);
-            return;
-        }else{
-            $(".yzcodeErr").hide();
-            $("#modifyinfoForm").find("button[type=submit]").attr('disabled',false);
-        }
-    });
-    $("#modifyinfoForm input[name=yzcode]").focus(function () {
-        $(".yzcodeErr").hide();
-    });
-
-
-    //提交资料之前，对名字进行处理，名字不能重名
-    $(".modifyWrap input[name=username]").on('blur',function () {
-        var username = $(this).val();
-        $.getJSON('data/isRepeatUsername.php?username='+username,function (rsp) {
-            if(rsp.code==0){//用户已存在
-                $(".errcheck_repeat").show();
+        //2 增加验证码验证
+        $("#modifyinfoForm .yzcodeImg").click(function () {
+            this.src= "data/yzCode.php";
+        });
+        $("#modifyinfoForm").on('blur keyup','input[name=yzcode]',function () {
+            var yzcode = $(this).val();
+            //验证用户输入的验证码是否和服务器端生成的一样
+            if(yzcode != getCookie('yzcode')){
+                $(".yzcodeErr").show();
                 //提交禁用
                 $("#modifyinfoForm").find("button[type=submit]").attr('disabled',true);
+                return;
             }else{
-                $(".errcheck_repeat").hide();
+                $(".yzcodeErr").hide();
                 $("#modifyinfoForm").find("button[type=submit]").attr('disabled',false);
             }
         });
-    });
-    $(".modifyWrap input[name=username]").on('focus',function () {
-        $(".errcheck").hide();
-    });
-
-    //提交修改的资料,提交先查看cookie中是否uniq,没有重新登录，提交修改资料失败情况处理
-    $("#modifyinfoForm").on('submit',function (e) {
-        e.preventDefault();
-        //验证码不能为空
-        var yzcode = $("#modifyinfoForm input[name=yzcode]").val();
-        if(yzcode != getCookie('yzcode') || yzcode==''){
-            $(".yzcodeErr").show();
-            //提交禁用
-            $("#modifyinfoForm").find("button[type=submit]").attr('disabled',true);
-            return;
-        }else{
+        $("#modifyinfoForm input[name=yzcode]").focus(function () {
             $(".yzcodeErr").hide();
-            //提交禁用
-            $("#modifyinfoForm").find("button[type=submit]").attr('disabled',false);
-        }
-
-        var data = $(this).serializeArray();
-        var username = data[0].value,
-             email = data[1].value,
-             qq = data[2].value,
-            personInfo = data[3].value;
-
-        //用户名不能为空
-        if(username==''){
-            $(".errcheck_empty").show();
-            return;
-        }else{
-            $(".errcheck_empty").hide();
-        }
-        $.ajax({
-            type:"POST",
-            url:"data/modifyInfo.php",
-            dataType:"JSON",
-            data:{
-                'username':username,
-                'email':email,
-                'qq':qq,
-                'personInfo':personInfo
-            },
-            success:function (rsp) {
-                if(rsp.code == 0){  //修改资料成功
-                    var userInfo = {
-                        username:username,
-                        isAutoLogin:1
-                    };
-                    window.localStorage.setItem('userInfo',JSON.stringify(userInfo)); //1-代表自动登陆
-                    $("#modifySuccessModal").modal('show');
-                    //当用户关闭模态框，重新加载页面
-                    $('#modifySuccessModal').on('hidden.bs.modal', function (e) {
-                        window.location.reload();
-                    })
-                }else if(rsp.code==-1){  //非法操作
-                    $("#modifyFailModal").modal('show');
-                }else if(rsp.code == 1){  //重新登录，原因是关闭过浏览器，使用session保存的用户名和uniq已经失效
-                    $("#loginModal").modal('show');
-                }
-            }
         });
-    });
 
-    //每次刷新,从本地存储中取上次所在的导航页，而不是每次都是个人信息页
+        //提交资料之前，对名字进行处理，名字不能重名
+        $(".modifyWrap input[name=username]").on('blur',function () {
+            var username = $(this).val();
+            $.getJSON('data/isRepeatUsername.php?username='+username,function (rsp) {
+                if(rsp.code==0){//用户已存在
+                    $(".errcheck_repeat").show();
+                    //提交禁用
+                    $("#modifyinfoForm").find("button[type=submit]").attr('disabled',true);
+                }else{
+                    $(".errcheck_repeat").hide();
+                    $("#modifyinfoForm").find("button[type=submit]").attr('disabled',false);
+                }
+            });
+        });
+        $(".modifyWrap input[name=username]").on('focus',function () {
+            $(".errcheck").hide();
+        });
+
+        //提交修改的资料,提交先查看cookie中是否uniq,没有重新登录，提交修改资料失败情况处理
+        $("#modifyinfoForm").on('submit',function (e) {
+            e.preventDefault();
+            //验证码不能为空
+            var yzcode = $("#modifyinfoForm input[name=yzcode]").val();
+            if(yzcode != getCookie('yzcode') || yzcode==''){
+                $(".yzcodeErr").show();
+                //提交禁用
+                $("#modifyinfoForm").find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".yzcodeErr").hide();
+                //提交禁用
+                $("#modifyinfoForm").find("button[type=submit]").attr('disabled',false);
+            }
+
+            var data = $(this).serializeArray();
+            var username = data[0].value,
+                email = data[1].value,
+                qq = data[2].value,
+                personInfo = data[3].value;
+
+            //用户名不能为空
+            if(username==''){
+                $(".errcheck_empty").show();
+                return;
+            }else{
+                $(".errcheck_empty").hide();
+            }
+            $.ajax({
+                type:"POST",
+                url:"data/modifyInfo.php",
+                dataType:"JSON",
+                data:{
+                    'username':username,
+                    'email':email,
+                    'qq':qq,
+                    'personInfo':personInfo
+                },
+                success:function (rsp) {
+                    if(rsp.code == 0){  //修改资料成功
+                        var userInfo = {
+                            username:username,
+                            isAutoLogin:1
+                        };
+                        window.localStorage.setItem('userInfo',JSON.stringify(userInfo)); //1-代表自动登陆
+                        $("#modifySuccessModal").modal('show');
+                        //当用户关闭模态框，重新加载页面
+                        $('#modifySuccessModal').on('hidden.bs.modal', function (e) {
+                            window.location.reload();
+                        })
+                    }else if(rsp.code==-1){  //非法操作
+                        $("#modifyFailModal").modal('show');
+                    }else if(rsp.code == 1){  //重新登录，原因是关闭过浏览器，使用session保存的用户名和uniq已经失效
+                        $("#loginModal").modal('show');
+                    }
+                }
+            });
+        });
+
+        //每次刷新,从本地存储中取上次所在的导航页，而不是每次都是个人信息页
+    })();
+
 
 
 </script>
-
 <script type="text/javascript">
     $(function(){
         // 初始化插件
