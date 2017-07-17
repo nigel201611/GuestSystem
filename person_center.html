@@ -81,6 +81,18 @@
         top:-2px;
     }
 
+    .envelope_wrap{
+        position: relative;
+        display: inline-block;
+    }
+    .envelope_count{
+        background: #e54545;
+        padding:0;
+        position: absolute;
+        top: -10px;
+        left: 10px;
+    }
+
 </style>
 <body>
     <div class="headerWrap"></div>
@@ -582,6 +594,14 @@
                 $('.headerWrap').find('.login').hide();
                 $('.headerWrap').find('.register').hide();
                 $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    console.log(count);
+                    if(count>0){
+
+                    }
+                });
                 if(localStorage.getItem("menuList")){
                     menuList = JSON.parse(localStorage.getItem("menuList"));
                     $(".wrapItem").removeClass("active");
@@ -955,6 +975,9 @@
         initAction($("#showMessageWrap"),1);
 //显示好友相关操作
         initAction($("#friendWrap"),2);
+
+
+        //验证好友，显示未查看消息在头部导航上
 
 
 /*--------------------------------修改资料---------------------------------------*/
