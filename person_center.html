@@ -258,7 +258,33 @@
                             </div>
                         <!--好友设置-->
                         <div class="friendWrap wrapItem" id="friendWrap">
-                            好友设置
+                            <!--只显示加当前用户的好友-->
+                            <table class="table table-responsive table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>添加人</td>
+                                    <td>验证好友内容</td>
+                                    <td>日期</td>
+                                    <td>状态</td>
+                                    <td>操作</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                            <div class="buttonList">
+                                <div class="deleteAll">
+                                    <input type="checkbox" class="allCheck">
+                                    <label>删除本页</label>
+                                </div>
+                            </div>
+                            <!--分页list-->
+                            <div class="pagelist text-center">
+                                <nav aria-label="Page navigation" class="Page">
+
+                                </nav>
+                            </div>
                         </div>
                         <!--查询花朵-->
                         <div class="flowerWrap wrapItem" id="flowerWrap">
@@ -471,7 +497,7 @@
                 ]
             });
         }
-        function notyInfo2(data){
+        function notyInfo2(data,url,flag){
             noty({
                 text: data.msg,
                 layout: "center",
@@ -485,12 +511,17 @@
                             //删除记录
                             $.ajax({
                                 type:"GET",
-                                url:"data/deleteMessage.php?ids="+data.ids,
+                                url:url,
                                 dataType:"json",
                                 success:function (rsp) {
                                     if(rsp.code == 0){  //删除成功
                                         notyInfo("删除成功");
-                                        showMessage(1);//从第一页开始
+                                        if(flag==1){
+                                            showMessage(1);//从第一页开始
+                                        }else{
+                                            showFriend(1);//从第一页开始
+                                        }
+
                                     }else if(rsp.code == 1){  //重新登录
                                         $("#loginModal").modal('show');
                                     }else{
@@ -563,6 +594,7 @@
                                 showMessage(1);
                                 break;
                             case 3://好友查询
+                                showFriend(1);
                                 break;
                             case 4://花朵查询
                                 break;
@@ -738,7 +770,7 @@
                         }
                         $("#showMessageWrap table>tbody").html(html);
                         //生成分页list
-                        $(".pagelist .Page").html(pages(totalPages,curPage));
+                        $("#showMessageWrap .pagelist .Page").html(pages(totalPages,curPage));
                     }else if(rsp.code==2){
                         //重新登录
                         $("#loginModal").modal('show');
@@ -748,7 +780,40 @@
                 }
             });
         }
-
+//显示好友信息
+        function showFriend(curPage) {
+            $.ajax({
+                type:"GET",
+                url:"data/getFriend.php?page="+curPage,
+                dataType:"JSON",
+                async:false,
+                success:function (rsp) {
+                    if(rsp.code==0){
+                        var totalPages = rsp.pagesCount;
+                        var data = rsp.info;
+                        //显示消息数据
+                        var html = "";
+                        for(var i=0;i<data.length;i++){
+                            html += `<tr data-id="${data[i].id}">
+                                        <td>${data[i].from_user}</td>
+                                        <td>${data[i].friend_content}</td>
+                                        <td>${data[i].friend_date}</td>
+                                        <td>${data[i].friend_state}</td>
+                                        <td><label><input title="单击可以删除该条信息" type="checkbox" class="delete"  data-id="${data[i].id}"></label></td>
+                                        </tr>`;
+                        }
+                        $("#friendWrap table>tbody").html(html);
+                        //生成分页list
+                        $("#friendWrap .pagelist .Page").html(pages(totalPages,curPage));
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }else if(rsp.code==-1){
+                        notyInfo("获取信息失败，请尝试关闭浏览器重新登录试试！");
+                    }
+                }
+            });
+        }
 
         //其他管理，子菜单
         $(".othersManage").on('click','li.list-group-item>a',function (e) {
@@ -764,14 +829,13 @@
             menuList[index+2] = 1;
             //将menuList保存到本地存储
             localStorage.setItem("menuList",JSON.stringify(menuList));
-            var page = 1;
             switch ( wrapId ){
                 case "#showMessageWrap":
                     //展示信息
                     showMessage(1);
                     break;
                 case "#friendWrap":
-                    showFriend();
+                    showFriend(1);
                     break;
                 case "#flowerWrap":
                     break;
@@ -780,79 +844,120 @@
             }
 
         });
+//显示相关操作
+//使用flag来判断是显示消息还是显示好友，1-消息，2-好友
+        function initAction($wrap,flag){
+            var $pagelist = $wrap.find(".pagelist").eq(0);
+            $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($(this).attr('data-page'));
+                if(flag==1){
+                    showMessage(curPage);
+                }else if(flag==2){
+                    showFriend(curPage);
+                }
 
-        //单击pagelist上的分页
-        var $pagelist = $(".pagelist");
-        $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
-            e.preventDefault();
-            var curPage = parseInt($(this).attr('data-page'));
-            showMessage(curPage);
-        });
+            });
+            //上一页，下一页
+            $pagelist.on('click','.prev',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage--;
+                if(flag==1){
+                    if(curPage>0){
+                        showMessage(curPage);
+                    }else{
+                        showMessage(1);
+                    }
+                }else if(flag==2){
+                    if(curPage>0){
+                        showFriend(curPage);
+                    }else{
+                        showFriend(1);
+                    }
+                }
 
-        //上一页，下一页
-        $pagelist.on('click','.prev',function (e) {
-            e.preventDefault();
-            var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
-            curPage--;
-            if(curPage>0){
-                showMessage(curPage);
-            }else{
-                showMessage(1);
-            }
-        });
-        $pagelist.on('click','.next',function (e) {
-            e.preventDefault();
-            //获取当前页curPage
-            var totalPages = $pagelist.find(".totalPage").attr('data-total');
-            var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
-            curPage++;
-            if(curPage<=totalPages){
-                showMessage(curPage);
-            }else{
-                //获取中页数
-                showMessage(totalPages);
-            }
-        });
+            });
+            $pagelist.on('click','.next',function (e) {
+                e.preventDefault();
+                //获取当前页curPage
+                var totalPages = $pagelist.find(".totalPage").attr('data-total');
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage++;
+                if(flag==1){
+                    if(curPage<=totalPages){
+                        showMessage(curPage);
+                    }else{
+                        //获取中页数
+                        showMessage(totalPages);
+                    }
+                }else if(flag==2){
+                    if(curPage<=totalPages){
+                        showFriend(curPage);
+                    }else{
+                        //获取中页数
+                        showFriend(totalPages);
+                    }
+                }
 
-        //单击操作复选框,删除单条记录
-        $("#showMessageWrap").on('click','input.delete',function () {
-            //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
-            if($(this).is(":checked")){
-                //删除记录
-                var id = $(this).attr("data-id");
-                console.log(id);
-                var data = {
-                    ids:id,
-                    msg:"确认删除该条信息"
-                };
-                notyInfo2(data);
-            }
-        });
-        //批量删除
-        $("#showMessageWrap").on('click','input.allCheck',function () {
-            //  $(this).is(":checked")?$(this).prop("checked",false):$(this).prop("checked",true);
-            var checkList = $("#showMessageWrap").find("input.delete");
-            if($(this).is(":checked")){
-                //删除记录
-                var id = "";
-                for(var i=0;i<checkList.length-1;i++){
+            });
+
+            //单击操作复选框,删除单条记录
+            $wrap.on('click','input.delete',function () {
+                if($(this).is(":checked")){
+                    //删除记录
+                    var id = $(this).attr("data-id");
+                    var data = {
+                        ids:id,
+                        msg:"确认删除该条记录"
+                    };
+                    if(flag==1){
+                        var url = "data/deleteMessage.php?ids="+data.ids;
+                        notyInfo2(data,url,flag);
+                    }else if(flag==2){
+                        var url = "data/deleteFriend.php?ids="+data.ids;
+                        notyInfo2(data,url,flag);
+                    }
+                }
+            });
+            //批量删除
+            $wrap.on('click','input.allCheck',function () {
+                var checkList = $wrap.find("input.delete");
+                if($(this).is(":checked")){
+                    //删除记录
+                    var id = "";
+                    for(var i=0;i<checkList.length-1;i++){
+                        $(checkList[i]).prop("checked",true);
+                        id +=  $(checkList[i]).attr('data-id')+",";
+                    }
                     $(checkList[i]).prop("checked",true);
-                    id +=  $(checkList[i]).attr('data-id')+",";
+                    id +=  $(checkList[i]).attr('data-id');
+                    console.log(id);
+                    var data = {
+                        ids:id,
+                        msg:"确认删除该条记录"
+                    };
+                    if(flag==1){
+                        var url = "data/deleteMessage.php?ids="+data.ids;
+                        notyInfo2(data,url,flag);
+                    }else if(flag==2){
+                        var url = "data/deleteFriend.php?ids="+data.ids;
+                        notyInfo2(data,url,flag);
+                    }
+                }else{
+                    for(var i=0;i<checkList.length;i++){
+                        $(checkList[i]).prop("checked",false);
+                    }
                 }
-                $(checkList[i]).prop("checked",true);
-                id +=  $(checkList[i]).attr('data-id');
-                console.log(id);
-                var data = {
-                    ids:id,
-                    msg:"确认删除该条信息"
-                };
-                notyInfo2(data);
-            }else{
-                for(var i=0;i<checkList.length;i++){
-                    $(checkList[i]).prop("checked",false);
-                }
-            }
-        });
+            });
+        }
+//显示消息相关操作
+        initAction($("#showMessageWrap"),1);
+//显示好友相关操作
+        initAction($("#friendWrap"),2);
+
+
+/*--------------------------------修改资料---------------------------------------*/
         //2 增加验证码验证
         $("#modifyinfoForm .yzcodeImg").click(function () {
             this.src= "data/yzCode.php";
@@ -955,9 +1060,8 @@
         //每次刷新,从本地存储中取上次所在的导航页，而不是每次都是个人信息页
     })();
 
-
-
 </script>
+<!--------------------------------上传头像--------------------------------------->
 <script type="text/javascript">
     $(function(){
         // 初始化插件

@@ -11,8 +11,7 @@ require_once 'phpClass/MySQL.class.php';
 
 $db = MySQL::getObj('localhost','root','root','nigel');
 
-
-//分页获取别人发给自己的信息,to_user=$_COOKIE['username']
+//分页获取别人发给自己的信息
 $friendArr = [
     'code'=>-1,
     'msg'=>"",
@@ -24,7 +23,7 @@ $friendArr = [
     'info'=>[]          //获取到的结果
 ];
 if(isset( $_SESSION['username']) && !empty( $_SESSION['username'])){
-    $to_user = $_SESSION['username'];
+    $to_user = $_SESSION['username'];  //当前用户
 }else{
     $friendArr['code'] = 2;//需要重新登录
     $friendArr['msg'] = "login timeout,please login again";
@@ -40,10 +39,9 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
 $config = [
     'mode'=>MYSQLI_ASSOC,
     'fileds'=>"id",
-    'where'=>"(to_user='{$to_user}' and from_user='{$from_user}') 
-    or (to_user='{$from_user}' and from_user='{$to_user}') "  //条件是，和当前用户是好友关系的
+    'where'=>"to_user='{$to_user}'"  //别人向自己添加的好友
 ];
-$result = $db->fetchAll('message',$config);
+$result = $db->fetchAll('friend',$config);
 
 if($result){
     $friendArr['recordCount'] = count($result);
@@ -57,12 +55,11 @@ $start = ($friendArr['curPage']-1)*$friendArr['pageSize'];
 $config1 = [
     'mode'=>MYSQLI_ASSOC,
     'fileds'=>"*",
-    'where'=>"(to_user='{$to_user}' and from_user='{$from_user}') 
-    or (to_user='{$from_user}' and from_user='{$to_user}') ",  //条件是，和当前用户是好友关系的
+    'where'=>"to_user='{$to_user}'",
     'limits'=>"{$start},{$friendArr['pageSize']}"
 ];
 
-$result1 = $db->fetchAll('message',$config1);
+$result1 = $db->fetchAll('friend',$config1);
 if($result1){
     $friendArr['code'] = 0;//成功获取到分页数据
     $friendArr['msg'] = "success";
