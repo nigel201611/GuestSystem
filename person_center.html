@@ -672,6 +672,42 @@
                 ]
             });
         }
+        function notyInfo32(data,that,flag,id){
+            noty({
+                text: data,
+                layout: "center",
+                type: "default",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-success btn-xs',
+                        text: '通过',
+                        onClick: function ($noty) {
+                            if(flag){ //如果之前没有通过验证
+                                $.getJSON('data/setFriendValidate.php?ids='+id,function (rsp) {
+                                    if(rsp.code==0){
+                                        //设置成已认证
+                                        $(that).find(".validate").removeClass("notValidate glyphicon-remove").addClass("glyphicon-ok"); //!!!
+
+                                    }else if(rsp.code==2){
+                                        //登录时间过期，请重新登录
+                                        $("#loginModal").modal('show');
+                                    }
+                                });
+                            }
+                            $noty.close();
+                        }
+                    },
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '关闭',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
+                    }
+                ]
+            });
+        }
         function notyInfo4(data,url,flag,that){
             noty({
                 text: data.msg,
@@ -1029,24 +1065,14 @@
             var index = $(this).index();
             var friend_content = friendArr[index];
             //添加是否确认验证按钮
-            notyInfo32(friend_content);//---代做
+
             var id = $(this).attr('data-id');
-            //设置成已读,需要加一个批量设置已读
+            //设置成已验证,需要加一个批量设置已读
             //如果已经是已读状态，就不需要设置了
             var flag = $(this).find(".validate").hasClass("notValidate");
             var that = this;
-            if(flag){
-                $.getJSON('data/setFriendValidate.php?ids='+id,function (rsp) {
-                    if(rsp.code==0){
-                        //不需要通知已经设置成已读，只要将消息标示
-                        $(that).find(".validate").removeClass("notValidate");
+            notyInfo32(friend_content,that,flag,id);
 
-                    }else if(rsp.code==2){
-                        //登录时间过期，请重新登录
-                        $("#loginModal").modal('show');
-                    }
-                });
-            }
         });
 
         //其他管理，子菜单
