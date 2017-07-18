@@ -75,6 +75,7 @@
     }
     .buttonList{
         float: right;
+        overflow: hidden;
     }
     .buttonList label{
         position: relative;
@@ -88,7 +89,14 @@
         word-wrap:break-word;
         word-break:break-all;
     }
-
+    .deleteAll,
+    .readAll{
+        float: left;
+        margin:0 0 0 10px;
+    }
+    .pagelist{
+        clear: both;
+    }
 
 </style>
 <body>
@@ -256,6 +264,10 @@
                                     <div class="deleteAll">
                                         <input type="checkbox" class="allCheck">
                                         <label>删除本页</label>
+                                    </div>
+                                    <div class="readAll">
+                                        <input type="checkbox" class="allRead">
+                                        <label>全部已读</label>
                                     </div>
                                 </div>
                                 <!--分页list-->
@@ -528,7 +540,7 @@
                 ]
             });
         }
-        function notyInfo2(data,url,flag){
+        function notyInfo2(data,url,flag,that,checkList){
             noty({
                 text: data.msg,
                 layout: "center",
@@ -546,17 +558,15 @@
                                 dataType:"json",
                                 success:function (rsp) {
                                     if(rsp.code == 0){  //删除成功
-                                        notyInfo("删除成功");
-                                        if(flag==1){
+                                        notyInfo("success");
+                                        if(flag==1){  //message
                                             showMessage(1);//从第一页开始
-                                        }else{
+                                        }else{  //friend
                                             showFriend(1);//从第一页开始
                                         }
 
                                     }else if(rsp.code == 1){  //重新登录
                                         $("#loginModal").modal('show');
-                                    }else{
-                                        notyInfo("删除失败");
                                     }
                                 }
                             });
@@ -567,6 +577,10 @@
                         addClass: 'btn btn-primary btn-xs',
                         text: '取消',
                         onClick: function ($noty) {
+                            $(that).prop('checked',false);
+                            for(var i=0;i<checkList.length;i++){
+                                $(checkList[i]).prop("checked",false);
+                            }
                             $noty.close();
                         }
                     }
@@ -584,6 +598,47 @@
                         addClass: 'btn btn-primary btn-xs',
                         text: '关闭',
                         onClick: function ($noty) {
+                            $noty.close();
+                        }
+                    }
+                ]
+            });
+        }
+
+        function notyInfo4(data,url,flag,that){
+            noty({
+                text: data.msg,
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-success btn-xs',
+                        text: '确认',
+                        onClick: function ($noty) {
+                            //删除记录
+                            $.ajax({
+                                type:"GET",
+                                url:url,
+                                dataType:"json",
+                                success:function (rsp) {
+                                    if(rsp.code == 0){
+                                        $(".envelope").removeClass("notWatched");
+                                        //同时设置头部上的信息数量
+                                        $(".envelope_count").text(0).css({display:"none"});
+                                    }else if(rsp.code == 2){  //重新登录
+                                        $("#loginModal").modal('show');
+                                    }
+                                }
+                            });
+                            $noty.close();
+                        }
+                    },
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '取消',
+                        onClick: function ($noty) {
+                            $(that).prop("checked",false);
                             $noty.close();
                         }
                     }
@@ -844,7 +899,6 @@
             var that = this;
             if(flag){
                 $.getJSON('data/setMessageRead.php?ids='+id,function (rsp) {
-                    console.log(rsp);
                     if(rsp.code==0){
                         //不需要通知已经设置成已读，只要将消息标示
                         $(that).find(".envelope").removeClass("notWatched");
@@ -937,7 +991,6 @@
                 }else if(flag==2){
                     showFriend(curPage);
                 }
-
             });
             //上一页，下一页
             $pagelist.on('click','.prev',function (e) {
@@ -980,7 +1033,6 @@
                         showFriend(totalPages);
                     }
                 }
-
             });
 
             //单击操作复选框,删除单条记录
@@ -1005,6 +1057,7 @@
             //批量删除
             $wrap.on('click','input.allCheck',function () {
                 var checkList = $wrap.find("input.delete");
+                var that = this;
                 if($(this).is(":checked")){
                     //删除记录
                     var id = "";
@@ -1021,11 +1074,44 @@
                     };
                     if(flag==1){
                         var url = "data/deleteMessage.php?ids="+data.ids;
-                        notyInfo2(data,url,flag);
+                        notyInfo2(data,url,flag,that,checkList);
                     }else if(flag==2){
                         var url = "data/deleteFriend.php?ids="+data.ids;
-                        notyInfo2(data,url,flag);
+                        notyInfo2(data,url,flag,that,checkList);
                     }
+                }else{
+                    for(var i=0;i<checkList.length;i++){
+                        $(checkList[i]).prop("checked",false);
+                    }
+                }
+            });
+            //全部标记已读readAll
+            $wrap.on('click','input.allRead',function () {
+                var count = parseInt($(".envelope_count").text());
+                var that = this;
+                console.log(count);
+                var checkList = $wrap.find("input.delete");
+                if($(this).is(":checked")){
+                    //删除记录
+                    var id = "";
+                    for(var i=0;i<checkList.length-1;i++){
+                        id +=  $(checkList[i]).attr('data-id')+",";
+                    }
+                    id +=  $(checkList[i]).attr('data-id');
+                    var data = {
+                        ids:id,
+                        msg:"确认标记全读"
+                    };
+                    if(count>0){  //前提是还有未读的消息
+                        if(flag==1){ //1-message--全部标记已读
+                            var url = "data/setMessageRead.php?ids="+data.ids;
+                            notyInfo4(data,url,flag,that);
+                        }else if(flag==2){ //2-friend--全部标记验证
+                            var url = "data/setFriendValidate.php?ids="+data.ids;
+                            notyInfo4(data,url,flag,that);
+                        }
+                    }
+
                 }else{
                     for(var i=0;i<checkList.length;i++){
                         $(checkList[i]).prop("checked",false);

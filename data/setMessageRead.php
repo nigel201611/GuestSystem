@@ -32,7 +32,17 @@ $ids = $_GET['ids'];
 $data = [
     'message_state'=>1
 ];
-$where = "id={$ids}";
+
+$idsArr = explode(',',$ids);
+$where = "";
+if(count($idsArr) > 1){
+    for($i=0;$i<count($idsArr)-1;$i++){
+        $where .= " id={$idsArr[$i]} or ";
+    }
+    $where .= " id={$idsArr[$i]}";
+}else{
+    $where .= " id={$ids}";
+}
 
 $num = $db->update('message',$data,$where);
 if($num){
