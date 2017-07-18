@@ -344,6 +344,14 @@
                         $(".envelope_count").text(count).css({display:"inline-block"});
                     }
                 });
+
+                //消息增加点击事件，跳转到信息查看页面
+                $('.envelope_wrap').click(function () {
+                    var menuList = [0,0,1,0,0,0];
+                    localStorage.setItem("menuList",JSON.stringify(menuList));
+                    location.href = 'person_center.html';
+                });
+
             }
         });
         $('.footerWrap').load('common.inc/footer.html');

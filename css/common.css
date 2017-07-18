@@ -115,8 +115,14 @@
 	font-size: 10px;
 	display: none;
 }
-.notWatched{
+.validate{
+	color: #449d44;
+}
+.notWatched,
+.notValidate{
 	color: #e54545;
 	cursor: pointer;
 }
+
+
 
