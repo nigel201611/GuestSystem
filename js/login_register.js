@@ -116,6 +116,9 @@ $(document.body).on('click','.loginOut',function () {
     $('.login').show();
     $('.register').show();
     $(".loginOut").addClass('hidden');
+
+    //隐藏消息提示
+    $(".envelope_count").css({display:"none"});
     var userInfo = {
         username:"",
         isAutoLogin:0

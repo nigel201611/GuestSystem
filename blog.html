@@ -337,6 +337,13 @@
                 $('.headerWrap').find('.login').hide();
                 $('.headerWrap').find('.register').hide();
                 $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    if(count>0){
+                        $(".envelope_count").text(count).css({display:"inline-block"});
+                    }
+                });
             }
         });
         $('.footerWrap').load('common.inc/footer.html');

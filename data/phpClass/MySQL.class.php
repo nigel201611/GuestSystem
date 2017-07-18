@@ -62,7 +62,8 @@ class MySQL{
                 $setings .= ",".$key."='".$value."'";
             }
         }
-       $where? $query = "update {$tbname} set {$setings} where {$where}": $query = "update {$tbname} set {$setings}";
+       $where? $query = "update {$tbname} set {$setings} where {$where}":
+           $query = "update {$tbname} set {$setings}";
         mysqli_query($this->link,$query);
         return mysqli_affected_rows($this->link);
     }

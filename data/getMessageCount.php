@@ -16,10 +16,9 @@ $username = $_GET['username'];
 $config = [
     'mode'=>MYSQLI_ASSOC,
     'fileds'=>"id",
-    'where'=>"to_user='{$username}'",  //条件是，别人发给自己的
+    'where'=>"to_user='{$username}' and message_state=0",  //条件是，别人发给自己的,并且未读的
 ];
 $result = $db->fetchAll('message',$config);
-
 if($result){
     echo count($result);
 }

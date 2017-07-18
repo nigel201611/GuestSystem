@@ -102,3 +102,21 @@
 	color: #999;
 }
 
+.envelope_wrap{
+	position: relative;
+	display: inline-block;
+}
+.envelope_count{
+	background: #e54545;
+	padding:0;
+	position: absolute;
+	top: -10px;
+	left: 10px;
+	font-size: 10px;
+	display: none;
+}
+.notWatched{
+	color: #e54545;
+	cursor: pointer;
+}
+

@@ -7,7 +7,7 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
 	font-size: 100%;
 	font-weight: normal;
 	vertical-align: baseline;
-	background: transparent;
+	background: transparent
 }
 article, aside, figure, footer, header, nav, section, details, summary {display: block;}
 html, body { height: 100%;  color: #333; font-size: 12px; font-family: "微软雅黑",MicrosoftYaHei;}
@@ -17,3 +17,5 @@ table{border-collapse: collapse;}
 input {outline: medium none;font-family: "微软雅黑",MicrosoftYaHei;font-size: 14px;}
 button{font-family:"微软雅黑",MicrosoftYaHei;}
 em {font-style: normal;}
+
+

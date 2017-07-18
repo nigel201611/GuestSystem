@@ -80,18 +80,15 @@
         position: relative;
         top:-2px;
     }
+    .showMessageWrap table tr{
+        cursor: pointer;
+    }
+    .noty_text{
+        white-space: normal;
+        word-wrap:break-word;
+        word-break:break-all;
+    }
 
-    .envelope_wrap{
-        position: relative;
-        display: inline-block;
-    }
-    .envelope_count{
-        background: #e54545;
-        padding:0;
-        position: absolute;
-        top: -10px;
-        left: 10px;
-    }
 
 </style>
 <body>
@@ -490,6 +487,28 @@
 <script type="text/javascript" src="zyupload/zyupload.basic-1.0.0.min.js"></script>
 <script src="js/themes/default.js"></script>
 <script src="js/noty.min.js"></script>
+<script src="js/template.js"></script>
+<!--显示消息模板-->
+<script id="messageTemp" type="text/html">
+    <%for(var i = 0; i < info.length; i++) {%>
+        <tr data-id="<%:=info[i].id%>">
+            <td><%:=info[i].from_user%></td>
+            <td><%:=info[i].to_user%></td>
+            <td><%:=info[i].message_content%></td>
+            <td><%:=info[i].message_date%></td>
+            <td>
+                <%if(info[i].message_state==0){%>
+                <span class="glyphicon glyphicon-envelope envelope notWatched" title="未读信息"></span>
+                <%}else if(info[i].message_state==1){%>
+                <span class="glyphicon glyphicon-envelope envelope" title="已读信息"></span>
+                <%}%>
+            </td>
+            <td><label><input title="单击可以删除该条信息" type="checkbox" class="delete"  data-id="<%:=info[i].id%>"></label></td>
+        </tr>
+    <%}%>
+</script>
+
+
 <script>
     (function(){
         function notyInfo(data){
@@ -554,8 +573,26 @@
                 ]
             });
         }
+        function notyInfo3(data){
+            noty({
+                text: data,
+                layout: "center",
+                type: "default",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '关闭',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
+                    }
+                ]
+            });
+        }
         //1-代表当前active,分别对应个人信息，修改资料，短信查询，好友设置，查询花朵，个人相册
         var menuList = [0,0,0,0,0,0];
+        var messageArr = []; //用来保存消息数组
         //从本地存储读取menuList
 
         //个人中心，首先需要登录，用户表，增加1 注册时间字段，用户2 客户端所在ip字段，3 登录次数字段，uinique,active等字段
@@ -597,31 +634,30 @@
 
                 //请求信息接口，获取未查看信息条数
                 $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
-                    console.log(count);
                     if(count>0){
-
+                        $(".envelope_count").text(count).css({display:"inline-block"});
                     }
                 });
                 if(localStorage.getItem("menuList")){
                     menuList = JSON.parse(localStorage.getItem("menuList"));
                     $(".wrapItem").removeClass("active");
                     for(var i=0;i<menuList.length;i++){
-                        switch (i){
-                            case 0://个人信息
-                                getPersonInfo(userInfo.username);
-                                break;
-                            case 2://短信查询
-                                showMessage(1);
-                                break;
-                            case 3://好友查询
-                                showFriend(1);
-                                break;
-                            case 4://花朵查询
-                                break;
-                            case 5://个人相册
-                                break;
-                        }
                         if(menuList[i] == 1){
+                            switch (i){
+                                case 0://个人信息
+                                    getPersonInfo(userInfo.username);
+                                    break;
+                                case 2://短信查询
+                                    showMessage(1);
+                                    break;
+                                case 3://好友查询
+                                    showFriend(1);
+                                    break;
+                                case 4://花朵查询
+                                    break;
+                                case 5://个人相册
+                                    break;
+                            }
                             $(".wrapItem").eq(i).addClass('active');
                         }
                     }
@@ -775,31 +811,58 @@
                 success:function (rsp) {
                     if(rsp.code==0){
                         var totalPages = rsp.pagesCount;
-                        var data = rsp.info;
                         //显示消息数据
-                        var html = "";
-                        for(var i=0;i<data.length;i++){
-                            html += `<tr data-id="${data[i].id}">
-                                        <td>${data[i].from_user}</td>
-                                        <td>${data[i].to_user}</td>
-                                        <td>${data[i].message_content}</td>
-                                        <td>${data[i].message_date}</td>
-                                        <td>${data[i].message_state}</td>
-                                        <td><label><input title="单击可以删除该条信息" type="checkbox" class="delete"  data-id="${data[i].id}"></label></td>
-                                        </tr>`;
+                        //对消息内容长度进行处理
+                        var info = rsp.info;
+                        for(var i=0;i<info.length;i++){
+                            messageArr[i] = info[i].message_content;//i-对应第i行消息
+                            if(info[i].message_content.length>20){
+                                info[i].message_content = info[i].message_content.substr(0,20)+"...";
+                            }
                         }
+                        var messageTemp = document.getElementById("messageTemp").innerHTML,
+                        html = template(messageTemp,{info:info});
                         $("#showMessageWrap table>tbody").html(html);
                         //生成分页list
                         $("#showMessageWrap .pagelist .Page").html(pages(totalPages,curPage));
                     }else if(rsp.code==2){
                         //重新登录
                         $("#loginModal").modal('show');
-                    }else if(rsp.code==-1){
-                        notyInfo("获取消息失败，请尝试关闭浏览器重新登录试试！");
                     }
                 }
             });
         }
+//单击消息列表行，显示详细消息内容，并且设置成已查看
+        $("#showMessageWrap").on('click','tr',function (e) {
+            var index = $(this).index();
+            var message_content = messageArr[index];
+            notyInfo3(message_content);
+            var id = $(this).attr('data-id');
+            //设置成已读,需要加一个批量设置已读
+            //如果已经是已读状态，就不需要设置了
+            var flag = $(this).find(".envelope").hasClass("notWatched");
+            var that = this;
+            if(flag){
+                $.getJSON('data/setMessageRead.php?ids='+id,function (rsp) {
+                    console.log(rsp);
+                    if(rsp.code==0){
+                        //不需要通知已经设置成已读，只要将消息标示
+                        $(that).find(".envelope").removeClass("notWatched");
+                        //同时设置头部上的信息数量
+                        if(rsp.count>0){
+                            $(".envelope_count").text(rsp.count).css({display:"inline-block"});
+                        }else{
+                            $(".envelope_count").css({display:"none"});
+                        }
+
+                    }else if(rsp.code==2){
+                        //登录时间过期，请重新登录
+                        $("#loginModal").modal('show');
+                    }
+                });
+            }
+        });
+
 //显示好友信息
         function showFriend(curPage) {
             $.ajax({
@@ -828,8 +891,6 @@
                     }else if(rsp.code==2){
                         //重新登录
                         $("#loginModal").modal('show');
-                    }else if(rsp.code==-1){
-                        notyInfo("获取信息失败，请尝试关闭浏览器重新登录试试！");
                     }
                 }
             });
@@ -923,7 +984,8 @@
             });
 
             //单击操作复选框,删除单条记录
-            $wrap.on('click','input.delete',function () {
+            $wrap.on('click','input.delete',function (e) {
+                e.stopPropagation();
                 if($(this).is(":checked")){
                     //删除记录
                     var id = $(this).attr("data-id");
@@ -977,9 +1039,7 @@
         initAction($("#friendWrap"),2);
 
 
-        //验证好友，显示未查看消息在头部导航上
-
-
+//验证好友，显示未查看消息在头部导航上
 /*--------------------------------修改资料---------------------------------------*/
         //2 增加验证码验证
         $("#modifyinfoForm .yzcodeImg").click(function () {
