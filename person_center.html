@@ -82,7 +82,8 @@
         top:-2px;
     }
     .showMessageWrap table tr,
-    .friendWrap table tr{
+    .friendWrap table tr,
+    .flowerWrap table tr{
         cursor: pointer;
     }
     .noty_text{
@@ -98,6 +99,13 @@
     }
     .pagelist{
         clear: both;
+    }
+
+    .text-success{
+        color: #3c763d;
+    }
+    .flower{
+        color: #FF0000;
     }
 
 
@@ -316,7 +324,32 @@
                         </div>
                         <!--查询花朵-->
                         <div class="flowerWrap wrapItem" id="flowerWrap">
-                            查询花朵
+                            <table class="table table-responsive table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>送花者</td>
+                                    <td>送花附加内容</td>
+                                    <td>日期</td>
+                                    <td style="text-align: center">花朵数量</td>
+                                    <td style="text-align: center">操作</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                            <div class="buttonList">
+                                <div class="deleteAll">
+                                    <input type="checkbox" class="allCheck">
+                                    <label>删除本页</label>
+                                </div>
+                            </div>
+                            <!--分页list-->
+                            <div class="pagelist text-center">
+                                <nav aria-label="Page navigation" class="Page">
+
+                                </nav>
+                            </div>
                         </div>
                         <!--个人相册-->
                         <div class="personPhotoWrap wrapItem" id="personPhotoWrap">
@@ -543,7 +576,21 @@
     </tr>
     <%}%>
 </script>
-
+<!--显示花朵模板-->
+<script id="flowerTemp" type="text/html">
+    <%for(var i = 0; i < info.length; i++) {%>
+    <tr data-id="<%:=info[i].id%>">
+        <td><%:=info[i].from_user%></td>
+        <td><%:=info[i].flower_content%></td>
+        <td><%:=info[i].flower_date%></td>
+        <td style="text-align: center">
+            <span class="text-success"><%:=info[i].flower_count%></span>
+            <span class="glyphicon glyphicon-apple flower"></span>
+        </td>
+        <td style="text-align: center"><label><input title="单击可以删除该条信息" type="checkbox" class="delete"  data-id="<%:=info[i].id%>"></label></td>
+    </tr>
+    <%}%>
+</script>
 
 <script>
     (function(){
@@ -581,14 +628,16 @@
                                 url:url,
                                 dataType:"json",
                                 success:function (rsp) {
+                                    console.log(flag);
                                     if(rsp.code == 0){  //删除成功
                                         notyInfo("success");
                                         if(flag==1){  //message
                                             showMessage(1);//从第一页开始
-                                        }else{  //friend
+                                        }else if(flag==2){  //friend
                                             showFriend(1);//从第一页开始
+                                        }else if(flag==3){
+                                            showflower(1);
                                         }
-
                                     }else if(rsp.code == 1){  //重新登录
                                         $("#loginModal").modal('show');
                                     }
@@ -632,8 +681,10 @@
                                         notyInfo("success");
                                         if(flag==1){  //message
                                             showMessage(1);//从第一页开始
-                                        }else{  //friend
+                                        }else if(flag==2){  //friend
                                             showFriend(1);//从第一页开始
+                                        }else if(flag==3){
+                                            showflower(1);
                                         }
 
                                     }else if(rsp.code == 1){  //重新登录
@@ -757,6 +808,7 @@
         var menuList = [0,0,0,0,0,0];
         var messageArr = []; //用来保存消息数组
         var friendArr = [];//用来保存好友数组
+        var flowerArr = [];//用来保存花朵的数组
         //从本地存储读取menuList
 
         //个人中心，首先需要登录，用户表，增加1 注册时间字段，用户2 客户端所在ip字段，3 登录次数字段，uinique,active等字段
@@ -818,6 +870,7 @@
                                     showFriend(1);
                                     break;
                                 case 4://花朵查询
+                                    showflower(1);
                                     break;
                                 case 5://个人相册
                                     break;
@@ -999,6 +1052,8 @@
                     }else if(rsp.code==2){
                         //重新登录
                         $("#loginModal").modal('show');
+                    }else if(rsp.code==-1){
+                        $("#showMessageWrap table>tbody").html("");
                     }
                 }
             });
@@ -1032,7 +1087,6 @@
                 });
             }
         });
-
 //显示好友信息
         function showFriend(curPage) {
             $.ajax({
@@ -1061,6 +1115,8 @@
                     }else if(rsp.code==2){
                         //重新登录
                         $("#loginModal").modal('show');
+                    }else if(rsp.code==-1){
+                        $("#friendWrap table>tbody").html("");
                     }
                 }
             });
@@ -1077,6 +1133,47 @@
             var flag = $(this).find(".validate").hasClass("notValidate");
             var that = this;
             notyInfo32(friend_content,that,flag,id);
+
+        });
+        //显示花朵信息
+        function showflower(curPage) {
+            $.ajax({
+                type:"GET",
+                url:"data/getFlower.php?page="+curPage,
+                dataType:"JSON",
+                async:false,
+                success:function (rsp) {
+                    if(rsp.code==0){
+                        var totalPages = rsp.pagesCount;
+                        //对消息内容长度进行处理
+                        var info = rsp.info;
+                        for(var i=0;i<info.length;i++){
+                            flowerArr[i] = info[i].flower_content;//i-对应第i行消息
+                            if(info[i].flower_content.length>20){
+                                info[i].flower_content = info[i].flower_content.substr(0,20)+"...";
+                            }
+                        }
+                        //显示消息数据
+                        var flowerTemp = document.getElementById("flowerTemp").innerHTML,
+                            html = template(flowerTemp,{info:info});
+                        $("#flowerWrap table>tbody").html(html);
+                        //生成分页list
+                        $("#flowerWrap .pagelist .Page").html(pages(totalPages,curPage));
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }else if(rsp.code==-1){
+                        $("#flowerWrap table>tbody").html("");
+                    }
+                }
+            });
+        }
+//单击花朵行，显示详细消息内容
+        $("#flowerWrap").on('click','tr',function (e) {
+            var index = $(this).index();
+            var flower_content = flowerArr[index];
+            //添加是否确认验证按钮
+            notyInfo(flower_content);
 
         });
 
@@ -1103,6 +1200,7 @@
                     showFriend(1);
                     break;
                 case "#flowerWrap":
+                    showflower(1);
                     break;
                 case "#personPhotoWrap":
                     break;
@@ -1110,7 +1208,7 @@
 
         });
 //显示相关操作
-//使用flag来判断是显示消息还是显示好友，1-消息，2-好友
+//使用flag来判断是显示消息还是显示好友，1-消息，2-好友，3-花朵
         function initAction($wrap,flag){
             var $pagelist = $wrap.find(".pagelist").eq(0);
             $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
@@ -1182,6 +1280,9 @@
                     }else if(flag==2){
                         var url = "data/deleteFriend.php?ids="+data.ids;
                         notyInfo22(data,url,flag,that);
+                    }else if(flag==3){
+                        var url = "data/deleteFlower.php?ids="+data.ids;
+                        notyInfo22(data,url,flag,that);
                     }
                 }
             });
@@ -1207,6 +1308,9 @@
                         notyInfo2(data,url,flag,that,checkList);
                     }else if(flag==2){
                         var url = "data/deleteFriend.php?ids="+data.ids;
+                        notyInfo2(data,url,flag,that,checkList);
+                    }else if(flag==3){
+                        var url = "data/deleteFlower.php?ids="+data.ids;
                         notyInfo2(data,url,flag,that,checkList);
                     }
                 }else{
@@ -1258,7 +1362,8 @@
         initAction($("#showMessageWrap"),1);
 //显示好友相关操作
         initAction($("#friendWrap"),2);
-
+//显示花朵相关操作
+        initAction($("#flowerWrap"),3);
 /*--------------------------------修改资料---------------------------------------*/
         //2 增加验证码验证
         $("#modifyinfoForm .yzcodeImg").click(function () {
