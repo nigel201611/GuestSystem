@@ -51,32 +51,25 @@
         color: #FF0000;
         display: none;
     }
+    .totalPage{
+        margin:0 0 0 10px;
+    }
+    .totalPage,
+    .curPage{
+        line-height: 30px;
+        padding:0 5px;
+    }
 </style>
 <body>
 <div class="headerWrap"></div>
 <div class="container">
-    <div class="pageBox">
-        <ul class="pageDiv clearfix">
+    <div class="pageWrap">
+        <div class="pageBox"></div>
+        <!--分页list-->
+        <div class="pagelist text-center">
+            <nav aria-label="Page navigation" class="Page">
 
-        </ul>
-        <div class="notContent hide">
-            无数据
-        </div>
-        <div class="page">
-            <ul class="pageMenu">
-                <li class="firstPage">首页</li>
-                <li class="prevPage"> < 上一页 </li>
-                <div class="pageObj">
-
-                </div>
-                <li class="nextPage"> 下一页 > </li>
-                <li class="lastPage">尾页</li>
-                <li class="last" style="font-size: 14px;">
-                    共<span class="totalPage"></span>页，跳转至
-                    <input type="number" class="keuInput" value="1">
-                    <button type="button" class="btnSure">确定</button>
-                </li>
-            </ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -315,15 +308,91 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!--送花模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="sendFlowerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">送花</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="sendFlowerForm" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">接收者</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="to_user" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">花朵数量</label>
+                        <div class="col-sm-6">
+                            <select name="flowerCount" class="form-control">
+                                <option value="1"><span></span>1</option>
+                                <option value="2"><span></span>2</option>
+                                <option value="3"><span></span>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">送花信息</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" name="content" autocomplete="off"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-default">送花</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </body>
 <script src="js/jquery-1.11.3.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/login_register.js"></script>
-<script src="js/page.js"></script>
+
 <script src="js/themes/default.js"></script>
 <script src="js/noty.min.js"></script>
+<script src="js/template.js"></script>
+<!--分页模板-->
+<script id="pageTemp" type="text/html">
+    <%for(var i = 0; i < data.length; i++) {%>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="<%:=data[i].head_img%>" alt="<%:=data[i].username%>" style="width: 200px;height: 200px;">
+            <div class="caption">
+                <h3 class="username"><%:=data[i].username%></h3>
+                <p>
+                    <a href="#" class="btn btn-primary sendMessage" role="button" data-id="<%:=data[i].id%>">发消息</a>
+                    <a href="#" class="btn btn-default pull-right addFriend" role="button" data-id="<%:=data[i].id%>">加好友</a>
+                    <a href="#" class="btn btn-primary writeMessage" role="button" data-id="<%:=data[i].id%>">写留言</a>
+                    <a href="#" class="btn btn-default pull-right addFlower" role="button" data-id="<%:=data[i].id%>">送花</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <%}%>
+</script>
 <script>
     (function () {
         $('.headerWrap').load('common.inc/header.html',function () {
@@ -412,12 +481,28 @@
             });
         }
         //   表单提交--信息提交和加好友
-        function formSubmit($form,$modal,url){
+        function formSubmit($form,$modal,url,flag){
             $form.submit(function (e) {
                 e.preventDefault();
                 var data = $(this).serializeArray();
-                var content = data[1].value,
-                    yzcode = data[2].value;
+                var postData;
+                if(flag==0){
+                    var content = data[1].value,
+                        yzcode = data[2].value;
+                    postData = {
+                            'to_user':to_user,
+                            'content':content
+                        };
+                }else if(flag==1){
+                    var content = data[1].value,
+                        flowerCount = data[2].value,
+                        yzcode = data[3].value;
+                    postData = {
+                            'to_user':to_user,
+                            'content':content,
+                            'flowerCount':flowerCount
+                        };
+                }
 
                 //验证码判断
                 if(yzcode != getCookie('yzcode') || yzcode==''){
@@ -438,14 +523,12 @@
                     $form.find(".contentEmptyErr").hide();
                 }
 
+
                 $.ajax({
                     type:"POST",
                     url:url,
                     dataType:"JSON",
-                    data:{
-                        'to_user':to_user,
-                        'content':content
-                    },
+                    data:postData,
                     success:function (rsp) {
                         if(rsp.code == 1){
                             //关闭发送消息模态框
@@ -464,42 +547,168 @@
 
             });
         }
-        //分页加载
-        $(function(){
-            $(".pageBox").pageFun({
-                interFace:"data/getBloger2.php",  /*接口*/
-                displayCount:6,  /*每页显示总条数*/
-                maxPage:5,/*每次最多加载多少页*/
-                dataFun:function(data){
-                    var index = Math.floor(Math.random()*6+1);
-                    var imgSrc = "";
-                    //如果用户没有上传头像，那么使用随机的头像
-                    if(!data.head_img){
-                        imgSrc = `img/headPhoto/${index}.jpg`;
-                    }else{
-                        imgSrc = `img/headPhoto/${data.head_img}`;
+
+        //分页相关函数
+        function mlist(list,totalPages,curPage) {
+            if(totalPages>=5){  //总页数大于等于5的情况下
+                var num = 2;//一个中间分隔数
+                //1,2,
+                if(curPage>num && curPage<=(totalPages-num) ){ //正常情况下
+                    for(var i=num;i>0;i--){
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
                     }
-                    var dataHtml = `<div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                    <img src="${imgSrc}" alt="${data.username}" style="width: 200px;height: 200px;">
-                    <div class="caption">
-                    <h3 class="username">${data.username}</h3>
-                    <p>
-                    <a href="#" class="btn btn-primary sendMessage" role="button" data-id="${data.id}">发消息</a>
-                    <a href="#" class="btn btn-default pull-right addFriend" role="button" data-id="${data.id}">加好友</a>
-                    <a href="#" class="btn btn-primary" role="button" data-id="${data.id}">写留言</a>
-                    <a href="#" class="btn btn-default pull-right" role="button" data-id="${data.id}">送花</a>
-                    </p>
-                    </div>
-                    </div></div>`;
-                    return dataHtml;
-                },
-                pageFun:function(i){
-                    var pageHtml = '<li class="pageNum">'+i+'</li>';
-                    return pageHtml;
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=1;i<=num;i++){
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                }else if(curPage<=num){//如果当前页小于$num，也要同时显示5个
+                    for(var i=curPage-1;i>0;i--){
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=1;i<=num+(num-curPage+1);i++){//!!! 2-3,1-4
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                }else if( curPage>totalPages-num ){ //如果当前页大于于$totoalPage，也要同时显示5个
+                    for(var i=num+(curPage-totalPages+num);i>0;i--){ //16,17,18||16,17,18,19--19-3,20-4
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=(curPage-totalPages+num);i<num;i++){ //19-1,20-0
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
                 }
-            })
-        })
+            }else{ //总页数小于5时
+                for(var i=1;i<curPage;i++){
+                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
+                }
+                list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                for(var i=curPage+1;i<=totalPages;i++){
+                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
+                }
+
+            }
+            return list;
+        }
+        function flist(list, totalPages,curPage) {
+            list += `<ul class="pagination">
+                             <span class="totalPage" data-total="${totalPages}">共${totalPages}页</span>
+                             <span class="curPage">当前第${curPage}页</span>
+                             <li>
+                             <a href="#" aria-label="first" data-page="1">
+                             <span aria-hidden="true">首页</span>
+                             </a>
+                             </li>
+                           <li>
+                             <a href="#" aria-label="Previous" class="prev">
+                             <span aria-hidden="true">上一页</span>
+                             </a>`;
+            return list;
+        }
+        function llist(list,totalPages){
+            list += `<li>
+                             <a href="#" aria-label="Next" class="next">
+                             <span aria-hidden="true">下一页</span>
+                             </a>
+                             </li>
+                             <li>
+                             <a href="#" aria-label="end" data-page="${totalPages}">
+                             <span aria-hidden="true">尾页</span>
+                             </a>
+                             </li>`;
+            return list;
+        }
+        function pages(totalPages,curPage) {
+            var list = "";
+            //首页，上一页
+            list = flist(list,totalPages,curPage);
+            //中间分页
+            list =mlist(list,totalPages,curPage);
+            //下一页尾页
+            list =llist(list,totalPages);
+
+            return list;
+        }
+        //分页加载博客列表
+        function showBloger(curPage) {
+            $.ajax({
+                type:"GET",
+                url:"data/getBloger.php?page="+curPage,
+                dataType:"JSON",
+                async:false,
+                success:function (rsp) {
+                    if(rsp.code==0){
+                        var totalPages = rsp.pagesCount;
+                        //显示消息数据
+                        var data = rsp.info;
+                        for(var i=0;i<data.length;i++){
+                            var imgSrc = "";
+                            var index = Math.floor(Math.random()*6+1);
+                            if(data[i].head_img){
+                                imgSrc = "img/headPhoto/"+data[i].head_img;
+                            }else{//如果头像不存在，就使用系统随机生成的头像
+                                imgSrc = "img/headPhoto/"+index+".jpg";
+                            }
+                            data[i].head_img = imgSrc;
+
+                        }
+                        var dataHtml = document.getElementById("pageTemp").innerHTML;
+                        var html = template(dataHtml,{data:data});
+                        $(".pageBox").html(html);
+                        //生成分页list
+                        $(".pagelist .Page").html(pages(totalPages,curPage));
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }
+                }
+            });
+        }
+        showBloger(1);
+        function initAction($wrap){
+            var $pagelist = $wrap.find(".pagelist").eq(0);
+            $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($(this).attr('data-page'));
+                showBloger(curPage);
+            });
+            //上一页，下一页
+            $pagelist.on('click','.prev',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage--;
+                if(curPage>0){
+                    showBloger(curPage);
+                }else{
+                    showBloger(1);
+                }
+            });
+            $pagelist.on('click','.next',function (e) {
+                e.preventDefault();
+                //获取当前页curPage
+                var totalPages = $pagelist.find(".totalPage").attr('data-total');
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage++;
+                if(curPage<=totalPages){
+                    showBloger(curPage);
+                }else{
+                    //获取中页数
+                    showBloger(totalPages);
+                }
+            });
+
+        }
+        initAction($(".pageWrap"));
+
         /*---------------------发信息--------------------------------------*/
         //发送消息
         var $sendMessageModal = $("#sendMessageModal");
@@ -520,7 +729,7 @@
         });
         //提交数据，发送消息
         var messageurl = "data/sendMessage.php";
-        formSubmit($sendMessageForm,$sendMessageModal,messageurl);
+        formSubmit($sendMessageForm,$sendMessageModal,messageurl,0);
         //验证码相关判断
         yzcodeCheck($sendMessageForm);
         //关闭模态框，清空数据
@@ -567,11 +776,38 @@
         });
         var friendUrl = "data/addFriend.php";
         // 发送好友请求
-        formSubmit($addFriendForm,$addFriendModal,friendUrl);
+        formSubmit($addFriendForm,$addFriendModal,friendUrl,0);
         //提交数据前验证码验证
         yzcodeCheck($addFriendForm);
         //关闭模态框失，清空数据
         clearModal($addFriendModal);
+        /*---------------------送花--------------------------------------*/
+        //送花功能
+        var $sendFlowerModal = $("#sendFlowerModal");
+        var $sendFlowerForm = $("#sendFlowerForm");
+
+        $(".pageBox").on('click','.addFlower',function (e) {
+            e.preventDefault();
+            //打开发送消息模态框
+            to_user = $(this).parents(".thumbnail").find(".username").eq(0).text();
+            var from_user = username;
+            //判断发送者不能和接收者相同
+            if(to_user==from_user){
+                notyInfo('不能向自己送花');
+                return;
+            }
+            $sendFlowerModal.modal('show');
+            $sendFlowerForm.find("input[name=to_user]").attr('readonly',true);
+            $sendFlowerForm.find("input[name=to_user]").val(to_user);
+        });
+        var flowerUrl = "data/sendFlower.php";
+        // 发送好友请求
+        formSubmit($sendFlowerForm,$sendFlowerModal,flowerUrl,1);
+        //提交数据前验证码验证
+        yzcodeCheck($sendFlowerModal);
+        //关闭模态框失，清空数据
+        clearModal($sendFlowerModal);
+
     })();
 
 </script>

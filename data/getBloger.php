@@ -2,47 +2,69 @@
 /**
  * Created by PhpStorm.
  * User: nigel
- * Date: 2017/7/6
- * Time: 9:40
+ * Date: 2017/7/17
+ * Time: 11:08
  */
 
-include_once 'common.php';
+session_start();
+require_once 'phpClass/MySQL.class.php';
 
-@$pageno = $_REQUEST['pageno'];
+$db = MySQL::getObj('localhost','root','root','nigel');
 
-//定义一个分页数组
-$pageArr = [
-    'pageSize'=>6, //页面数量
-    'recordCount'=>0, //总记录数
-    'pageNo'=>1,//当前页面no
-    'pageCount'=>0,//总页面数
-    'pageInfo'=>[]
+//分页获取别人发给自己的信息
+$blogerArr = [
+    'code'=>-1,
+    'msg'=>"",
+    'pageSize'=>6,     //当前页记录数
+    'recordCount'=>0,  //总记录数，
+    'pagesCount'=>0,   //总页数
+    'curPage'=>1,      //当前页
+    'info'=>[]          //获取到的结果
+];
+if(isset( $_SESSION['username']) && !empty( $_SESSION['username'])){
+    $to_user = $_SESSION['username'];  //当前用户
+}else{
+    $blogerArr['code'] = 2;//需要重新登录
+    $blogerArr['msg'] = "login timeout,please login again";
+    echo json_encode($blogerArr);
+    exit();
+}
+
+//得到当前页
+if(isset($_GET['page']) && !empty($_GET['page'])){
+    $blogerArr['curPage'] = $_GET['page'];
+}
+//获取总记录数
+$config = [
+    'mode'=>MYSQLI_ASSOC,
+    'fileds'=>"id"
+];
+$result = $db->fetchAll('user',$config);
+
+if($result){
+    $blogerArr['recordCount'] = count($result);
+}
+//计算总页数
+$blogerArr['pagesCount'] = ceil($blogerArr['recordCount']/$blogerArr['pageSize']);
+
+//分页获取数据
+$start = ($blogerArr['curPage']-1)*$blogerArr['pageSize'];
+
+$config1 = [
+    'mode'=>MYSQLI_ASSOC,
+    'fileds'=>"*",
+    'limits'=>"{$start},{$blogerArr['pageSize']}"
 ];
 
-$selectSql = "select count(*) from user"; //查询总记录数
-$result = mysqli_query($link,$selectSql);
-$row = mysqli_fetch_array($result);
-$pageArr['recordCount'] = $row[0]; //1 获取到总记录数
-
-//2 总页面数
-$pageArr['pageCount'] = ceil($pageArr['recordCount']/$pageArr['pageSize']);
-//echo json_encode($pageArr);
-//3 当前页面no
-if(isset($pageno) && $pageno>0 ){
-    $pageArr['pageNo'] = intval($pageno);
-}
-if($pageno>$pageArr['pageCount']){
-    $pageArr['pageNo'] = $pageArr['pageCount'];
+$result1 = $db->fetchAll('user',$config1);
+if($result1){
+    $blogerArr['code'] = 0;//成功获取到分页数据
+    $blogerArr['msg'] = "success";
+    foreach ($result1 as $key => $value){
+        $blogerArr['info'][] = $value;
+    }
 }
 
+echo json_encode($blogerArr);
 
-$start = ($pageArr['pageNo']-1)*$pageArr['pageSize'];
-$count = $pageArr['pageSize'];
 
-$selectSql2 = "select *  from user limit $start,$count";
-$result = mysqli_query($link,$selectSql2);
-
-while($row = mysqli_fetch_assoc($result)){
-    $pageArr['pageInfo'][] = $row;
-}
-echo json_encode($pageArr);

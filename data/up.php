@@ -17,7 +17,8 @@ if (!in_array($type, $typeArr)) {
 function getFN($filename){
     $extArr = explode('.', $filename);
     $ext = $extArr[count($extArr)-1];
-    $newName = md5(microtime(true).mt_rand(0, 10000)).'.'.$ext;
+//    $newName = md5(microtime(true).mt_rand(0, 1000)).'.'.$ext;
+    $newName = md5(microtime().mt_rand(0, 1000)).'.'.$ext;
     return $newName;
 }
 $uniqimgName = getFN($name);//避免重名
