@@ -302,8 +302,8 @@
                                     <input type="checkbox" class="allCheck">
                                     <label>删除本页</label>
                                 </div>
-                                <div class="validateAll">
-                                    <input type="checkbox" class="allValidate">
+                                <div class="readAll">
+                                    <input type="checkbox" class="allRead">
                                     <label>全部验证</label>
                                 </div>
                             </div>
@@ -726,9 +726,14 @@
                                 dataType:"json",
                                 success:function (rsp) {
                                     if(rsp.code == 0){
-                                        $(".envelope").removeClass("notWatched");
-                                        //同时设置头部上的信息数量
-                                        $(".envelope_count").text(0).css({display:"none"});
+                                        if(flag==1){ //1-message
+                                            $(".envelope").removeClass("notWatched");
+                                            //同时设置头部上的信息数量
+                                            $(".envelope_count").text(0).css({display:"none"});
+                                        }else if(flag==2){ //2-friend
+                                            $(".validate").removeClass("notValidate glyphicon-remove").addClass("glyphicon-ok");
+                                        }
+
                                     }else if(rsp.code == 2){  //重新登录
                                         $("#loginModal").modal('show');
                                     }
@@ -1162,7 +1167,7 @@
 
             //单击操作复选框,删除单条记录
             $wrap.on('click','input.delete',function (e) {
-                e.stopPropagation();
+                e.stopPropagation(); //阻止冒泡
                 var that = this;
                 if($(this).is(":checked")){
                     //删除记录
@@ -1210,11 +1215,9 @@
                     }
                 }
             });
-            //全部标记已读readAll
+            //全部标记已读readAll,//全部标记验证好友
             $wrap.on('click','input.allRead',function () {
-                var count = parseInt($(".envelope_count").text());
                 var that = this;
-                console.log(count);
                 var checkList = $wrap.find("input.delete");
                 if($(this).is(":checked")){
                     //删除记录
@@ -1223,19 +1226,25 @@
                         id +=  $(checkList[i]).attr('data-id')+",";
                     }
                     id +=  $(checkList[i]).attr('data-id');
-                    var data = {
-                        ids:id,
-                        msg:"确认标记全读"
-                    };
-                    if(count>0){  //前提是还有未读的消息
-                        if(flag==1){ //1-message--全部标记已读
+                    if(flag==1){ //1-message--全部标记已读
+                        var count = parseInt($(".envelope_count").text());
+                        if(count>0 ){  //前提是还有未读的消息
+                            var data = {
+                                ids:id,
+                                msg:"确认标记全读"
+                            };
                             var url = "data/setMessageRead.php?ids="+data.ids;
                             notyInfo4(data,url,flag,that);
-                        }else if(flag==2){ //2-friend--全部标记验证
-                            var url = "data/setFriendValidate.php?ids="+data.ids;
-                            notyInfo4(data,url,flag,that);
                         }
+                    }else if(flag==2){ //2-friend--全部标记验证
+                        var data = {
+                            ids:id,
+                            msg:"确认全部通过验证"
+                        };
+                        var url = "data/setFriendValidate.php?ids="+data.ids;
+                        notyInfo4(data,url,flag,that);
                     }
+
 
                 }else{
                     for(var i=0;i<checkList.length;i++){
@@ -1243,7 +1252,7 @@
                     }
                 }
             });
-            //全部标记验证好友
+
         }
 //显示消息相关操作
         initAction($("#showMessageWrap"),1);
