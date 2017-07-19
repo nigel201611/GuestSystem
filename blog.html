@@ -22,28 +22,6 @@
     .hide{display: none;}
     .notContent{padding: 15px 0;text-align: center;}
 
-    .page{text-align: center;width: 100%;margin: 0 auto;}
-    .pageMenu{display: inline-block;width: 60%;}
-
-    .pageMenu li{border: solid thin #ddd;margin: 3px;float: left;padding: 5px 10px;cursor: pointer;background: #fff;}
-    .pageMenu li.firstPage{}
-    .pageMenu li.prevPage{}
-    .pageMenu li.pageNum{}
-    .pageMenu li.nextPage{}
-    .pageMenu li.lastPage{}
-    .pageMenu li.disabled{ background-color: #DDDDDD;   cursor: not-allowed;}
-    .pageMenu li.active{ border: solid thin #0099FF;background-color: #0099FF;color: white;}
-    .pageMenu li.last{background: transparent;border:0;position: relative;top: -4px;}
-    .page .keuInput{padding: 0 5px;width: 45px;border: solid thin #ddd;height: 32px;outline: none;text-align: center;font-size: 16px;}
-    .page .btnSure{
-        padding: 4px 8px;
-        border: solid thin #ddd;
-        outline: none;text-align: center;
-        font-size: 16px;
-        background: #fff;
-    }
-    .page .btnSure:hover{cursor: pointer;}
-
     .yzcodeImg{
         cursor: pointer;
     }
@@ -59,6 +37,47 @@
         line-height: 30px;
         padding:0 5px;
     }
+    .flower{
+        color: #FF0000;
+    }
+    #flowerMenuMask{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        z-index:999;
+        display: none;
+        /*background: rgba(255,0,0,.4);*/
+    }
+    #flowerMenu{
+        background: #FFFFFF;
+        width:90%;
+        height: 150px;
+        overflow-y: auto;
+        position: absolute;
+        z-index:9999;
+        display: none;
+
+        border:1px solid #66afe9;
+        border-top-color: transparent;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    #flowerMenu li{
+        line-height: 36px;
+        height: 36px;
+        padding: 0 0 0 20px;
+        border-bottom:1px solid #dddddd;
+        cursor: pointer;
+    }
+    #flowerMenu li:not(:last-child){
+        border-bottom:1px solid #dddddd;
+    }
+    #flowerMenu li:hover{
+        background-color: #00A2D4;
+    }
+
 </style>
 <body>
 <div class="headerWrap"></div>
@@ -327,11 +346,72 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">花朵数量</label>
                         <div class="col-sm-6">
-                            <select name="flowerCount" class="form-control">
-                                <option value="1"><span></span>1</option>
-                                <option value="2"><span></span>2</option>
-                                <option value="3"><span></span>3</option>
-                            </select>
+                            <input type="text" name="flowerCount" class="form-control">
+                            <ul id="flowerMenu">
+                                <li data-value="1">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="2">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="3">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="4">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="5">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="6">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="7">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="8">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="9">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div class="form-group">
@@ -359,6 +439,7 @@
                             <button type="submit" class="btn btn-default">送花</button>
                         </div>
                     </div>
+                    <div id="flowerMenuMask"></div>
                 </form>
             </div>
         </div><!-- /.modal-content -->
@@ -395,6 +476,7 @@
 </script>
 <script>
     (function () {
+
         $('.headerWrap').load('common.inc/header.html',function () {
             var userInfo;
             if(window.localStorage.getItem('userInfo')){
@@ -433,10 +515,11 @@
                 $modal.find("input[name=to_user]").eq(0).val("");
                 $modal.find("textarea[name=content]").eq(0).val("");
                 $modal.find("input[name=yzcode]").eq(0).val("");
+                $modal.find("input[name=yzcode]").eq(0).val("");
                 $modal.find("img.yzcodeImg").eq(0).attr('src',"data/yzCode.php");
-
                 $modal.find(".errcheck").hide();
             });
+
         }
         //   验证码验证相关函数
         function yzcodeCheck($form){
@@ -485,6 +568,7 @@
             $form.submit(function (e) {
                 e.preventDefault();
                 var data = $(this).serializeArray();
+                console.log(data);
                 var postData;
                 if(flag==0){
                     var content = data[1].value,
@@ -494,8 +578,8 @@
                             'content':content
                         };
                 }else if(flag==1){
-                    var content = data[1].value,
-                        flowerCount = data[2].value,
+                    var  flowerCount = data[1].value,
+                        content = data[2].value,
                         yzcode = data[3].value;
                     postData = {
                             'to_user':to_user,
@@ -705,7 +789,6 @@
                     showBloger(totalPages);
                 }
             });
-
         }
         initAction($(".pageWrap"));
 
@@ -807,7 +890,37 @@
         yzcodeCheck($sendFlowerModal);
         //关闭模态框失，清空数据
         clearModal($sendFlowerModal);
+        //单击送花，弹出送花列表
+        function initSendFlower() {
+            $("body").on('click','input[name=flowerCount]',function () {
+                if(!$(this).hasClass("open")){
+                    $(this).addClass("open");
+                    $("#flowerMenuMask").show();
+                    $("#flowerMenu").show();
+                }
+            });
+            function closeflowerMenu(){
+                $("input[name=flowerCount]").removeClass("open");
+                $("#flowerMenuMask").hide();
+                $("#flowerMenu").hide();
+            }
+            $("body").on('click','#flowerMenuMask',function () {
+                closeflowerMenu();
+            });
+            //回写下拉菜单数量
+            $("body").on("click",'#flowerMenu li',function () {
+                var value = $(this).attr("data-value");
+                closeflowerMenu();
+                $("input[name=flowerCount]").val(value);
+            });
 
+            $sendFlowerModal.on('hide.bs.modal',function () {
+                //清空表单内容
+                $sendFlowerModal.find("input[name=flowerCount]").val("");
+                closeflowerMenu();
+            });
+        }
+        initSendFlower();
     })();
 
 </script>

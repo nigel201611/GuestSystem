@@ -12,7 +12,7 @@ date_default_timezone_set('prc');
 
 $content = $_POST['content'];
 $to_user = $_POST['to_user'];
-$to_user = $_POST['flowerCount'];
+$flower_count = $_POST['flowerCount'];
 
 $insertRsp = ['code'=>-1,'msg'=>""];
 
@@ -32,7 +32,8 @@ $data = [
     'to_user'=>$to_user,
     'from_user'=>$from_user,
     'flower_date'=>$datetime,
-    'flower_content'=>$content
+    'flower_content'=>$content,
+    'flower_count'=>$flower_count
 ];
 //添加消息
 $num = $conn->insert('flower',$data);

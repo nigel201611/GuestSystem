@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS flower(
  	to_user VARCHAR(100),
  	from_user VARCHAR(100),
   flower_date DATETIME,
-  flower_content TEXT
+  flower_content TEXT,
+	flower_count INT
 );
 
 INSERT INTO user VALUE(NULL,'18300093372','123456');
