@@ -133,3 +133,37 @@
 	color: #aaaaaa;
 }
 
+.errcheck{
+	color: #FF0000;
+	display: none;
+}
+
+.froala-editor{
+	border:none;
+}
+
+.froala-element.f-basic{
+	border:1px solid #dddddd;
+	min-height: 80px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.modal{
+	z-index:110;
+}
+.modal-backdrop{
+	z-index:100;
+}
+
+.froala-editor button.fr-bttn,
+.froala-editor button.fr-trigger{
+	/*color: #999;*/
+}
+.bttn-wrapper button[title=Undo],
+.bttn-wrapper button[title=Redo],
+.bttn-wrapper button[data-cmd=insertVideo],
+.bttn-wrapper button[data-cmd=createLink]{
+	display: none;
+}
+

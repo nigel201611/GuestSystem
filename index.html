@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/froala_editor.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/froala_page.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
@@ -199,9 +201,69 @@
 
     <!--#include file="template/modalTemplate.html"-->
 
+    <!--发布帖子模态框-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="issueTzModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">发布帖子</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="sendFlowerForm" >
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">帖子标题</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="article_title" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">帖子内容</label>
+                            <div class="col-sm-10">
+                                <div id="edit"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">验证码</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="yzcode">
+                            </div>
+                            <div class="col-sm-2">
+                                <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                                验证码不正确
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6">
+                                <button type="submit" class="btn btn-default">发布</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 </body>
 
 <script src="js/jquery-1.11.3.js"></script>
+<script src="js/froala_editor/froala_editor.min.js"></script>
+<!--[if lt IE 9]>
+<script src="../js/froala_editor/froala_editor_ie8.min.js"></script>
+<![endif]-->
+<script src="js/froala_editor/plugins/tables.min.js"></script>
+<script src="js/froala_editor/plugins/lists.min.js"></script>
+<script src="js/froala_editor/plugins/colors.min.js"></script>
+<script src="js/froala_editor/plugins/media_manager.min.js"></script>
+<script src="js/froala_editor/plugins/font_family.min.js"></script>
+<script src="js/froala_editor/plugins/font_size.min.js"></script>
+<script src="js/froala_editor/plugins/block_styles.min.js"></script>
+<script src="js/froala_editor/plugins/video.min.js"></script>
+
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/login_register.js"></script>
@@ -225,8 +287,15 @@
             location.href = 'person_center.html';
         });
     });
-
     $('.footerWrap').load('common.inc/footer.html');
+
+    //发布帖子
+    $(".issueTz").click(function () {
+        $("#issueTzModal").modal('show');
+        $('#edit').editable({inlineMode: false, alwaysBlank: true})
+    })
+    //显示帖子
+    //查看某条帖子
 
 </script>
 
