@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
@@ -13,6 +14,27 @@
     .confirmPwd{
         display: none;
     }
+    .newMembership .username{
+        font-size: 24px;
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+    .tipList{
+        padding: 40px 0 0 40px;
+    }
+    .commentCount,
+    .readCount,
+    .time{
+        color: #dddddd;
+    }
+    .tipList .title{
+        font-size: 14px;
+        font-weight:bolder;
+    }
+    .tipList li{
+        cursor: pointer;
+    }
 </style>
 
 <body>
@@ -21,17 +43,153 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3" style="border: 1px solid #dddddd;">
+            <div class="col-md-3 col-sm-6">
                 <div class="newMembership">
-                    新进会员
+                    <!--#include file="template/newMember2.html" -->
                 </div>
-                <div class="newInfo">
-                    最新图片
-                </div>
+                <div class="newImgList"></div>
             </div>
-            <div class="col-md-9">
-                <div class="tipList" style="border: 1px solid #dddddd;">
-                    帖子列表
+            <div class="col-md-8 col-sm-6">
+                <div class="issuePost">
+                    <button class="btn btn-default issueTz pull-right">
+                        <span class="glyphicon glyphicon-share-alt"></span>
+                        发布帖子
+                    </button>
+                </div>
+                <div class="tipList">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
+                            <span class="pull-right">
+                                <span class="readCount">阅读次数(100)</span>
+                                <span class="commentCount">评论次数(100)</span>
+                                <span class="time"> 2017-7-20</span>
+                            </span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -39,137 +197,7 @@
 
     <div class="footerWrap"></div>
 
-<!--登录模态框-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">登录</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="wrap login_wrap">
-                        <div class="content">
-                            <div class="logo"></div>
-                            <div class="login_box">
-                                <div class="login_form">
-                                    <div class="login_title">
-                                        登录
-                                    </div>
-                                    <form action="#" method="post" id="login_form">
-                                        <div class="form_text_ipt">
-                                            <input name="username" type="text" placeholder="手机号/邮箱">
-                                        </div>
-                                        <div class="ececk_warning"><span>请输入手机号或邮箱</span></div>
-                                        <div class="ececk_warning loginUsername"><span>手机号或邮箱不存在</span></div>
-                                        <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号或邮箱</span></div>
-                                        <div class="form_text_ipt">
-                                            <input name="password" type="password" placeholder="密码">
-                                        </div>
-                                        <div class="ececk_warning"><span>请输入密码</span></div>
-                                        <div class="ececk_warning passwordInput"><span>请检查密码是否输入正确</span></div>
-                                        <div class="form_check_ipt">
-                                            <div class="left check_left">
-                                                <label><input name="autoLogin" data-value="0" type="checkbox"> 下次自动登录</label>
-                                            </div>
-                                            <div class="right check_right">
-                                                <a href="#">忘记密码</a>
-                                            </div>
-                                        </div>
-                                        <div class="form_btn">
-                                            <button type="submit">登录</button>
-                                        </div>
-                                        <div class="form_reg_btn">
-                                            <span>还没有帐号？</span><a href="#" id="goRegister" data-toggle="modal" data-target="#registerModal">马上注册</a>
-                                        </div>
-                                    </form>
-                                    <div class="other_login">
-                                        <div class="left other_left">
-                                            <span>其它登录方式</span>
-                                        </div>
-                                        <div class="right other_right">
-                                            <a href="#">QQ登录</a>
-                                            <a href="#">微信登录</a>
-                                            <a href="#">微博登录</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!--content -->
-                    </div>
-                </div><!-- /.modal-body -->
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-<!--注册模态框-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="registerModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">注册</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="wrap login_wrap">
-                        <div class="content">
-
-                            <div class="logo"></div>
-
-                            <div class="login_box">
-
-                                <div class="login_form">
-                                    <div class="login_title">
-                                        注册
-                                    </div>
-                                    <form action="#" method="post" id="register_form">
-
-                                        <div class="form_text_ipt">
-                                            <input name="username" type="text" placeholder="手机号/邮箱">
-                                        </div>
-                                        <div class="ececk_warning"><span>手机或者邮箱不能为空</span></div>
-                                        <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号，邮箱</span></div>
-                                        <div class="ececk_warning repeatUser"><span>手机号，邮箱已存在</span></div>
-                                        <div class="form_text_ipt">
-                                            <input name="password" type="password" placeholder="密码">
-                                        </div>
-                                        <div class="ececk_warning"><span>密码不能为空</span></div>
-                                        <div class="form_text_ipt">
-                                            <input name="repassword" type="password" placeholder="重复密码">
-                                        </div>
-                                        <div class="ececk_warning"><span>密码不能为空</span></div>
-                                        <div class="ececk_warning confirmPwd"><span>确认密码和原密码不一致</span></div>
-                                        <div class="form_text_ipt">
-                                            <input name="code" type="text" placeholder="验证码">
-                                        </div>
-                                        <div class="ececk_warning"><span>验证码不能为空</span></div>
-
-                                        <div class="form_btn">
-                                            <button type="submit">注册</button>
-                                        </div>
-                                        <div class="form_reg_btn">
-                                            <span>已有帐号？</span><a href="#" id="goLogin" data-toggle="modal" data-target="#loginModal">马上登录</a>
-                                        </div>
-                                    </form>
-                                    <div class="other_login">
-                                        <div class="left other_left">
-                                            <span>其它登录方式</span>
-                                        </div>
-                                        <div class="right other_right">
-                                            <a href="#">QQ登录</a>
-                                            <a href="#">微信登录</a>
-                                            <a href="#">微博登录</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    <!--#include file="template/modalTemplate.html"-->
 
 </body>
 

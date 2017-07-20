@@ -5,6 +5,8 @@
  * Date: 2017/7/4
  * Time: 15:45
  */
+
+header('content-type:text/html;charset=utf-8');
 session_start();
 
 include_once 'common.php';
@@ -17,7 +19,17 @@ $username = _mysql_string($link,trim($_POST['username']));
 $pwd = _mysql_string($link,trim($_POST['pwd']));//密码需要处理后存储，否则容易泄露密码信息，暂时不处理
 
 
+//对用户名和密码进一步过滤一遍，防止攻击
+
+
 $result = [];
+
+if(!$username && !$pwd ){
+    $result['code'] = -1;
+    $result['msg'] = 'username or pwd must not be empty,please check';
+    exit();
+}
+
 
 //判断用户名，手机号，邮箱名不能重复
 $selectSql = "select id from user where username=?";
@@ -30,7 +42,7 @@ if($num1 == 1){
     $result['code'] = 2;
     $result['msg'] = 'repeat username';
     echo json_encode($result);
-    exit; //退出
+    exit(); //退出
 }
 
 $uniq = md5(uniqid(rand(),true));//生成唯一用户标识符
@@ -58,6 +70,18 @@ if($num == 1){ //插入成功，将用户名，密码添加到session中，下�
     setcookie('uniq',$uniq,time()+3600,'/');
     $result['code'] = 0;
     $result['msg'] = 'success';
+    //将数据写入到newMember.html中
+    $id = mysqli_stmt_insert_id($stmt);
+    $imgSrc = "img/headPhoto/".mt_rand(1,7).".jpg";
+    $newMemberHmtl = file_get_contents('../template/newMember.html');
+    $newMemberHmtl = preg_replace('/<!--imgSrc-->/',$imgSrc,$newMemberHmtl);
+    $newMemberHmtl = preg_replace('/<!--username-->/',$_POST['username'],$newMemberHmtl);
+    $newMemberHmtl = preg_replace('/<!--id-->/',$id,$newMemberHmtl);
+    //重新写人template/newMember2.html
+    if(!file_exists('../template/newMember2.html')){
+        touch('../template/newMember2.html');
+    }
+    file_put_contents('../template/newMember2.html',$newMemberHmtl);
 }else{
     $result['code'] = -1;
     $result['msg'] = 'failure';

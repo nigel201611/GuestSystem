@@ -12,16 +12,12 @@
     .pageBox .username{
         font-size: 20px;
         line-height: 40px;
+        color: #aaaaaa;
+        font-weight: 100;
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
     }
-     ul,li{margin: 0;padding: 0;list-style: none;}
-    .pageMenu li::selection{background:transparent;}
-    .clearfix{zoom:1;}
-    .clearfix:after{content:"";display: block;clear: both;}
-    .pageDiv{width: 98.75%;background: #fff;padding-left: 1.25%;margin-bottom: 10px;}
-    .pageDiv li{margin-bottom: 10px;border:1px solid #dbdbdb;width: 21.5%;margin-right: 1.25%;float:left;margin-top: 10px;padding: 1%;text-align: center;}
-    .hide{display: none;}
-    .notContent{padding: 15px 0;text-align: center;}
-
     .yzcodeImg{
         cursor: pointer;
     }
@@ -76,6 +72,9 @@
     }
     #flowerMenu li:hover{
         background-color: #00A2D4;
+    }
+    .pagelist{
+        clear: both;
     }
 
 </style>
@@ -195,10 +194,10 @@
                                     </div>
                                     <div class="ececk_warning"><span>密码不能为空</span></div>
                                     <div class="ececk_warning confirmPwd"><span>确认密码和原密码不一致</span></div>
-                                    <div class="form_text_ipt">
-                                        <input name="code" type="text" placeholder="验证码">
-                                    </div>
-                                    <div class="ececk_warning"><span>验证码不能为空</span></div>
+                                    <!--<div class="form_text_ipt">-->
+                                        <!--<input name="code" type="text" placeholder="验证码">-->
+                                    <!--</div>-->
+                                    <!--<div class="ececk_warning"><span>验证码不能为空</span></div>-->
 
                                     <div class="form_btn">
                                         <button type="submit">注册</button>
@@ -458,17 +457,21 @@
 <!--分页模板-->
 <script id="pageTemp" type="text/html">
     <%for(var i = 0; i < data.length; i++) {%>
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-3">
         <div class="thumbnail">
             <img src="<%:=data[i].head_img%>" alt="<%:=data[i].username%>" style="width: 200px;height: 200px;">
             <div class="caption">
                 <h3 class="username"><%:=data[i].username%></h3>
-                <p>
-                    <a href="#" class="btn btn-primary sendMessage" role="button" data-id="<%:=data[i].id%>">发消息</a>
-                    <a href="#" class="btn btn-default pull-right addFriend" role="button" data-id="<%:=data[i].id%>">加好友</a>
-                    <a href="#" class="btn btn-primary writeMessage" role="button" data-id="<%:=data[i].id%>">写留言</a>
-                    <a href="#" class="btn btn-default pull-right addFlower" role="button" data-id="<%:=data[i].id%>">送花</a>
-                </p>
+                <div class="btnlist">
+                    <p class="btn_group">
+                        <a href="#" class="btn btn-primary sendMessage" role="button" data-id="<%:=data[i].id%>"><span class="glyphicon glyphicon-phone"></span>发消息</a>
+                        <a href="#" class="btn btn-primary writeMessage" role="button" data-id="<%:=data[i].id%>"><span class="glyphicon glyphicon-phone"></span>写留言</a>
+                    </p>
+                    <p class="btn_group">
+                        <a href="#" class="btn btn-default addFriend" role="button" data-id="<%:=data[i].id%>"><span class="glyphicon glyphicon-user"></span>加好友</a>
+                        <a href="#" class="btn btn-default addFlower" role="button" data-id="<%:=data[i].id%>"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

@@ -123,6 +123,13 @@
 	color: #e54545;
 	cursor: pointer;
 }
-
-
+.btnlist{
+	text-align: center;
+}
+.btn_group{
+	margin:10px 0;
+}
+.footer p{
+	color: #aaaaaa;
+}
 
