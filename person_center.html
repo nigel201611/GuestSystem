@@ -837,7 +837,7 @@
                 }
             });
         }
-        $('.headerWrap').load('common.inc/header.html',function () {
+        function validateLogin() {
             var userInfo;
             if(window.localStorage.getItem('userInfo')){
                 userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
@@ -902,6 +902,35 @@
                 //如果做到更安全，在敏感操作后，可以重新生成唯一标识符，并且写入数据库写入cookie
                 $("#loginModal").modal('show');
             }
+        }
+        function validateLogin2() {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if( userInfo && userInfo.username){
+                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    if(count>0){
+                        $(".envelope_count").text(count).css({display:"inline-block"});
+                    }
+                });
+
+                return true;
+
+            }else{
+                $("#loginModal").modal('show');
+                return false;
+            }
+        }
+//        加载头部，验证登陆
+        $('.headerWrap').load('common.inc/header.html',function () {
+            validateLogin();
         });
         $('.footerWrap').load('common.inc/footer.html');
 
@@ -1174,7 +1203,6 @@
             var flower_content = flowerArr[index];
             //添加是否确认验证按钮
             notyInfo(flower_content);
-
         });
 
         //其他管理，子菜单
@@ -1263,26 +1291,30 @@
                 }
             });
 
-            //单击操作复选框,删除单条记录
+            //单击操作复选框,删除单条记录，涉及到修改数据，必须验证登陆有效性！！！
             $wrap.on('click','input.delete',function (e) {
                 e.stopPropagation(); //阻止冒泡
+                //检测是否登录以及登录有效性
+                var loginFlag = validateLogin2();
                 var that = this;
-                if($(this).is(":checked")){
-                    //删除记录
-                    var id = $(this).attr("data-id");
-                    var data = {
-                        ids:id,
-                        msg:"确认删除该条记录"
-                    };
-                    if(flag==1){
-                        var url = "data/deleteMessage.php?ids="+data.ids;
-                        notyInfo22(data,url,flag,that);
-                    }else if(flag==2){
-                        var url = "data/deleteFriend.php?ids="+data.ids;
-                        notyInfo22(data,url,flag,that);
-                    }else if(flag==3){
-                        var url = "data/deleteFlower.php?ids="+data.ids;
-                        notyInfo22(data,url,flag,that);
+                if(loginFlag){
+                    if($(this).is(":checked")){
+                        //删除记录
+                        var id = $(this).attr("data-id");
+                        var data = {
+                            ids:id,
+                            msg:"确认删除该条记录"
+                        };
+                        if(flag==1){
+                            var url = "data/deleteMessage.php?ids="+data.ids;
+                            notyInfo22(data,url,flag,that);
+                        }else if(flag==2){
+                            var url = "data/deleteFriend.php?ids="+data.ids;
+                            notyInfo22(data,url,flag,that);
+                        }else if(flag==3){
+                            var url = "data/deleteFlower.php?ids="+data.ids;
+                            notyInfo22(data,url,flag,that);
+                        }
                     }
                 }
             });

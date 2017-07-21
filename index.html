@@ -210,11 +210,16 @@
                     <h4 class="modal-title">发布帖子</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="sendFlowerForm" >
+                    <form class="form-horizontal" id="issuePostForm" >
                         <div class="form-group">
                             <label class="col-sm-2 control-label">帖子标题</label>
                             <div class="col-sm-6">
                                 <input type="text" name="article_title" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6 errcheck tzTitleErr" >
+                                帖子标题不能为空
                             </div>
                         </div>
                         <div class="form-group">
@@ -247,7 +252,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
 </body>
 
 <script src="js/jquery-1.11.3.js"></script>
@@ -262,40 +266,190 @@
 <script src="js/froala_editor/plugins/font_family.min.js"></script>
 <script src="js/froala_editor/plugins/font_size.min.js"></script>
 <script src="js/froala_editor/plugins/block_styles.min.js"></script>
-<script src="js/froala_editor/plugins/video.min.js"></script>
 
 <script src="js/bootstrap.min.js"></script>
+<script src="js/noty.min.js"></script>
+<script src="js/template.js"></script>
 <script src="js/common.js"></script>
 <script src="js/login_register.js"></script>
+
+<script type="text/html" id="tzTemp">
+    <%for(var i = 0; i < info.length; i++) {%>
+    <li class="list-group-item">
+        <a href="#" class="title" data-title="<%:=info[i].pub_title%>"><%:=info[i].pub_title%></a>
+        <span class="pull-right">
+                                <span class="readCount">阅读次数(<%:=info[i].pub_readCount%>)</span>
+                                <span class="commentCount">评论次数(<%:=info[i].pub_commentCount%>)</span>
+                                <span class="time"> <%:=info[i].pub_date%></span>
+                            </span>
+    </li>
+    <%}%>
+</script>
+
 <script>
-    $('.headerWrap').load('common.inc/header.html',function () {
-        var userInfo;
-        if(window.localStorage.getItem('userInfo')){
-            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+    (function () {
+        function notyInfo(data){
+            noty({
+                text: data,
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '关闭',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
+                    }
+                ]
+            });
         }
-        if(userInfo.username){
-            $('.headerWrap').find('.username').text(userInfo.username);
-            $('.headerWrap').find('.login').hide();
-            $('.headerWrap').find('.register').hide();
-            $('.headerWrap').find(".loginOut").removeClass('hidden');
+        function validateLogin2() {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if( userInfo && userInfo.username){
+                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    if(count>0){
+                        $(".envelope_count").text(count).css({display:"inline-block"});
+                    }
+                });
+
+                return true;
+
+            }else{
+                $("#loginModal").modal('show');
+                return false;
+            }
         }
 
-        //消息增加点击事件，跳转到信息查看页面
-        $('.envelope_wrap').click(function () {
-            var menuList = [0,0,1,0,0,0];
-            localStorage.setItem("menuList",JSON.stringify(menuList));
-            location.href = 'person_center.html';
+        $('.headerWrap').load('common.inc/header.html',function () {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if(userInfo.username){
+                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+            }
+            //消息增加点击事件，跳转到信息查看页面
+            $('.envelope_wrap').click(function () {
+                var menuList = [0,0,1,0,0,0];
+                localStorage.setItem("menuList",JSON.stringify(menuList));
+                location.href = 'person_center.html';
+            });
         });
-    });
-    $('.footerWrap').load('common.inc/footer.html');
+        $('.footerWrap').load('common.inc/footer.html');
+//        帖子编辑器初始化
+        var $issuePostForm = $("#issuePostForm"),
+            $issueTzModal = $("#issueTzModal");
+        $('#edit').editable({inlineMode: false, alwaysBlank: true});
+        //隐藏模态框时，清空帖子模态框内容
+        $issueTzModal.on('hide.bs.modal',function () {
+            $issueTzModal.find("input[name=article_title]").val("");
+            $issueTzModal.find(".froala-element.f-basic").html("");
 
-    //发布帖子
-    $(".issueTz").click(function () {
-        $("#issueTzModal").modal('show');
-        $('#edit').editable({inlineMode: false, alwaysBlank: true})
-    })
-    //显示帖子
-    //查看某条帖子
+            $issueTzModal.find(".yzcodeImg").attr('src',"data/yzCode.php");
+        });
+        $(".issueTz").click(function () {
+            //发布帖子前验证登陆有效性
+           var loginFlag =  validateLogin2();
+           if(loginFlag){
+               $issueTzModal.modal('show');
+           }
+        });
+        //处理图片在某些浏览器偶然性概率打开慢的问题
+        $issueTzModal.on('click','button[data-cmd=insertImage]',function () {
+            $('.froala-image-popup').find('input[type=file]').attr("accept",
+                "image/jpg,image/jpeg,image/png,image/tif,image/gif,image/bmp,image/jpeg");
+        });
+        $issuePostForm.on('blur keyup','input[name=yzcode]',function () {
+            var yzcode = $(this).val();
+            //验证用户输入的验证码是否和服务器端生成的一样
+            if(yzcode != getCookie('yzcode')){
+                $(".yzcodeErr").show();
+                //提交禁用
+                $issuePostForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".yzcodeErr").hide();
+                $issuePostForm.find("button[type=submit]").attr('disabled',false);
+            }
+        });
+        $issuePostForm.find("input[name=yzcode]").focus(function () {
+            $(".yzcodeErr").hide();
+        });
+        $issuePostForm.find(".yzcodeImg").click(function () {
+            this.src= "data/yzCode.php";
+        });
+        //发布帖子
+        $issuePostForm.submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serializeArray();
+            var tzTitle = data[0].value,
+                yzcode = data[1].value;
+            //验证码验证
+            if(yzcode != getCookie('yzcode') || yzcode==''){
+                $(".yzcodeErr").show();
+                //提交禁用
+                $issuePostForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".yzcodeErr").hide();
+                //提交禁用
+                $issuePostForm.find("button[type=submit]").attr('disabled',false);
+            }
+            //帖子标题不能为空
+            if(tzTitle==''){
+                $(".tzTitleErr").show();
+                //提交禁用
+                $issuePostForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".tzTitleErr").hide();
+                //提交禁用
+                $issuePostForm.find("button[type=submit]").attr('disabled',false);
+            }
+            var tzContent = $('.froala-element.f-basic').html();
+            var data = {
+                tzTitle:tzTitle,
+                tzContent:tzContent
+            };
+
+            //请求接口，发布
+          $.ajax({
+              type:'POST',
+              url:'data/issuePost.php',
+              dataType:'JSON',
+              data:data,
+              success:function (rsp) {
+                  if(rsp.code==0){
+                      notyInfo("发布成功");
+                      $issueTzModal.modal('hide');
+                  }else if(rsp.code==2){
+                      //重新登录
+                      $("#loginModal").modal('show');
+                  }else if(rsp.code==-1){
+                      notyInfo("发布失败");
+                  }
+              }
+          });
+        });
+        //显示帖子
+
+        //查看某条帖子
+    })()
+
 
 </script>
 

@@ -48,5 +48,14 @@ CREATE TABLE IF NOT EXISTS flower(
   flower_content TEXT,
 	flower_count INT
 );
+CREATE TABLE IF NOT EXISTS article(
+ 	id INT PRIMARY KEY auto_increment,
+ 	username VARCHAR(100),
+ 	put_title VARCHAR(100),
+  pub_date DATETIME,
+  pub_content LONGTEXT,
+	pub_readCount INT,
+	pub_commentCount INT
+);
 
 INSERT INTO user VALUE(NULL,'18300093372','123456');
