@@ -9,12 +9,358 @@
     <link rel="stylesheet" href="css/common.css" />
     <title>帖子详情</title>
 </head>
+<style>
+    .confirmPwd{
+        display: none;
+    }
+    .newMembership .username{
+        font-size: 24px;
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+    .countWrap{
+        color: #aaaaaa;
+    }
+    .content_title{
+        font-size: 16px;
+    }
+    .content{
+        margin:20px 0 0 0;
+        font-size: 14px;
+    }
+</style>
 <body>
 <div class="headerWrap"></div>
 <div class="container">
+    <div class="outerWrap">
+        <div class="col-md-3 col-sm-6">
+            <div class="newMembership">
+                <div class="thumbnail">
+                    <img src="img/headPhoto/5.jpg" alt="18300093372sdsdffsd"
+                         style="width: 200px;height: 200px;">
+                    <div class="caption">
+                        <h3 class="username">18300093372sdsdffsd(楼主)</h3>
+                        <div class="btnlist">
+                            <p class="btn_group">
+                                <a href="#" class="btn btn-primary sendMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>发消息</a>
+                                <a href="#" class="btn btn-primary writeMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>写留言</a>
+                            </p>
+                            <p class="btn_group">
+                                <a href="#" class="btn btn-default addFriend" role="button" data-id="155"><span class="glyphicon glyphicon-user"></span>加好友</a>
+                                <a href="#" class="btn btn-default addFlower" role="button" data-id="155"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-6">
+            <div class="contentWrap">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img src="img/headPhoto/5.jpg" alt="18300093372sdsdffsd" width="80px" height="80px">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <p class="content_title">
+                                标题sdfsfs的是的是的是的实施的第三方的方式的都是发生的发生大幅度发说说的法师打发第三方的时代的所得税（<span>发布者</span>）
+                            </p>
+                            <div class="pull-right countWrap">
+                                <span>2017-7-21</span>
+                                <span>阅读次数(100)</span>
+                                <span>评论次数(100)</span>
+                                <span>楼层#1</span>
+                            </div>
+                        </h4>
+                        <p class="content">
+                            内容冷冷的说开始打开开始
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 <div class="footerWrap"></div>
+
+<!--#include file="template/modalTemplate.html"-->
+<!--发布帖子模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="issueTzModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">发布帖子</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="issuePostForm" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">帖子标题</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="article_title" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck tzTitleErr" >
+                            帖子标题不能为空
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">帖子内容</label>
+                        <div class="col-sm-10">
+                            <div id="edit"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-default">发布</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--发送信息模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="sendMessageModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">发送消息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="sendMessageForm" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">接收人</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="to_user" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">消息内容</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" name="content" autocomplete="off"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck contentEmptyErr" >
+                            消息内容不能为空
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-default">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--加好友模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="addFriendModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">加好友</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addFriendForm" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">昵称</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="to_user" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">加好友信息</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" name="content" autocomplete="off">您好，期待认识您!</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck contentEmptyErr" >
+                            消息内容不能为空
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-default">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--送花模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="sendFlowerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">送花</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="sendFlowerForm" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">接收者</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="to_user" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">花朵数量</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="flowerCount" class="form-control">
+                            <ul id="flowerMenu">
+                                <li data-value="1">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="2">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="3">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="4">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="5">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="6">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="7">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="8">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                                <li data-value="9">
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                    <span class="glyphicon glyphicon-apple flower"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">送花信息</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" name="content" autocomplete="off"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-default">送花</button>
+                        </div>
+                    </div>
+                    <div id="flowerMenuMask"></div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </body>
 <script src="js/jquery-1.11.3.js"></script>
 <script src="js/bootstrap.min.js"></script>
