@@ -192,6 +192,12 @@
                             </span>
                         </li>
                     </ul>
+                    <!--分页list-->
+                    <div class="pagelist text-center">
+                        <nav aria-label="Page navigation" class="Page">
+
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -446,7 +452,167 @@
           });
         });
         //显示帖子
+        //分页相关函数
+        function mlist(list,totalPages,curPage) {
+            if(totalPages>=5){  //总页数大于等于5的情况下
+                var num = 2;//一个中间分隔数
+                //1,2,
+                if(curPage>num && curPage<=(totalPages-num) ){ //正常情况下
+                    for(var i=num;i>0;i--){
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=1;i<=num;i++){
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                }else if(curPage<=num){//如果当前页小于$num，也要同时显示5个
+                    for(var i=curPage-1;i>0;i--){
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=1;i<=num+(num-curPage+1);i++){//!!! 2-3,1-4
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                }else if( curPage>totalPages-num ){ //如果当前页大于于$totoalPage，也要同时显示5个
+                    for(var i=num+(curPage-totalPages+num);i>0;i--){ //16,17,18||16,17,18,19--19-3,20-4
+                        var n = curPage-i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                    //3,4
+                    for(var i=(curPage-totalPages+num);i<num;i++){ //19-1,20-0
+                        var n = curPage+i;
+                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
+                    }
+                }
+            }else{ //总页数小于5时
+                for(var i=1;i<curPage;i++){
+                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
+                }
+                list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
+                for(var i=curPage+1;i<=totalPages;i++){
+                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
+                }
 
+            }
+            return list;
+        }
+        function flist(list, totalPages,curPage) {
+            list += `<ul class="pagination">
+                             <span class="totalPage" data-total="${totalPages}">共${totalPages}页</span>
+                             <span class="curPage">当前第${curPage}页</span>
+                             <li>
+                             <a href="#" aria-label="first" data-page="1">
+                             <span aria-hidden="true">首页</span>
+                             </a>
+                             </li>
+                           <li>
+                             <a href="#" aria-label="Previous" class="prev">
+                             <span aria-hidden="true">上一页</span>
+                             </a>`;
+            return list;
+        }
+        function llist(list,totalPages){
+            list += `<li>
+                             <a href="#" aria-label="Next" class="next">
+                             <span aria-hidden="true">下一页</span>
+                             </a>
+                             </li>
+                             <li>
+                             <a href="#" aria-label="end" data-page="${totalPages}">
+                             <span aria-hidden="true">尾页</span>
+                             </a>
+                             </li>`;
+            return list;
+        }
+        function pages(totalPages,curPage) {
+            var list = "";
+            //首页，上一页
+            list = flist(list,totalPages,curPage);
+            //中间分页
+            list =mlist(list,totalPages,curPage);
+            //下一页尾页
+            list =llist(list,totalPages);
+
+            return list;
+        }
+        //分页加载博客列表
+        function showTz(curPage) {
+            $.ajax({
+                type:"GET",
+                url:"data/showTz.php?page="+curPage,
+                dataType:"JSON",
+                async:false,
+                success:function (rsp) {
+                    if(rsp.code==0){
+                        var totalPages = rsp.pagesCount;
+                        //显示消息数据
+                        var info = rsp.info;
+//                        for(var i=0;i<data.length;i++){
+//                            var imgSrc = "";
+//                            var index = Math.floor(Math.random()*6+1);
+//                            if(data[i].head_img){
+//                                imgSrc = "img/headPhoto/"+data[i].head_img;
+//                            }else{//如果头像不存在，就使用系统随机生成的头像
+//                                imgSrc = "img/headPhoto/"+index+".jpg";
+//                            }
+//                            data[i].head_img = imgSrc;
+//                        }
+                        var dataHtml = document.getElementById("tzTemp").innerHTML;
+                        var html = template(dataHtml,{info:info});
+                        $(".tipList>ul").html(html);
+                        //生成分页list
+                        $(".pagelist .Page").html(pages(totalPages,curPage));
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }else{
+                        $(".tipList>ul").html("暂无任何帖子");
+                    }
+                }
+            });
+        }
+        showTz(1);
+
+        function initAction($wrap){
+            var $pagelist = $wrap.find(".pagelist").eq(0);
+            $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($(this).attr('data-page'));
+                showTz(curPage);
+            });
+            //上一页，下一页
+            $pagelist.on('click','.prev',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage--;
+                if(curPage>0){
+                    showTz(curPage);
+                }else{
+                    showTz(1);
+                }
+            });
+            $pagelist.on('click','.next',function (e) {
+                e.preventDefault();
+                //获取当前页curPage
+                var totalPages = $pagelist.find(".totalPage").attr('data-total');
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage++;
+                if(curPage<=totalPages){
+                    showTz(curPage);
+                }else{
+                    //获取中页数
+                    showTz(totalPages);
+                }
+            });
+        }
+        initAction($(".tipList"));
         //查看某条帖子
     })()
 

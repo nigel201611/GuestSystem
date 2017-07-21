@@ -166,3 +166,18 @@
 .bttn-wrapper button[data-cmd=createLink]{
 	display: none;
 }
+/*分页相关样式*/
+.totalPage{
+	margin:0 0 0 10px;
+}
+.totalPage,
+.curPage{
+	line-height: 30px;
+	padding:0 5px;
+}
+.pagelist{
+	clear: both;
+}
+.yzcodeImg{
+	cursor: pointer;
+}
