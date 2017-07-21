@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jquery.advance_query.css"/>
+    <link rel="stylesheet" href="css/jedate.css"/>
+</head>
+<body>
+<form action="#" class="tab-pane form-search" id="advance_query_form">
+    <div class="addBtn">
+        <span id="addSearch" class="btn btn-primary">增加普通查询 +</span>
+        <span id="addStatus" class="btn btn-primary">增加状态查询 +</span>
+        <span id="addTime" class="btn btn-primary">增加时间查询 +</span>
+    </div>
+    <div class="row">
+        <div id="advance_query_buttons" class="col-md-12">
+            <a id="advance_query_submit" class="btn btn-warning">查询</a>
+            <a id="advance_query_empty" class="btn btn-info">清空</a>
+        </div>
+    </div>
+</form>
+</body>
+
+<script src="js/jquery.js"></script>
+<script src="js/jquery.jedate.min.js"></script>
+<script src="js/jquery.advance_query.js"></script>
+<script>
+    var advanceQuery2 = {
+        "searchObj":{
+            type:{
+                flash_id:'固件id', //varchar(50)
+                mac:'Mac地址', //varchar(12)
+                version:'版本', //varchar(50)
+                group_id:'渠道ID', //int
+                chip_model:'芯片类型', //varchar(20)
+                basic_freq:'主频', //int
+                ram:'内存大小', //bigint
+                flash:'闪存大小',//bigint
+                brand:'品牌', //varchar(50)
+                model_type:'硬件型号', //varchar(50)
+            },
+            range:{
+                "=":"等于",
+                "<":"小于",
+                ">":"大于",
+                "<=":"小于等于",
+                ">=":"大于等于",
+                "like":"模糊匹配"
+            }
+        },
+        "statusObj":{
+            type:{'status':"状态","status2":"激活状态"}, //拓展状态字段格式{'status':"状态","status2":"激活状态"}
+            value_status:{
+                "0":"冻结",
+                "1":"激活",
+                "2":"服务有效"
+            },
+            value_status2:{
+                "0":"aa",
+                "1":"bb",
+                "2":"cc"
+            },
+            range_status:{"=":"等于"} //
+        },
+        "timeObj":{
+            time:{
+                create_time:"创建时间",
+                update_time:"更新时间"
+            }
+        }
+    }
+    //调用高级查询
+    $("#advance_query_form").advance_query(advanceQuery2);
+    //不要移动此函数，依赖下面的变量dateFlag
+    function validateDate() {
+        var startTimeList = $(".form-search input[name=start_time]");
+        var endTimeList = $(".form-search input[name=end_time]");
+//console.log(startTimeList);
+        $.each(startTimeList,function (index, item) {
+            var start_time = $(item).val();
+            if(start_time == ""){
+                $(item).css({border:"1px solid #ffd0d0"});
+                $(item).prop("placeholder","起始日期不能为空");
+                dateFlag = false;
+            }else{
+                $(item).css({border:"1px solid #cccccc"});
+                $(item).prop("placeholder","起始时间");
+                dateFlag = true;
+            }
+        });
+        $.each(endTimeList,function (index, item) {
+            var end_time = $(item).val();
+            if(end_time == ""){
+                $(item).css({border:"1px solid #ffd0d0"});
+                $(item).prop("placeholder","结束日期不能为空");
+                dateFlag = false;
+            }else{
+                $(item).css({border:"1px solid #cccccc"});
+                $(item).prop("placeholder","结束时间");
+                dateFlag = true;
+            }
+        });
+    }
+    //提交查询
+    //验证日期函数
+    var dateFlag = true;
+    $('body').on('click',"#advance_query_submit",function () {
+//提交前验证日期
+        validateDate();
+        if($("#advance_query_form").find("select[name=time]").length == 0){
+            dateFlag = true;
+        }
+        if(dateFlag){
+            var sql = "";
+            var formData = $("#advance_query_form").serializeArray();
+            for(var i = 0;i<formData.length;i+=3){
+                sql += formData[i].name === "start_time"? " and '"+formData[i].value+
+                    "' <= "+formData[i+1].value+" and "+formData[i+1].value+" <= " :
+                    " and "+formData[i].value+" "+formData[i+1].value+" ";
+                sql += formData[i+1].value.indexOf("like") !== -1?"'%"+formData[i+2].value+"%'":"'"+formData[i+2].value+"'";
+            }
+            console.log(sql);
+        }
+    });
+</script>
+</html>

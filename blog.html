@@ -464,9 +464,12 @@
     </div>
     <%}%>
 </script>
-<script>
-    (function () {
 
+<script src="js/addFriend_flower_message.js"></script>
+<script src="js/myPage.js"></script>
+<script>
+    ;(function () {
+        var username;
         $('.headerWrap').load('common.inc/header.html',function () {
             var userInfo;
             if(window.localStorage.getItem('userInfo')){
@@ -496,223 +499,40 @@
             }
         });
         $('.footerWrap').load('common.inc/footer.html');
-        var username;
-        var to_user;
-        //   关闭模态框，清空数据
-        function clearModal($modal){
-            $modal.on('show.bs.modal',function () {
-                //输入之前，清空表单内容
-                $modal.find("input[name=to_user]").eq(0).val("");
-                $modal.find("textarea[name=content]").eq(0).val("");
-                $modal.find("input[name=yzcode]").eq(0).val("");
-                $modal.find("input[name=yzcode]").eq(0).val("");
-                $modal.find("img.yzcodeImg").eq(0).attr('src',"data/yzCode.php");
-                $modal.find(".errcheck").hide();
-            });
-
-        }
-        //   验证码验证相关函数
-        function yzcodeCheck($form){
-            //验证码判断
-            $form.on('blur keyup','input[name=yzcode]',function () {
-                var yzcode = $(this).val();
-                //验证用户输入的验证码是否和服务器端生成的一样
-                if(yzcode != getCookie('yzcode')){
-                    $form.find(".yzcodeErr").show();
-                    //提交禁用
-                    $form.find("button[type=submit]").attr('disabled',true);
-                    return;
-                }else{
-                    $form.find(".yzcodeErr").hide();
-                    $form.find("button[type=submit]").attr('disabled',false);
-                }
-            });
-            $form.on('focus','input[name=yzcode]',function () {
-                $form.find(".yzcodeErr").hide();
-            });
-            $form.on('click','.yzcodeImg',function () {
-                this.src= "data/yzCode.php";
-            });
-
-        }
-        //   提示函数
-        function notyInfo(data){
-            noty({
-                text: data,
-                layout: "center",
-                type: "warning",
-                modal: true,
-                buttons: [
-                    {
-                        addClass: 'btn btn-primary btn-xs',
-                        text: '关闭',
-                        onClick: function ($noty) {
-                            $noty.close();
-                        }
-                    }
-                ]
-            });
-        }
-        //   表单提交--信息提交和加好友
-        function formSubmit($form,$modal,url,flag){
-            $form.submit(function (e) {
+        //分页加载博客列表，初始化分页点击功能
+        function initAction($wrap){
+            var $pagelist = $wrap.find(".pagelist").eq(0);
+            $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
                 e.preventDefault();
-                var data = $(this).serializeArray();
-                console.log(data);
-                var postData;
-                if(flag==0){
-                    var content = data[1].value,
-                        yzcode = data[2].value;
-                    postData = {
-                            'to_user':to_user,
-                            'content':content
-                        };
-                }else if(flag==1){
-                    var  flowerCount = data[1].value,
-                        content = data[2].value,
-                        yzcode = data[3].value;
-                    postData = {
-                            'to_user':to_user,
-                            'content':content,
-                            'flowerCount':flowerCount
-                        };
-                }
-
-                //验证码判断
-                if(yzcode != getCookie('yzcode') || yzcode==''){
-                    $form.find(".yzcodeErr").show();
-                    //提交禁用
-                    $form.find("button[type=submit]").attr('disabled',true);
-                    return;
+                var curPage = parseInt($(this).attr('data-page'));
+                showBloger(curPage);
+            });
+            //上一页，下一页
+            $pagelist.on('click','.prev',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage--;
+                if(curPage>0){
+                    showBloger(curPage);
                 }else{
-                    $form.find(".yzcodeErr").hide();
-                    //提交禁用
-                    $form.find("button[type=submit]").attr('disabled',false);
+                    showBloger(1);
                 }
-                //发送的消息内容不能为空
-                if(!content){
-                    $form.find(".contentEmptyErr").show();
-                    return;
+            });
+            $pagelist.on('click','.next',function (e) {
+                e.preventDefault();
+                //获取当前页curPage
+                var totalPages = $pagelist.find(".totalPage").attr('data-total');
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage++;
+                if(curPage<=totalPages){
+                    showBloger(curPage);
                 }else{
-                    $form.find(".contentEmptyErr").hide();
+                    //获取中页数
+                    showBloger(totalPages);
                 }
-
-
-                $.ajax({
-                    type:"POST",
-                    url:url,
-                    dataType:"JSON",
-                    data:postData,
-                    success:function (rsp) {
-                        if(rsp.code == 1){
-                            //关闭发送消息模态框
-                            $modal.modal("hide");
-                            notyInfo("发送成功");
-                            //使能发送消息按钮
-                        }else if(rsp.code == 2){
-                            //登录状态失效，重新登录
-                            $modal.modal("hide");
-                            $("#loginModal").modal('show');
-                        }else if(rsp.code == -1){
-                            notyInfo("发送失败");
-                        }
-                    }
-                });
-
             });
         }
-
-        //分页相关函数
-        function mlist(list,totalPages,curPage) {
-            if(totalPages>=5){  //总页数大于等于5的情况下
-                var num = 2;//一个中间分隔数
-                //1,2,
-                if(curPage>num && curPage<=(totalPages-num) ){ //正常情况下
-                    for(var i=num;i>0;i--){
-                        var n = curPage-i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                    //3,4
-                    for(var i=1;i<=num;i++){
-                        var n = curPage+i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                }else if(curPage<=num){//如果当前页小于$num，也要同时显示5个
-                    for(var i=curPage-1;i>0;i--){
-                        var n = curPage-i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                    //3,4
-                    for(var i=1;i<=num+(num-curPage+1);i++){//!!! 2-3,1-4
-                        var n = curPage+i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                }else if( curPage>totalPages-num ){ //如果当前页大于于$totoalPage，也要同时显示5个
-                    for(var i=num+(curPage-totalPages+num);i>0;i--){ //16,17,18||16,17,18,19--19-3,20-4
-                        var n = curPage-i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                    //3,4
-                    for(var i=(curPage-totalPages+num);i<num;i++){ //19-1,20-0
-                        var n = curPage+i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                }
-            }else{ //总页数小于5时
-                for(var i=1;i<curPage;i++){
-                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
-                }
-                list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                for(var i=curPage+1;i<=totalPages;i++){
-                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
-                }
-
-            }
-            return list;
-        }
-        function flist(list, totalPages,curPage) {
-            list += `<ul class="pagination">
-                             <span class="totalPage" data-total="${totalPages}">共${totalPages}页</span>
-                             <span class="curPage">当前第${curPage}页</span>
-                             <li>
-                             <a href="#" aria-label="first" data-page="1">
-                             <span aria-hidden="true">首页</span>
-                             </a>
-                             </li>
-                           <li>
-                             <a href="#" aria-label="Previous" class="prev">
-                             <span aria-hidden="true">上一页</span>
-                             </a>`;
-            return list;
-        }
-        function llist(list,totalPages){
-            list += `<li>
-                             <a href="#" aria-label="Next" class="next">
-                             <span aria-hidden="true">下一页</span>
-                             </a>
-                             </li>
-                             <li>
-                             <a href="#" aria-label="end" data-page="${totalPages}">
-                             <span aria-hidden="true">尾页</span>
-                             </a>
-                             </li>`;
-            return list;
-        }
-        function pages(totalPages,curPage) {
-            var list = "";
-            //首页，上一页
-            list = flist(list,totalPages,curPage);
-            //中间分页
-            list =mlist(list,totalPages,curPage);
-            //下一页尾页
-            list =llist(list,totalPages);
-
-            return list;
-        }
-        //分页加载博客列表
+        initAction($(".pageWrap"));
         function showBloger(curPage) {
             $.ajax({
                 type:"GET",
@@ -748,171 +568,9 @@
             });
         }
         showBloger(1);
-        function initAction($wrap){
-            var $pagelist = $wrap.find(".pagelist").eq(0);
-            $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
-                e.preventDefault();
-                var curPage = parseInt($(this).attr('data-page'));
-                showBloger(curPage);
-            });
-            //上一页，下一页
-            $pagelist.on('click','.prev',function (e) {
-                e.preventDefault();
-                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
-                curPage--;
-                if(curPage>0){
-                    showBloger(curPage);
-                }else{
-                    showBloger(1);
-                }
-            });
-            $pagelist.on('click','.next',function (e) {
-                e.preventDefault();
-                //获取当前页curPage
-                var totalPages = $pagelist.find(".totalPage").attr('data-total');
-                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
-                curPage++;
-                if(curPage<=totalPages){
-                    showBloger(curPage);
-                }else{
-                    //获取中页数
-                    showBloger(totalPages);
-                }
-            });
-        }
-        initAction($(".pageWrap"));
-
-        /*---------------------发信息--------------------------------------*/
-        //发送消息
-        var $sendMessageModal = $("#sendMessageModal");
-        var $sendMessageForm = $("#sendMessageForm");
-
-        $(".pageBox").on('click','.sendMessage',function () {
-            //打开发送消息模态框
-            to_user = $(this).parents(".thumbnail").find(".username").eq(0).text();
-            var from_user = username;
-            //判断发送者不能和接收者相同
-            if(to_user==from_user){
-                notyInfo('不能向自己发送消息');
-                return;
-            }
-            $sendMessageModal.modal('show');
-            $sendMessageForm.find("input[name=to_user]").attr('readonly',true);
-            $sendMessageForm.find("input[name=to_user]").val(to_user);
-        });
-        //提交数据，发送消息
-        var messageurl = "data/sendMessage.php";
-        formSubmit($sendMessageForm,$sendMessageModal,messageurl,0);
-        //验证码相关判断
-        yzcodeCheck($sendMessageForm);
-        //关闭模态框，清空数据
-        clearModal($sendMessageModal);
-        /*---------------------加好友--------------------------------------*/
-        var $addFriendModal = $("#addFriendModal");
-        var $addFriendForm = $("#addFriendForm");
-
-        $(".pageBox").on('click','.addFriend',function (e) {
-            e.preventDefault();
-            //打开发送消息模态框
-            to_user = $(this).parents(".thumbnail").find(".username").eq(0).text();
-            //验证是否已经是好友
-            $.ajax({
-                type:"POST",
-                url:"data/isFriend.php",
-                dataType:"JSON",
-                async:false,
-                data:{
-                    to_user:to_user
-                },
-                success:function (rsp) {
-                    if(rsp.code == 3){
-                        notyInfo("已经是好友或者还处于待验证状态");
-                    }else if(rsp.code == 0){
-                        var from_user = username;
-                        //判断发送者不能和接收者相同
-                        if(to_user==from_user){
-                            notyInfo('不能和自己加好友');
-                            return;
-                        }
-                        $addFriendModal.modal('show');
-                        $addFriendForm.find("input[name=to_user]").attr('readonly',true);
-                        $addFriendForm.find("input[name=to_user]").val(to_user);
-                    }else if(rsp.code == 2){
-                        //登录状态失效，重新登录
-                        $("#loginModal").modal('show');
-                    }else if(rsp.code == -1){
-                        notyInfo("添加失败,尝试关闭浏览器重新登录试试");
-                    }
-                }
-            });
-
-        });
-        var friendUrl = "data/addFriend.php";
-        // 发送好友请求
-        formSubmit($addFriendForm,$addFriendModal,friendUrl,0);
-        //提交数据前验证码验证
-        yzcodeCheck($addFriendForm);
-        //关闭模态框失，清空数据
-        clearModal($addFriendModal);
-        /*---------------------送花--------------------------------------*/
-        //送花功能
-        var $sendFlowerModal = $("#sendFlowerModal");
-        var $sendFlowerForm = $("#sendFlowerForm");
-
-        $(".pageBox").on('click','.addFlower',function (e) {
-            e.preventDefault();
-            //打开发送消息模态框
-            to_user = $(this).parents(".thumbnail").find(".username").eq(0).text();
-            var from_user = username;
-            //判断发送者不能和接收者相同
-            if(to_user==from_user){
-                notyInfo('不能向自己送花');
-                return;
-            }
-            $sendFlowerModal.modal('show');
-            $sendFlowerForm.find("input[name=to_user]").attr('readonly',true);
-            $sendFlowerForm.find("input[name=to_user]").val(to_user);
-        });
-        var flowerUrl = "data/sendFlower.php";
-        // 发送好友请求
-        formSubmit($sendFlowerForm,$sendFlowerModal,flowerUrl,1);
-        //提交数据前验证码验证
-        yzcodeCheck($sendFlowerModal);
-        //关闭模态框失，清空数据
-        clearModal($sendFlowerModal);
-        //单击送花，弹出送花列表
-        function initSendFlower() {
-            $("body").on('click','input[name=flowerCount]',function () {
-                if(!$(this).hasClass("open")){
-                    $(this).addClass("open");
-                    $("#flowerMenuMask").show();
-                    $("#flowerMenu").show();
-                }
-            });
-            function closeflowerMenu(){
-                $("input[name=flowerCount]").removeClass("open");
-                $("#flowerMenuMask").hide();
-                $("#flowerMenu").hide();
-            }
-            $("body").on('click','#flowerMenuMask',function () {
-                closeflowerMenu();
-            });
-            //回写下拉菜单数量
-            $("body").on("click",'#flowerMenu li',function () {
-                var value = $(this).attr("data-value");
-                closeflowerMenu();
-                $("input[name=flowerCount]").val(value);
-            });
-
-            $sendFlowerModal.on('hide.bs.modal',function () {
-                //清空表单内容
-                $sendFlowerModal.find("input[name=flowerCount]").val("");
-                closeflowerMenu();
-            });
-        }
-        initSendFlower();
+        //初始化加好友，送花，发送信息等功能
+        $.addFFM($(".pageBox"),username);
     })();
-
 </script>
 
 </html>

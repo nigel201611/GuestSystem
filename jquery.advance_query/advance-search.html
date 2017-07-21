@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>advance-search</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+</head>
+<body>
+<form>
+    <div class="advance-search">
+        <select name="advance-search" id="advance-search" style="height: 30px;line-height: 30px;">
+            <option value="0">请选择...</option>
+            <option value="1">固件id</option>
+            <option value="2">Mac地址</option>
+            <option value="3">版本</option>
+        </select>
+        <div class="input-search">
+
+        </div>
+    </div>
+
+
+    <!--<div class="dropdown">-->
+        <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">-->
+            <!--Dropdown-->
+            <!--<span class="caret"></span>-->
+        <!--</button>-->
+        <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">-->
+            <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>-->
+            <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>-->
+            <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>-->
+            <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+
+
+    <button type="button" id="searchTerminal" name="searchTerminal" class="btn  btn-warning btn-xs">搜索</button>
+</form>
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+        $("#advance-search").change(function () {
+            var value = $(this).val();
+            var $inputSearch = $(this).next();
+            console.log(value);
+            switch (value){
+                case "1":
+                        if($inputSearch.find("#serachFlashId").length == 0){
+                           var html =  $(`<div class="form-group">
+                            <label class="col-lg-1 control-label" style="text-align: center;line-heihgt:30px;height:30px;display: block;position: relative;top: 10px;">固件Id:</label>
+                            <div class="col-lg-2">
+                            <input type="text" id="serachFlashId" name="serachFlashId" class="form-control" placeholder="请输入固件ID...">
+                            </div>
+                            </div>`);
+                            //$(this).next().html(html);
+                            $(this).next().append(html);
+                        }else if($inputSearch.find("#serachFlashId").length == 1){
+                            $(this).next().find("#serachFlashId").parent().parent().remove();
+                        }
+                    break;
+                case "2":
+                    if($inputSearch.find("#serachMac").length == 0){
+                        var html =  $(`<div class="form-group">
+                        <label class="col-lg-1 control-label" style="text-align: center;line-heihgt:30px;height:30px;display: block;position: relative;top: 10px;">Mac地址:</label>
+                        <div class="col-lg-2">
+                        <input type="text" id="serachMac" name="serachMac" class="form-control" placeholder="请输入Mac地址...">
+                        </div>
+                        </div>`);
+                        $(this).next().append(html);
+                    }else if($inputSearch.find("#serachMac").length == 1){
+                        $(this).next().find("#serachMac").parent().parent().remove();
+                    }
+                    break;
+                case "3":
+                    if($inputSearch.find("#serachVersion").length == 0){
+                        var html =  $(`<div class="form-group">
+                        <label class="col-lg-1 control-label" style="text-align: center;line-heihgt:30px;height:30px;display: block;position: relative;top: 10px;">版本:</label>
+                        <div class="col-lg-2">
+                        <input type="text" id="serachVersion" name="serachVersion" class="form-control" placeholder="请输入版本...">
+                        </div>
+                        </div>`);
+                        $(this).next().append(html);
+                    }else if($inputSearch.find("#serachVersion").length == 1){
+                        $(this).next().find("#serachVersion").parent().parent().remove();
+                    }
+                    break;
+            }
+          //  $(this).next().html(html);
+        });
+</script>
+</body>
+</html>

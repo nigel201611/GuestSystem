@@ -23,7 +23,7 @@
         word-break: break-all;
     }
     .tipList{
-        padding: 40px 0 0 40px;
+        padding: 40px 0 0 20px;
     }
     .commentCount,
     .readCount,
@@ -36,6 +36,12 @@
     }
     .tipList li{
         cursor: pointer;
+    }
+    #search{
+        cursor: pointer;
+    }
+    .newMembership{
+        padding: 40px 0 0 0;
     }
 </style>
 
@@ -53,12 +59,19 @@
             </div>
             <div class="col-md-8 col-sm-6">
                 <div class="issuePost">
+
                     <button class="btn btn-default issueTz pull-right">
                         <span class="glyphicon glyphicon-share-alt"></span>
                         发布帖子
                     </button>
                 </div>
                 <div class="tipList">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入标题" >
+                        <span class="input-group-addon" id="search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </span>
+                    </div>
                     <ul class="list-group">
                         <li class="list-group-item">
                             <a href="#" class="title">标题-我的是开始思考思考思考开始快速打开</a>
@@ -258,6 +271,228 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <!--发送信息模态框-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="sendMessageModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">发送消息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="sendMessageForm" >
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">接收人</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="to_user" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">消息内容</label>
+                            <div class="col-sm-6">
+                                <textarea type="text" class="form-control" name="content" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6 errcheck contentEmptyErr" >
+                                消息内容不能为空
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">验证码</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="yzcode">
+                            </div>
+                            <div class="col-sm-2">
+                                <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                                验证码不正确
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6">
+                                <button type="submit" class="btn btn-default">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--加好友模态框-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="addFriendModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">加好友</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="addFriendForm" >
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">昵称</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="to_user" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">加好友信息</label>
+                            <div class="col-sm-6">
+                                <textarea type="text" class="form-control" name="content" autocomplete="off">您好，期待认识您!</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6 errcheck contentEmptyErr" >
+                                消息内容不能为空
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">验证码</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="yzcode">
+                            </div>
+                            <div class="col-sm-2">
+                                <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                                验证码不正确
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6">
+                                <button type="submit" class="btn btn-default">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--送花模态框-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="sendFlowerModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">送花</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="sendFlowerForm" >
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">接收者</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="to_user" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">花朵数量</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="flowerCount" class="form-control">
+                                <ul id="flowerMenu">
+                                    <li data-value="1">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                    <li data-value="2">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                    <li data-value="3">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                    <li data-value="4">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                    <li data-value="5">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                    <li data-value="6">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                    <li data-value="7">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                    <li data-value="8">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                    <li data-value="9">
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                        <span class="glyphicon glyphicon-apple flower"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">送花信息</label>
+                            <div class="col-sm-6">
+                                <textarea type="text" class="form-control" name="content" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">验证码</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="yzcode">
+                            </div>
+                            <div class="col-sm-2">
+                                <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                                验证码不正确
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6">
+                                <button type="submit" class="btn btn-default">送花</button>
+                            </div>
+                        </div>
+                        <div id="flowerMenuMask"></div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 </body>
 
 <script src="js/jquery-1.11.3.js"></script>
@@ -282,18 +517,51 @@
 <script type="text/html" id="tzTemp">
     <%for(var i = 0; i < info.length; i++) {%>
     <li class="list-group-item">
-        <a href="#" class="title" data-title="<%:=info[i].pub_title%>"><%:=info[i].pub_title%></a>
+        <a href="showTzContent.html?id=<%:=info[i].id%>" class="title" data-title="<%:=info[i].pub_title%>" data-id="<%:=info[i].id%>"><%:=info[i].pub_title%></a>
         <span class="pull-right">
-                                <span class="readCount">阅读次数(<%:=info[i].pub_readCount%>)</span>
-                                <span class="commentCount">评论次数(<%:=info[i].pub_commentCount%>)</span>
-                                <span class="time"> <%:=info[i].pub_date%></span>
-                            </span>
+            <span class="readCount">阅读次数(<%:=info[i].pub_readCount%>)</span>
+            <span class="commentCount">评论次数(<%:=info[i].pub_commentCount%>)</span>
+            <span class="time"> <%:=info[i].pub_date%></span>
+        </span>
     </li>
     <%}%>
 </script>
 
+<script src="js/addFriend_flower_message.js"></script>
+<script src="js/myPage.js"></script>
+
 <script>
     (function () {
+        var username;
+        $('.headerWrap').load('common.inc/header.html',function () {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if(userInfo && userInfo.username){
+                username = userInfo.username;
+                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    if(count>0){
+                        $(".envelope_count").text(count).css({display:"inline-block"});
+                    }
+                });
+
+                //消息增加点击事件，跳转到信息查看页面
+                $('.envelope_wrap').click(function () {
+                    var menuList = [0,0,1,0,0,0];
+                    localStorage.setItem("menuList",JSON.stringify(menuList));
+                    location.href = 'person_center.html';
+                });
+
+            }
+        });
+        $('.footerWrap').load('common.inc/footer.html');
         function notyInfo(data){
             noty({
                 text: data,
@@ -337,26 +605,7 @@
             }
         }
 
-        $('.headerWrap').load('common.inc/header.html',function () {
-            var userInfo;
-            if(window.localStorage.getItem('userInfo')){
-                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
-            }
-            if(userInfo.username){
-                $('.headerWrap').find('.username').text(userInfo.username);
-                $('.headerWrap').find('.login').hide();
-                $('.headerWrap').find('.register').hide();
-                $('.headerWrap').find(".loginOut").removeClass('hidden');
-            }
-            //消息增加点击事件，跳转到信息查看页面
-            $('.envelope_wrap').click(function () {
-                var menuList = [0,0,1,0,0,0];
-                localStorage.setItem("menuList",JSON.stringify(menuList));
-                location.href = 'person_center.html';
-            });
-        });
-        $('.footerWrap').load('common.inc/footer.html');
-//        帖子编辑器初始化
+//帖子编辑器初始化
         var $issuePostForm = $("#issuePostForm"),
             $issueTzModal = $("#issueTzModal");
         $('#edit').editable({inlineMode: false, alwaysBlank: true});
@@ -452,96 +701,6 @@
           });
         });
         //显示帖子
-        //分页相关函数
-        function mlist(list,totalPages,curPage) {
-            if(totalPages>=5){  //总页数大于等于5的情况下
-                var num = 2;//一个中间分隔数
-                //1,2,
-                if(curPage>num && curPage<=(totalPages-num) ){ //正常情况下
-                    for(var i=num;i>0;i--){
-                        var n = curPage-i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                    //3,4
-                    for(var i=1;i<=num;i++){
-                        var n = curPage+i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                }else if(curPage<=num){//如果当前页小于$num，也要同时显示5个
-                    for(var i=curPage-1;i>0;i--){
-                        var n = curPage-i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                    //3,4
-                    for(var i=1;i<=num+(num-curPage+1);i++){//!!! 2-3,1-4
-                        var n = curPage+i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                }else if( curPage>totalPages-num ){ //如果当前页大于于$totoalPage，也要同时显示5个
-                    for(var i=num+(curPage-totalPages+num);i>0;i--){ //16,17,18||16,17,18,19--19-3,20-4
-                        var n = curPage-i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                    list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                    //3,4
-                    for(var i=(curPage-totalPages+num);i<num;i++){ //19-1,20-0
-                        var n = curPage+i;
-                        list += `<li><a href="#" data-page="${n}">${n}</a></li>`;
-                    }
-                }
-            }else{ //总页数小于5时
-                for(var i=1;i<curPage;i++){
-                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
-                }
-                list += `<li class="nowPage active"><a href="#" data-page="${curPage}">${curPage}</a></li>`;
-                for(var i=curPage+1;i<=totalPages;i++){
-                    list += `<li><a href="#" data-page="${i}">${i}</a></li>`;
-                }
-
-            }
-            return list;
-        }
-        function flist(list, totalPages,curPage) {
-            list += `<ul class="pagination">
-                             <span class="totalPage" data-total="${totalPages}">共${totalPages}页</span>
-                             <span class="curPage">当前第${curPage}页</span>
-                             <li>
-                             <a href="#" aria-label="first" data-page="1">
-                             <span aria-hidden="true">首页</span>
-                             </a>
-                             </li>
-                           <li>
-                             <a href="#" aria-label="Previous" class="prev">
-                             <span aria-hidden="true">上一页</span>
-                             </a>`;
-            return list;
-        }
-        function llist(list,totalPages){
-            list += `<li>
-                             <a href="#" aria-label="Next" class="next">
-                             <span aria-hidden="true">下一页</span>
-                             </a>
-                             </li>
-                             <li>
-                             <a href="#" aria-label="end" data-page="${totalPages}">
-                             <span aria-hidden="true">尾页</span>
-                             </a>
-                             </li>`;
-            return list;
-        }
-        function pages(totalPages,curPage) {
-            var list = "";
-            //首页，上一页
-            list = flist(list,totalPages,curPage);
-            //中间分页
-            list =mlist(list,totalPages,curPage);
-            //下一页尾页
-            list =llist(list,totalPages);
-
-            return list;
-        }
         //分页加载博客列表
         function showTz(curPage) {
             $.ajax({
@@ -580,6 +739,7 @@
         }
         showTz(1);
 
+        var $tipList = $(".tipList");
         function initAction($wrap){
             var $pagelist = $wrap.find(".pagelist").eq(0);
             $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
@@ -612,10 +772,21 @@
                 }
             });
         }
-        initAction($(".tipList"));
-        //查看某条帖子
-    })()
+        initAction($tipList);
+        //初始化加好友，送花，发送信息等功能
+        if(window.localStorage.getItem('userInfo')) {
+            var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            if( userInfo && userInfo.username){
+                username =  userInfo.username;
+            }else{
+                $("#loginModal").modal('show');
+            }
+        }
+        $.addFFM($(".newMembership"),username);
+        //处理froala编辑器，图片上传到本地，而不是上传到第三方服务器
 
+        //增加搜索帖子功能
+    })()
 
 </script>
 

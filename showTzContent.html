@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <title>帖子详情</title>
+</head>
+<body>
+<div class="headerWrap"></div>
+<div class="container">
+
+</div>
+<div class="footerWrap"></div>
+</body>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/noty.min.js"></script>
+<script src="js/template.js"></script>
+<script src="js/common.js"></script>
+<script src="js/login_register.js"></script>
+<script src="js/addFriend_flower_message.js"></script>
+<script src="js/myPage.js"></script>
+
+<script>
+    ;(function () {
+        var username;
+        $('.headerWrap').load('common.inc/header.html',function () {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if(userInfo && userInfo.username){
+                username = userInfo.username;
+                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    if(count>0){
+                        $(".envelope_count").text(count).css({display:"inline-block"});
+                    }
+                });
+
+                //消息增加点击事件，跳转到信息查看页面
+                $('.envelope_wrap').click(function () {
+                    var menuList = [0,0,1,0,0,0];
+                    localStorage.setItem("menuList",JSON.stringify(menuList));
+                    location.href = 'person_center.html';
+                });
+
+            }
+        });
+        $('.footerWrap').load('common.inc/footer.html');
+        function notyInfo(data){
+            noty({
+                text: data,
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '关闭',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
+                    }
+                ]
+            });
+        }
+        function validateLogin2() {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if( userInfo && userInfo.username){
+                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    if(count>0){
+                        $(".envelope_count").text(count).css({display:"inline-block"});
+                    }
+                });
+
+                return true;
+
+            }else{
+                $("#loginModal").modal('show');
+                return false;
+            }
+        }
+    })();
+</script>
+</html>
