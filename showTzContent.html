@@ -41,54 +41,55 @@
         padding:0 0 0 20px;
         border-radius: 4px;
         font-weight:200;
+        overflow: hidden;
     }
 </style>
 <body>
 <div class="headerWrap"></div>
 <div class="container">
     <div class="outerWrap">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <img src="img/headPhoto/5.jpg" alt="18300093372sdsdffsd" style="width: 200px;height: 200px;">
-                    <div class="caption">
-                        <h3 class="username">18300093372sdsdffsd</h3>(楼主)
-                        <div class="btnlist">
-                            <p class="btn_group">
-                                <a href="#" class="btn btn-primary sendMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>发消息</a>
-                                <a href="#" class="btn btn-primary writeMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>写留言</a>
-                            </p>
-                            <p class="btn_group">
-                                <a href="#" class="btn btn-default addFriend" role="button" data-id="155"><span class="glyphicon glyphicon-user"></span>加好友</a>
-                                <a href="#" class="btn btn-default addFlower" role="button" data-id="155"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8 col-sm-6">
-                <div class="contentWrap">
-                    <div class="media">
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <p class="content_title">
-                                    标题sdfsfs的是的是的是的实施的第三方的方式的都是发生的发生大幅度发说说的法师打发第三方的时代的所得税（<span>发布者</span>）
-                                </p>
-                                <div class="pull-right countWrap">
-                                    <span>2017-7-21</span>
-                                    <span>阅读次数(100)</span>
-                                    <span>评论次数(100)</span>
-                                    <span>楼层#1</span>
-                                </div>
-                            </h4>
-                            <p class="content">
-                                内容冷冷的说开始打开开始
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-3">-->
+                <!--<div class="thumbnail">-->
+                    <!--<img src="img/headPhoto/5.jpg" alt="18300093372sdsdffsd" style="width: 200px;height: 200px;">-->
+                    <!--<div class="caption">-->
+                        <!--<h3 class="username">18300093372sdsdffsd</h3>(楼主)-->
+                        <!--<div class="btnlist">-->
+                            <!--<p class="btn_group">-->
+                                <!--<a href="#" class="btn btn-primary sendMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>发消息</a>-->
+                                <!--<a href="#" class="btn btn-primary writeMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>写留言</a>-->
+                            <!--</p>-->
+                            <!--<p class="btn_group">-->
+                                <!--<a href="#" class="btn btn-default addFriend" role="button" data-id="155"><span class="glyphicon glyphicon-user"></span>加好友</a>-->
+                                <!--<a href="#" class="btn btn-default addFlower" role="button" data-id="155"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-8 col-sm-6">-->
+                <!--<div class="contentWrap">-->
+                    <!--<div class="media">-->
+                        <!--<div class="media-body">-->
+                            <!--<h4 class="media-heading">-->
+                                <!--<p class="content_title">-->
+                                    <!--标题sdfsfs的是的是的是的实施的第三方的方式的都是发生的发生大幅度发说说的法师打发第三方的时代的所得税（<span>发布者</span>）-->
+                                <!--</p>-->
+                                <!--<div class="pull-right countWrap">-->
+                                    <!--<span>2017-7-21</span>-->
+                                    <!--<span>阅读次数(100)</span>-->
+                                    <!--<span>评论次数(100)</span>-->
+                                    <!--<span>楼层#1</span>-->
+                                <!--</div>-->
+                            <!--</h4>-->
+                            <!--<p class="content">-->
+                                <!--内容冷冷的说开始打开开始-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 
 </div>
@@ -379,21 +380,20 @@
 <script src="js/myPage.js"></script>
 
 <script type="text/html" id="contentTemp">
-    <%for(var i=0;i < info.length;i++){%>
     <div class="row">
         <div class="col-md-3">
             <div class="thumbnail">
-                <img src="img/headPhoto/5.jpg" alt="<%:=info[i].username%>" style="width: 200px;height: 200px;">
+                <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
                 <div class="caption">
-                    <h3 class="username"><%:=info[i].username%></h3>(楼主)
+                    <h3 class="username"><%:=info.username%></h3>(楼主)
                     <div class="btnlist">
                         <p class="btn_group">
-                            <a href="#" class="btn btn-primary sendMessage" role="button" data-id="<%:=info[i].id%>"><span class="glyphicon glyphicon-phone"></span>发消息</a>
-                            <a href="#" class="btn btn-primary writeMessage" role="button" data-id="<%:=info[i].username%>"><span class="glyphicon glyphicon-phone"></span>写留言</a>
+                            <a href="#" class="btn btn-primary sendMessage" role="button"><span class="glyphicon glyphicon-phone"></span>发消息</a>
+                            <a href="#" class="btn btn-primary writeMessage" role="button"><span class="glyphicon glyphicon-phone"></span>写留言</a>
                         </p>
                         <p class="btn_group">
-                            <a href="#" class="btn btn-default addFriend" role="button" data-id="<%:=info[i].username%>"><span class="glyphicon glyphicon-user"></span>加好友</a>
-                            <a href="#" class="btn btn-default addFlower" role="button" data-id="<%:=info[i].username%>"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
+                            <a href="#" class="btn btn-default addFriend" role="button"><span class="glyphicon glyphicon-user"></span>加好友</a>
+                            <a href="#" class="btn btn-default addFlower" role="button"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
                         </p>
                     </div>
                 </div>
@@ -405,24 +405,23 @@
                     <div class="media-body">
                         <h4 class="media-heading">
                             <p class="content_title">
-                                <%:=info[i].pub_title%>（<span><%:=info[i].username%></span>）
+                                <%:=info.pub_title%>（<span><%:=info.username%></span>）
                             </p>
                             <div class="pull-right countWrap">
-                                <span> <%:=info[i].pub_date%></span>
-                                <span>阅读次数( <%:=info[i].pub_readCount%>)</span>
-                                <span>评论次数( <%:=info[i].pub_commentCount%>)</span>
+                                <span> <%:=info.pub_date%></span>
+                                <span>阅读次数( <%:=info.pub_readCount%>)</span>
+                                <span>评论次数( <%:=info.pub_commentCount%>)</span>
                                 <span>楼层#1</span>
                             </div>
                         </h4>
-                        <p class="content">
-                            <%:=info[i].pub_content%>
-                        </p>
+                        <div class="content">
+                            <%:=info.pub_content%>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <%}%>
 </script>
 
 <script>
@@ -489,6 +488,9 @@
         var search = location.search;
         $.getJSON('data/showTzById.php'+search,function (rsp) {
             console.log(rsp);
+            var dataHtml = document.getElementById("contentTemp").innerHTML;
+            var html = template(dataHtml,{info:rsp.info});
+            $(".outerWrap").html(html);
         })
     })();
 </script>
