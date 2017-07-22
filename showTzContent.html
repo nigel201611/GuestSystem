@@ -57,51 +57,60 @@
     <div class="outerWrap">
 
     </div>
-    <div class="commentShow">
-        <div class="row" data-id="<%:=info.id%>">
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
-                    <div class="caption">
-                        <h3 class="username"><%:=info.username%></h3>(楼主)
-                        <div class="btnlist">
-                            <p class="btn_group">
-                                <a href="#" class="btn btn-primary sendMessage" role="button"><span class="glyphicon glyphicon-phone"></span>发消息</a>
-                                <a href="#" class="btn btn-primary writeMessage" role="button"><span class="glyphicon glyphicon-phone"></span>写留言</a>
-                            </p>
-                            <p class="btn_group">
-                                <a href="#" class="btn btn-default addFriend" role="button"><span class="glyphicon glyphicon-user"></span>加好友</a>
-                                <a href="#" class="btn btn-default addFlower" role="button"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
-                            </p>
+    <div class="com_wrap">
+        <div class="commentShow">
+            <div class="row" data-id="<%:=info.id%>">
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
+                        <div class="caption">
+                            <h3 class="username"><%:=info.username%></h3>(楼主)
+                            <div class="btnlist">
+                                <p class="btn_group">
+                                    <a href="#" class="btn btn-primary sendMessage" role="button"><span class="glyphicon glyphicon-phone"></span>发消息</a>
+                                    <a href="#" class="btn btn-primary writeMessage" role="button"><span class="glyphicon glyphicon-phone"></span>写留言</a>
+                                </p>
+                                <p class="btn_group">
+                                    <a href="#" class="btn btn-default addFriend" role="button"><span class="glyphicon glyphicon-user"></span>加好友</a>
+                                    <a href="#" class="btn btn-default addFlower" role="button"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8 col-sm-6">
-                <div class="contentWrap">
-                    <div class="media">
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <p class="content_title">
-                                    Re:<%:=info.pub_title%>（<span><%:=info.username%></span>）
-                                </p>
-                                <div class="pull-right countWrap">
-                                    <span> <%:=info.pub_date%></span>
-                                    <span>评论次数( <%:=info.pub_commentCount%>)</span>
-                                    <span>楼层#1</span>
-                                </div>
-                            </h4>
-                            <div class="content">
-                                <%:=info.pub_content%>
-                                <a href="#commentWrap" class="btn addComment pull-right" role="button">
-                                    <span class="glyphicon glyphicon-comment"></span>评论
-                                </a>
+                <div class="col-md-8 col-sm-6">
+                    <div class="contentWrap">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <p class="content_title">
+                                        Re:<%:=info.pub_title%>（<span><%:=info.username%></span>）
+                                    </p>
+                                    <div class="pull-right countWrap">
+                                        <span> <%:=info.pub_date%></span>
+                                        <span>评论次数( <%:=info.pub_commentCount%>)</span>
+                                        <span>楼层#1</span>
+                                    </div>
+                                </h4>
+                                <div class="content">
+                                    <%:=info.pub_content%>
+                                    <a href="#commentWrap" class="btn addComment pull-right" role="button">
+                                        <span class="glyphicon glyphicon-comment"></span>评论
+                                    </a>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+        </div>
+        <!--分页list-->
+        <div class="pagelist text-center">
+            <nav aria-label="Page navigation" class="Page">
+
+            </nav>
         </div>
     </div>
 
@@ -455,14 +464,14 @@
     </div>
 </script>
 <!--评论内容模板-->
-
 <script type="text/html" id="commentTemp">
-    <div class="row" data-id="<%:=info.id%>">
+    <%for(var i=0;i < info.length;i++){%>
+    <div class="row" data-id="<%:=info[i].id%>">
         <div class="col-md-3">
             <div class="thumbnail">
-                <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
+                <img src="<%:=info[i].head_img%>" style="width: 200px;height: 200px;">
                 <div class="caption">
-                    <h3 class="username"><%:=info.username%></h3>(楼主)
+                    <h3 class="username"><%:=info[i].comment_username%></h3>
                     <div class="btnlist">
                         <p class="btn_group">
                             <a href="#" class="btn btn-primary sendMessage" role="button"><span class="glyphicon glyphicon-phone"></span>发消息</a>
@@ -482,17 +491,16 @@
                     <div class="media-body">
                         <h4 class="media-heading">
                             <div class="content_title" data-username="<%:=info.username%>">
-                                <span class="title"><%:=info.pub_title%></span>（<span><%:=info.username%></span>）
+                                <span class="title"><%:=info[i].comment_title%></span>
                             </div>
                             <div class="pull-right countWrap">
-                                <span> <%:=info.pub_date%></span>
-                                <span>阅读次数( <%:=info.pub_readCount%>)</span>
-                                <span>评论次数( <%:=info.pub_commentCount%>)</span>
-                                <span>楼层#1</span>
+                                <span> <%:=info[i].comment_date%></span>
+                                <span>评论次数( <%:=info[i].comment_count%>)</span>
+                                <span>楼层#<%:=i+(info.curPage-1)+2%></span>
                             </div>
                         </h4>
                         <div class="content">
-                            <%:=info.pub_content%>
+                            <%:=info[i].comment_content%>
                             <a href="#commentWrap" class="btn addComment pull-right" role="button">
                                 <span class="glyphicon glyphicon-comment"></span>评论
                             </a>
@@ -502,6 +510,7 @@
             </div>
         </div>
     </div>
+    <%}%>
 </script>
 
 <script>
@@ -614,9 +623,77 @@
 
 
         });
-
         //分页加载评论
 
+        function initAction($wrap){
+            var $pagelist = $wrap.find(".pagelist").eq(0);
+            $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($(this).attr('data-page'));
+                showComment(curPage);
+            });
+            //上一页，下一页
+            $pagelist.on('click','.prev',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage--;
+                if(curPage>0){
+                    showComment(curPage);
+                }else{
+                    showComment(1);
+                }
+            });
+            $pagelist.on('click','.next',function (e) {
+                e.preventDefault();
+                //获取当前页curPage
+                var totalPages = $pagelist.find(".totalPage").attr('data-total');
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage++;
+                if(curPage<=totalPages){
+                    showComment(curPage);
+                }else{
+                    //获取中页数
+                    showComment(totalPages);
+                }
+            });
+        }
+        initAction($(".com_wrap"));
+        function showComment(curPage) {
+            $.ajax({
+                type:"GET",
+                url:"data/getComment.php?page="+curPage,
+                dataType:"JSON",
+                async:false,
+                success:function (rsp) {
+                    console.log(rsp);
+                    if(rsp.code==0){
+                        var totalPages = rsp.pagesCount;
+                        //显示消息数据
+                        var data = rsp.info;
+                        for(var i=0;i<data.length;i++){
+                            var imgSrc = "";
+                            var index = Math.floor(Math.random()*6+1);
+                            if(data[i].head_img){
+                                imgSrc = "img/headPhoto/"+data[i].head_img;
+                            }else{//如果头像不存在，就使用系统随机生成的头像
+                                imgSrc = "img/headPhoto/"+index+".jpg";
+                            }
+                            data[i].head_img = imgSrc;
+                        }
+                        data.curPage = curPage;
+                        var dataHtml = document.getElementById("commentTemp").innerHTML;
+                        var html = template(dataHtml,{info:data});
+                        $(".commentShow").html(html);
+                        //生成分页list
+                        $(".pagelist .Page").html(pages(totalPages,curPage));
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }
+                }
+            });
+        }
+        showComment(1);
     })();
 </script>
 </html>

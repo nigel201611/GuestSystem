@@ -36,7 +36,7 @@ $conn = MySQL::getObj('localhost','root','root','nigel');
 $data = [
     'comment_content'=>$comment_content,
     'comment_title'=>$comment_title,
-    'comment_username'=>$datetime,
+    'comment_username'=>$comment_username,
     'comment_date'=>$comment_date,
     'article_id'=>$article_id,
     'article_username'=>$article_username
@@ -44,6 +44,7 @@ $data = [
 //添加消息
 $num = $conn->insert('comment',$data);
 if($num == 1){
+    //添加成功，应该更新article表中评论次数！！
     $insertRsp['code'] = 1;
     $insertRsp['msg'] = "add comment success";
 }else{
