@@ -843,7 +843,7 @@
                 userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
             }
             if( userInfo && userInfo.username){
-                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.username_head').text(userInfo.username);
                 $('.headerWrap').find('.login').hide();
                 $('.headerWrap').find('.register').hide();
                 $('.headerWrap').find(".loginOut").removeClass('hidden');
@@ -909,7 +909,7 @@
                 userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
             }
             if( userInfo && userInfo.username){
-                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.username_head').text(userInfo.username);
                 $('.headerWrap').find('.login').hide();
                 $('.headerWrap').find('.register').hide();
                 $('.headerWrap').find(".loginOut").removeClass('hidden');

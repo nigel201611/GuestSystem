@@ -10,11 +10,8 @@
     <title>帖子详情</title>
 </head>
 <style>
-    .confirmPwd{
-        display: none;
-    }
-    .newMembership .username{
-        font-size: 24px;
+    .outerWrap .username{
+        font-size: 20px;
         white-space: normal;
         word-wrap: break-word;
         word-break: break-all;
@@ -24,23 +21,38 @@
     }
     .content_title{
         font-size: 16px;
+        font-weight: bolder;
     }
     .content{
         margin:20px 0 0 0;
         font-size: 14px;
+    }
+    .contentWrap{
+        position: relative;
+    }
+    .contentWrap .thumbnail{
+        width: 200px;
+        position: absolute;
+        left: -200px;
+    }
+    .contentWrap .content{
+        border:1px solid #dddddd;
+        line-height: 30px;
+        padding:0 0 0 20px;
+        border-radius: 4px;
+        font-weight:200;
     }
 </style>
 <body>
 <div class="headerWrap"></div>
 <div class="container">
     <div class="outerWrap">
-        <div class="col-md-3 col-sm-6">
-            <div class="newMembership">
+        <div class="row">
+            <div class="col-md-3">
                 <div class="thumbnail">
-                    <img src="img/headPhoto/5.jpg" alt="18300093372sdsdffsd"
-                         style="width: 200px;height: 200px;">
+                    <img src="img/headPhoto/5.jpg" alt="18300093372sdsdffsd" style="width: 200px;height: 200px;">
                     <div class="caption">
-                        <h3 class="username">18300093372sdsdffsd(楼主)</h3>
+                        <h3 class="username">18300093372sdsdffsd</h3>(楼主)
                         <div class="btnlist">
                             <p class="btn_group">
                                 <a href="#" class="btn btn-primary sendMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>发消息</a>
@@ -54,30 +66,25 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-8 col-sm-6">
-            <div class="contentWrap">
-                <div class="media">
-                    <div class="media-left media-middle">
-                        <a href="#">
-                            <img src="img/headPhoto/5.jpg" alt="18300093372sdsdffsd" width="80px" height="80px">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            <p class="content_title">
-                                标题sdfsfs的是的是的是的实施的第三方的方式的都是发生的发生大幅度发说说的法师打发第三方的时代的所得税（<span>发布者</span>）
+            <div class="col-md-8 col-sm-6">
+                <div class="contentWrap">
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <p class="content_title">
+                                    标题sdfsfs的是的是的是的实施的第三方的方式的都是发生的发生大幅度发说说的法师打发第三方的时代的所得税（<span>发布者</span>）
+                                </p>
+                                <div class="pull-right countWrap">
+                                    <span>2017-7-21</span>
+                                    <span>阅读次数(100)</span>
+                                    <span>评论次数(100)</span>
+                                    <span>楼层#1</span>
+                                </div>
+                            </h4>
+                            <p class="content">
+                                内容冷冷的说开始打开开始
                             </p>
-                            <div class="pull-right countWrap">
-                                <span>2017-7-21</span>
-                                <span>阅读次数(100)</span>
-                                <span>评论次数(100)</span>
-                                <span>楼层#1</span>
-                            </div>
-                        </h4>
-                        <p class="content">
-                            内容冷冷的说开始打开开始
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -371,6 +378,53 @@
 <script src="js/addFriend_flower_message.js"></script>
 <script src="js/myPage.js"></script>
 
+<script type="text/html" id="contentTemp">
+    <%for(var i=0;i < info.length;i++){%>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="img/headPhoto/5.jpg" alt="<%:=info[i].username%>" style="width: 200px;height: 200px;">
+                <div class="caption">
+                    <h3 class="username"><%:=info[i].username%></h3>(楼主)
+                    <div class="btnlist">
+                        <p class="btn_group">
+                            <a href="#" class="btn btn-primary sendMessage" role="button" data-id="<%:=info[i].id%>"><span class="glyphicon glyphicon-phone"></span>发消息</a>
+                            <a href="#" class="btn btn-primary writeMessage" role="button" data-id="<%:=info[i].username%>"><span class="glyphicon glyphicon-phone"></span>写留言</a>
+                        </p>
+                        <p class="btn_group">
+                            <a href="#" class="btn btn-default addFriend" role="button" data-id="<%:=info[i].username%>"><span class="glyphicon glyphicon-user"></span>加好友</a>
+                            <a href="#" class="btn btn-default addFlower" role="button" data-id="<%:=info[i].username%>"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-6">
+            <div class="contentWrap">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <p class="content_title">
+                                <%:=info[i].pub_title%>（<span><%:=info[i].username%></span>）
+                            </p>
+                            <div class="pull-right countWrap">
+                                <span> <%:=info[i].pub_date%></span>
+                                <span>阅读次数( <%:=info[i].pub_readCount%>)</span>
+                                <span>评论次数( <%:=info[i].pub_commentCount%>)</span>
+                                <span>楼层#1</span>
+                            </div>
+                        </h4>
+                        <p class="content">
+                            <%:=info[i].pub_content%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+</script>
+
 <script>
     ;(function () {
         var username;
@@ -381,7 +435,7 @@
             }
             if(userInfo && userInfo.username){
                 username = userInfo.username;
-                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.username_head').text(userInfo.username);
                 $('.headerWrap').find('.login').hide();
                 $('.headerWrap').find('.register').hide();
                 $('.headerWrap').find(".loginOut").removeClass('hidden');
@@ -420,31 +474,22 @@
                 ]
             });
         }
-        function validateLogin2() {
-            var userInfo;
-            if(window.localStorage.getItem('userInfo')){
-                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
-            }
+
+        //初始化加好友，送花，发送信息等功能
+        if(window.localStorage.getItem('userInfo')) {
+            var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
             if( userInfo && userInfo.username){
-                $('.headerWrap').find('.username').text(userInfo.username);
-                $('.headerWrap').find('.login').hide();
-                $('.headerWrap').find('.register').hide();
-                $('.headerWrap').find(".loginOut").removeClass('hidden');
-
-                //请求信息接口，获取未查看信息条数
-                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
-                    if(count>0){
-                        $(".envelope_count").text(count).css({display:"inline-block"});
-                    }
-                });
-
-                return true;
-
+                username =  userInfo.username;
             }else{
                 $("#loginModal").modal('show');
-                return false;
             }
         }
+        //单击加好友，发信息，送花功能，前提需要登录
+        $.addFFM($(".outerWrap"),username);
+        var search = location.search;
+        $.getJSON('data/showTzById.php'+search,function (rsp) {
+            console.log(rsp);
+        })
     })();
 </script>
 </html>

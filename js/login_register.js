@@ -88,7 +88,7 @@ $registerForm.on('submit',function(e){
                 //隐藏注册模态框
                 $("#registerModal").modal('hide');
                 //自动登录，将用户名显示在顶部导航上
-                $('.username').text(userAcount);
+                $('.username_head').text(userAcount);
                 //将‘登录’，‘注册’隐藏，‘退出’显示
                 $('.login').hide();
                 $('.register').hide();
@@ -112,7 +112,7 @@ $registerForm.on('submit',function(e){
 
 //退出登录状态
 $(document.body).on('click','.loginOut',function () {
-    $('.username').text('用户信息');
+    $('.username_head').text('用户信息');
     $('.login').show();
     $('.register').show();
     $(".loginOut").addClass('hidden');
@@ -186,7 +186,7 @@ $loginForm.on('submit',function(e){
                 //隐藏登录模态框
                 $("#loginModal").modal('hide');
                 // 将‘注册’，‘登录’隐藏，显示‘退出’，同时显示用户名
-                $('.username').text(userAcount);
+                $('.username_head').text(userAcount);
                 $('.login').hide();
                 $('.register').hide();
                 $(".loginOut").removeClass('hidden');

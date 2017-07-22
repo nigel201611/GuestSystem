@@ -517,7 +517,7 @@
 <script type="text/html" id="tzTemp">
     <%for(var i = 0; i < info.length; i++) {%>
     <li class="list-group-item">
-        <a href="showTzContent.html?id=<%:=info[i].id%>" class="title" data-title="<%:=info[i].pub_title%>" data-id="<%:=info[i].id%>"><%:=info[i].pub_title%></a>
+        <a href="showTzContent.html?id=<%:=info[i].id%>" target="_blank" class="title" data-title="<%:=info[i].pub_title%>" data-id="<%:=info[i].id%>"><%:=info[i].pub_title%></a>
         <span class="pull-right">
             <span class="readCount">阅读次数(<%:=info[i].pub_readCount%>)</span>
             <span class="commentCount">评论次数(<%:=info[i].pub_commentCount%>)</span>
@@ -540,7 +540,7 @@
             }
             if(userInfo && userInfo.username){
                 username = userInfo.username;
-                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.username_head').text(userInfo.username);
                 $('.headerWrap').find('.login').hide();
                 $('.headerWrap').find('.register').hide();
                 $('.headerWrap').find(".loginOut").removeClass('hidden');
@@ -585,7 +585,7 @@
                 userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
             }
             if( userInfo && userInfo.username){
-                $('.headerWrap').find('.username').text(userInfo.username);
+                $('.headerWrap').find('.username_head').text(userInfo.username);
                 $('.headerWrap').find('.login').hide();
                 $('.headerWrap').find('.register').hide();
                 $('.headerWrap').find(".loginOut").removeClass('hidden');

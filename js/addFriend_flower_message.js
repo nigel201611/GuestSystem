@@ -6,6 +6,29 @@
         "addFFM":function ($wrap,username) {
             //   关闭模态框，清空数据
             var to_user;
+            function validateLogin2() {
+                var userInfo;
+                if(window.localStorage.getItem('userInfo')){
+                    userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+                }
+                if( userInfo && userInfo.username){
+                    $('.headerWrap').find('.username_head').text(userInfo.username);
+                    $('.headerWrap').find('.login').hide();
+                    $('.headerWrap').find('.register').hide();
+                    $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                    //请求信息接口，获取未查看信息条数
+                    $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                        if(count>0){
+                            $(".envelope_count").text(count).css({display:"inline-block"});
+                        }
+                    });
+                    return true;
+                }else{
+                    $("#loginModal").modal('show');
+                    return false;
+                }
+            }
             function clearModal($modal){
                 $modal.on('show.bs.modal',function () {
                     //输入之前，清空表单内容
@@ -141,9 +164,12 @@
                     notyInfo('不能向自己发送消息');
                     return;
                 }
-                $sendMessageModal.modal('show');
-                $sendMessageForm.find("input[name=to_user]").attr('readonly',true);
-                $sendMessageForm.find("input[name=to_user]").val(to_user);
+                var loginFlag = validateLogin2();
+                if(loginFlag){
+                    $sendMessageModal.modal('show');
+                    $sendMessageForm.find("input[name=to_user]").attr('readonly',true);
+                    $sendMessageForm.find("input[name=to_user]").val(to_user);
+                }
             });
             //提交数据，发送消息
             var messageurl = "data/sendMessage.php";
@@ -179,9 +205,12 @@
                                 notyInfo('不能和自己加好友');
                                 return;
                             }
-                            $addFriendModal.modal('show');
-                            $addFriendForm.find("input[name=to_user]").attr('readonly',true);
-                            $addFriendForm.find("input[name=to_user]").val(to_user);
+                            var loginFlag = validateLogin2();
+                            if(loginFlag){
+                                $addFriendModal.modal('show');
+                                $addFriendForm.find("input[name=to_user]").attr('readonly',true);
+                                $addFriendForm.find("input[name=to_user]").val(to_user);
+                            }
                         }else if(rsp.code == 2){
                             //登录状态失效，重新登录
                             $("#loginModal").modal('show');
@@ -214,9 +243,13 @@
                     notyInfo('不能向自己送花');
                     return;
                 }
-                $sendFlowerModal.modal('show');
-                $sendFlowerForm.find("input[name=to_user]").attr('readonly',true);
-                $sendFlowerForm.find("input[name=to_user]").val(to_user);
+                var loginFlag = validateLogin2();
+                if(loginFlag){
+                    $sendFlowerModal.modal('show');
+                    $sendFlowerForm.find("input[name=to_user]").attr('readonly',true);
+                    $sendFlowerForm.find("input[name=to_user]").val(to_user);
+                }
+
             });
             var flowerUrl = "data/sendFlower.php";
             // 发送好友请求
