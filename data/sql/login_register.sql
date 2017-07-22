@@ -58,4 +58,15 @@ CREATE TABLE IF NOT EXISTS article(
 	pub_commentCount INT
 );
 
+CREATE TABLE IF NOT EXISTS comment(
+ 	id INT PRIMARY KEY auto_increment,
+ 	comment_username VARCHAR(100),
+ 	comment_title VARCHAR(100),
+  comment_content LONGTEXT,
+	comment_date DATETIME,
+	comment_count INT,
+  article_id INT,
+	article_username VARCHAR(100)
+);
+
 INSERT INTO user VALUE(NULL,'18300093372','123456');

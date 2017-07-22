@@ -5,21 +5,88 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68d5847e-3562-4bf9-a746-3ae868a334fa" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/dataTables.bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/jquery.dataTables.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/blog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/dataTables.bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/html5shiv.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery.advance_query.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery.dataTables.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/page.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/template/login.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/template/register.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/template/sendMessage.html" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/1.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/10.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/11.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/12.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/13.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/14.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/15.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/16.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/17.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/18.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/19.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/2.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/20.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/21.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/22.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/23.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/24.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/25.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/26.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/27.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/28.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/29.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/3.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/30.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/31.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/32.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/33.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/34.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/35.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/36.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/37.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/38.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/39.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/4.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/40.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/41.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/42.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/43.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/44.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/45.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/46.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/47.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/48.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/49.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/5.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/50.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/51.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/52.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/53.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/54.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/55.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/56.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/57.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/58.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/59.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/6.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/60.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/61.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/62.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/63.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/64.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/65.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/66.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/67.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/68.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/69.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/7.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/70.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/71.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/72.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/73.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/74.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/75.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/8.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/arclist/9.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/qqFace.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/addComment.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/jquery.qqFace.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/showTzById.php" afterPath="$PROJECT_DIR$/data/showTzById.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/sql/login_register.sql" afterPath="$PROJECT_DIR$/data/sql/login_register.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/showTzContent.html" afterPath="$PROJECT_DIR$/showTzContent.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/modalTemplate.html" afterPath="$PROJECT_DIR$/template/modalTemplate.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,39 +131,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="showTzContent.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="showTzContent.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/showTzContent.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="416" column="28" lean-forward="false" selection-start-line="416" selection-start-column="28" selection-end-line="416" selection-end-column="28" />
+            <state relative-caret-position="369">
+              <caret line="601" column="50" lean-forward="false" selection-start-line="601" selection-start-column="50" selection-end-line="601" selection-end-column="50" />
               <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#ul#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#21749#22911#0" expanded="false" />
-                <element signature="e#23021#23466#0" expanded="false" />
+                <element signature="n#script#9;n#html#0;n#!!top" expanded="false" />
+                <element signature="e#25190#26352#0" expanded="false" />
+                <element signature="e#26462#26907#0" expanded="false" />
+                <element signature="e#27000#27267#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog.html">
+      <file leaf-file-name="addComment.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/addComment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="523" column="49" lean-forward="true" selection-start-line="523" selection-start-column="49" selection-end-line="523" selection-end-column="49" />
+            <state relative-caret-position="506">
+              <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="23" />
               <folding>
-                <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#7;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#ul#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#7;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#22933#24095#0" expanded="false" />
-                <element signature="e#24218#25454#0" expanded="false" />
+                <element signature="e#6#86#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addFriend.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/addFriend.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,9 +179,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -138,10 +211,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/login.html" />
-        <option value="$PROJECT_DIR$/upload_file/data/upload.php" />
-        <option value="$PROJECT_DIR$/zyuploadPhp/up.php" />
-        <option value="$PROJECT_DIR$/data/login_register.sql" />
         <option value="$PROJECT_DIR$/data/phpClass/Verify.class.php" />
         <option value="$PROJECT_DIR$/show_message.html" />
         <option value="$PROJECT_DIR$/data/sendMessage.php" />
@@ -169,15 +238,12 @@
         <option value="$PROJECT_DIR$/data/deleteFlower.php" />
         <option value="$PROJECT_DIR$/data/register.php" />
         <option value="$PROJECT_DIR$/data/getBloger.php" />
-        <option value="$PROJECT_DIR$/data/sql/login_register.sql" />
         <option value="$PROJECT_DIR$/data/showTz.php" />
         <option value="$PROJECT_DIR$/data/issuePost.php" />
         <option value="$PROJECT_DIR$/jquery.advance_query/advance-search.html" />
         <option value="$PROJECT_DIR$/jquery.advance_query/advanceSearch.html" />
         <option value="$PROJECT_DIR$/js/jquery.advance_query.js" />
         <option value="$PROJECT_DIR$/js/myPage.js" />
-        <option value="$PROJECT_DIR$/data/phpClass/MySQL.class.php" />
-        <option value="$PROJECT_DIR$/data/showTzById.php" />
         <option value="$PROJECT_DIR$/template/newMember2.html" />
         <option value="$PROJECT_DIR$/template/newMember.html" />
         <option value="$PROJECT_DIR$/common.inc/header.html" />
@@ -188,6 +254,13 @@
         <option value="$PROJECT_DIR$/js/addFriend_flower_message.js" />
         <option value="$PROJECT_DIR$/template/modalTemplate.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/data/phpClass/MySQL.class.php" />
+        <option value="$PROJECT_DIR$/css/qqFace.css" />
+        <option value="$PROJECT_DIR$/qqFace/index.html" />
+        <option value="$PROJECT_DIR$/data/showTzById.php" />
+        <option value="$PROJECT_DIR$/js/jquery.qqFace.js" />
+        <option value="$PROJECT_DIR$/data/sql/login_register.sql" />
+        <option value="$PROJECT_DIR$/data/addComment.php" />
         <option value="$PROJECT_DIR$/showTzContent.html" />
       </list>
     </option>
@@ -250,7 +323,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="template" />
+              <option name="myItemId" value="zyupload" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -264,7 +337,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -278,21 +351,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GuestSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="common.inc" />
+              <option name="myItemId" value="sql" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -314,11 +377,11 @@
       <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\data\sql" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem" />
       <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\js" />
+      <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\img" />
+      <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem" />
       <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\css" />
       <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\js\froala_editor" />
-      <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\fonts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -440,18 +503,18 @@
       <workItem from="1500426437984" duration="32315000" />
       <workItem from="1500512583095" duration="29618000" />
       <workItem from="1500599203895" duration="22808000" />
-      <workItem from="1500692818456" duration="10644000" />
+      <workItem from="1500692818456" duration="22168000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251428000" />
+    <option name="totallyTimeSpent" value="262952000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1763754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15695792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292232" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -478,64 +541,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/deleteFriend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/getFlower.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/deleteFlower.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="39" column="26" lean-forward="false" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/common.func.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="78" column="68" lean-forward="false" selection-start-line="78" selection-start-column="68" selection-end-line="78" selection-end-column="68" />
-          <folding>
-            <element signature="e#6#85#0#PHP" expanded="false" />
-            <marker date="1500539890676" expanded="true" signature="599:635" ph="select id fr... user" />
-            <marker date="1500539890676" expanded="true" signature="1183:1274" ph="insert into user... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fonts/glyphicons-halflings-regular.woff2.baiduyun.downloading" />
-    <entry file="file://$PROJECT_DIR$/common.inc/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/froala_editor-141021225227/www.jq22.com.txt" />
     <entry file="file://$PROJECT_DIR$/froala_editor-141021225227/img/old_clock.jpg" />
     <entry file="file://$PROJECT_DIR$/froala_editor-141021225227/index.html" />
     <entry file="file://$PROJECT_DIR$/data/yzCode.php">
@@ -543,13 +553,6 @@
         <state relative-caret-position="638">
           <caret line="39" column="21" lean-forward="false" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/sql/login_register.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="58" column="2" lean-forward="false" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -598,6 +601,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -674,36 +678,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/phpClass/MySQL.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="82" column="51" lean-forward="false" selection-start-line="82" selection-start-column="51" selection-end-line="82" selection-end-column="51" />
-          <folding>
-            <element signature="n#setMode#0;n#MySQL#0;n#!!top" expanded="false" />
-            <element signature="n#delete#0;n#MySQL#0;n#!!top" expanded="false" />
-            <element signature="n#update#0;n#MySQL#0;n#!!top" expanded="false" />
-            <marker date="1500695469664" expanded="true" signature="1028:1078" ph="insert into $... " />
-            <marker date="1500695469664" expanded="true" signature="1296:1324" ph="delete from " />
-            <marker date="1500695469664" expanded="true" signature="1372:1384" ph="delete from " />
-            <marker date="1500695469664" expanded="true" signature="1833:1871" ph="update ${{$t... " />
-            <marker date="1500695469664" expanded="true" signature="1903:1924" ph="update ${{$t... " />
-            <marker date="1500695469664" expanded="true" signature="2741:2773" ph="select ${{$c... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/getMessage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/addFriend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="39" column="27" lean-forward="false" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -728,22 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/showTzById.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/getBloger.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
-          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -928,6 +890,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/getFlower.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/getBloger2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1499342950000" expanded="true" signature="209:228" ph="select * fro... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/getBloger.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-311">
+          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/phpClass/MySQL.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="68" column="5" lean-forward="true" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+          <folding>
+            <element signature="n#setMode#0;n#MySQL#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#MySQL#0;n#!!top" expanded="false" />
+            <element signature="n#fetchAll#0;n#MySQL#0;n#!!top" expanded="false" />
+            <element signature="n#fetchOne#0;n#MySQL#0;n#!!top" expanded="false" />
+            <element signature="n#buildQuery#0;n#MySQL#0;n#!!top" expanded="false" />
+            <marker date="1500708196004" expanded="true" signature="1028:1078" ph="insert into $... " />
+            <marker date="1500708196004" expanded="true" signature="1296:1324" ph="delete from " />
+            <marker date="1500708196004" expanded="true" signature="1372:1384" ph="delete from " />
+            <marker date="1500708196004" expanded="true" signature="1833:1871" ph="update ${{$t... " />
+            <marker date="1500708196004" expanded="true" signature="1903:1924" ph="update ${{$t... " />
+            <marker date="1500708196004" expanded="true" signature="2741:2773" ph="select ${{$c... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qqFace/arclist/21.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/qqFace.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qqFace/css/reset.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="191" lean-forward="false" selection-start-line="6" selection-start-column="115" selection-end-line="6" selection-end-column="191" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qqFace/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="763">
+          <caret line="67" column="3" lean-forward="true" selection-start-line="67" selection-start-column="3" selection-end-line="67" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
@@ -961,8 +998,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="523" column="49" lean-forward="true" selection-start-line="523" selection-start-column="49" selection-end-line="523" selection-end-column="49" />
+        <state relative-caret-position="705">
+          <caret line="523" column="49" lean-forward="false" selection-start-line="523" selection-start-column="49" selection-end-line="523" selection-end-column="49" />
           <folding>
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -976,18 +1013,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/jquery.qqFace.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="79" column="61" lean-forward="false" selection-start-line="79" selection-start-column="50" selection-end-line="79" selection-end-column="61" />
+          <folding>
+            <marker date="1500712143760" expanded="true" signature="508:552" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/showTzById.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="41" column="39" lean-forward="false" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
+          <folding>
+            <marker date="1500711805121" expanded="true" signature="858:916" ph="update artic... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/sql/login_register.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="69" column="2" lean-forward="false" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/addFriend.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/showTzContent.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="416" column="28" lean-forward="false" selection-start-line="416" selection-start-column="28" selection-end-line="416" selection-end-column="28" />
+        <state relative-caret-position="369">
+          <caret line="601" column="50" lean-forward="false" selection-start-line="601" selection-start-column="50" selection-end-line="601" selection-end-column="50" />
           <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#ul#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#21749#22911#0" expanded="false" />
-            <element signature="e#23021#23466#0" expanded="false" />
+            <element signature="n#script#9;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#25190#26352#0" expanded="false" />
+            <element signature="e#26462#26907#0" expanded="false" />
+            <element signature="e#27000#27267#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/addComment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="23" />
+          <folding>
+            <element signature="e#6#86#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

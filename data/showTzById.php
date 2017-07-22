@@ -37,6 +37,9 @@ if($result){
     $showTzArr['code'] = 0;//成功获取到分页数据
     $showTzArr['msg'] = "success";
     $showTzArr['info'] = $result;
+    //更新阅读次数
+    $updateSql = 'update article set pub_readCount=pub_readCount+1 where id='.$id;
+    mysqli_query($db->link,$updateSql);
 }
 
 echo json_encode($showTzArr);

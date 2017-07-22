@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/qqFace.css">
     <title>帖子详情</title>
 </head>
 <style>
@@ -22,6 +23,7 @@
     .content_title{
         font-size: 16px;
         font-weight: bolder;
+        line-height: 30px;
     }
     .content{
         margin:20px 0 0 0;
@@ -36,62 +38,85 @@
         left: -200px;
     }
     .contentWrap .content{
-        border:1px solid #dddddd;
+        border-top:1px solid #dddddd;
         line-height: 30px;
-        padding:0 0 0 20px;
-        border-radius: 4px;
+        padding:10px 0 0 5px;
         font-weight:200;
         overflow: hidden;
+    }
+    .addComment{
+        color: #999999;
+    }
+    .commentWrap{
+        display: none;
     }
 </style>
 <body>
 <div class="headerWrap"></div>
 <div class="container">
     <div class="outerWrap">
-        <!--<div class="row">-->
-            <!--<div class="col-md-3">-->
-                <!--<div class="thumbnail">-->
-                    <!--<img src="img/headPhoto/5.jpg" alt="18300093372sdsdffsd" style="width: 200px;height: 200px;">-->
-                    <!--<div class="caption">-->
-                        <!--<h3 class="username">18300093372sdsdffsd</h3>(楼主)-->
-                        <!--<div class="btnlist">-->
-                            <!--<p class="btn_group">-->
-                                <!--<a href="#" class="btn btn-primary sendMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>发消息</a>-->
-                                <!--<a href="#" class="btn btn-primary writeMessage" role="button" data-id="155"><span class="glyphicon glyphicon-phone"></span>写留言</a>-->
-                            <!--</p>-->
-                            <!--<p class="btn_group">-->
-                                <!--<a href="#" class="btn btn-default addFriend" role="button" data-id="155"><span class="glyphicon glyphicon-user"></span>加好友</a>-->
-                                <!--<a href="#" class="btn btn-default addFlower" role="button" data-id="155"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>-->
-                            <!--</p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-md-8 col-sm-6">-->
-                <!--<div class="contentWrap">-->
-                    <!--<div class="media">-->
-                        <!--<div class="media-body">-->
-                            <!--<h4 class="media-heading">-->
-                                <!--<p class="content_title">-->
-                                    <!--标题sdfsfs的是的是的是的实施的第三方的方式的都是发生的发生大幅度发说说的法师打发第三方的时代的所得税（<span>发布者</span>）-->
-                                <!--</p>-->
-                                <!--<div class="pull-right countWrap">-->
-                                    <!--<span>2017-7-21</span>-->
-                                    <!--<span>阅读次数(100)</span>-->
-                                    <!--<span>评论次数(100)</span>-->
-                                    <!--<span>楼层#1</span>-->
-                                <!--</div>-->
-                            <!--</h4>-->
-                            <!--<p class="content">-->
-                                <!--内容冷冷的说开始打开开始-->
-                            <!--</p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+
+    </div>
+    <div class="commentShow">
+        <div class="row" data-id="<%:=info.id%>">
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
+                    <div class="caption">
+                        <h3 class="username"><%:=info.username%></h3>(楼主)
+                        <div class="btnlist">
+                            <p class="btn_group">
+                                <a href="#" class="btn btn-primary sendMessage" role="button"><span class="glyphicon glyphicon-phone"></span>发消息</a>
+                                <a href="#" class="btn btn-primary writeMessage" role="button"><span class="glyphicon glyphicon-phone"></span>写留言</a>
+                            </p>
+                            <p class="btn_group">
+                                <a href="#" class="btn btn-default addFriend" role="button"><span class="glyphicon glyphicon-user"></span>加好友</a>
+                                <a href="#" class="btn btn-default addFlower" role="button"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-6">
+                <div class="contentWrap">
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <p class="content_title">
+                                    Re:<%:=info.pub_title%>（<span><%:=info.username%></span>）
+                                </p>
+                                <div class="pull-right countWrap">
+                                    <span> <%:=info.pub_date%></span>
+                                    <span>评论次数( <%:=info.pub_commentCount%>)</span>
+                                    <span>楼层#1</span>
+                                </div>
+                            </h4>
+                            <div class="content">
+                                <%:=info.pub_content%>
+                                <a href="#commentWrap" class="btn addComment pull-right" role="button">
+                                    <span class="glyphicon glyphicon-comment"></span>评论
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="col-md-8 col-md-offset-3 commentWrap" id="commentWrap">
+        <div id="show"></div>
+        <div class="comment">
+            <div class="com_form">
+                <textarea class="input" id="saytext" name="saytext"></textarea>
+                <p>
+                    <input type="button" class="sub_btn" value="提交">
+                    <span class="emotion">表情</span>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="footerWrap"></div>
 
@@ -379,8 +404,11 @@
 <script src="js/addFriend_flower_message.js"></script>
 <script src="js/myPage.js"></script>
 
+<script src="js/jquery.qqFace.js"></script>
+
+<!--文章详情模板-->
 <script type="text/html" id="contentTemp">
-    <div class="row">
+    <div class="row" data-id="<%:=info.id%>">
         <div class="col-md-3">
             <div class="thumbnail">
                 <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
@@ -404,9 +432,9 @@
                 <div class="media">
                     <div class="media-body">
                         <h4 class="media-heading">
-                            <p class="content_title">
-                                <%:=info.pub_title%>（<span><%:=info.username%></span>）
-                            </p>
+                            <div class="content_title" data-username="<%:=info.username%>">
+                                <span class="title"><%:=info.pub_title%></span>（<span><%:=info.username%></span>）
+                            </div>
                             <div class="pull-right countWrap">
                                 <span> <%:=info.pub_date%></span>
                                 <span>阅读次数( <%:=info.pub_readCount%>)</span>
@@ -416,6 +444,58 @@
                         </h4>
                         <div class="content">
                             <%:=info.pub_content%>
+                            <a href="#commentWrap" class="btn addComment pull-right" role="button">
+                                <span class="glyphicon glyphicon-comment"></span>评论
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<!--评论内容模板-->
+
+<script type="text/html" id="commentTemp">
+    <div class="row" data-id="<%:=info.id%>">
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
+                <div class="caption">
+                    <h3 class="username"><%:=info.username%></h3>(楼主)
+                    <div class="btnlist">
+                        <p class="btn_group">
+                            <a href="#" class="btn btn-primary sendMessage" role="button"><span class="glyphicon glyphicon-phone"></span>发消息</a>
+                            <a href="#" class="btn btn-primary writeMessage" role="button"><span class="glyphicon glyphicon-phone"></span>写留言</a>
+                        </p>
+                        <p class="btn_group">
+                            <a href="#" class="btn btn-default addFriend" role="button"><span class="glyphicon glyphicon-user"></span>加好友</a>
+                            <a href="#" class="btn btn-default addFlower" role="button"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-6">
+            <div class="contentWrap">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <div class="content_title" data-username="<%:=info.username%>">
+                                <span class="title"><%:=info.pub_title%></span>（<span><%:=info.username%></span>）
+                            </div>
+                            <div class="pull-right countWrap">
+                                <span> <%:=info.pub_date%></span>
+                                <span>阅读次数( <%:=info.pub_readCount%>)</span>
+                                <span>评论次数( <%:=info.pub_commentCount%>)</span>
+                                <span>楼层#1</span>
+                            </div>
+                        </h4>
+                        <div class="content">
+                            <%:=info.pub_content%>
+                            <a href="#commentWrap" class="btn addComment pull-right" role="button">
+                                <span class="glyphicon glyphicon-comment"></span>评论
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -473,7 +553,6 @@
                 ]
             });
         }
-
         //初始化加好友，送花，发送信息等功能
         if(window.localStorage.getItem('userInfo')) {
             var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
@@ -486,12 +565,58 @@
         //单击加好友，发信息，送花功能，前提需要登录
         $.addFFM($(".outerWrap"),username);
         var search = location.search;
+        //加载主题文章
         $.getJSON('data/showTzById.php'+search,function (rsp) {
-            console.log(rsp);
             var dataHtml = document.getElementById("contentTemp").innerHTML;
             var html = template(dataHtml,{info:rsp.info});
             $(".outerWrap").html(html);
         })
+        //单击评论
+        $(".container").on('click','.addComment',function () {
+            $(".commentWrap").show();
+        });
+        $('.emotion').qqFace({
+            assign:'saytext',
+            path:'img/arclist/'	//表情存放的路径
+        });
+        function replace_em(str){
+            str = str.replace(/\</g,'&lt;');
+            str = str.replace(/\>/g,'&gt;');
+            str = str.replace(/\n/g,'<br/>');
+            str = str.replace(/\[em_([0-9]*)\]/g,'<img src="img/arclist/$1.gif" border="0" />');
+            return str;
+        }
+        $(".sub_btn").click(function(){
+            var str = $("#saytext").val();
+            $("#show").html(replace_em(str));
+            //存放在数据库表comment中
+            var $outerWrap = $(".outerWrap");
+            var comment_content = replace_em(str),
+                comment_title = $outerWrap.find(".content_title>.title").text(),
+                article_id = $outerWrap.find(".row").attr('data-id'),
+                article_username = $outerWrap.find(".username").text();
+            var data = {
+                comment_content:comment_content,
+                comment_title:comment_title,
+                article_id:article_id,
+                article_username:article_username,
+            };
+
+            $.ajax({
+                type:'POST',
+                url:'data/addComment.php',
+                dataType:'JSON',
+                data:data,
+                success:function (rsp) {
+                    console.log(rsp);
+                }
+            });
+
+
+        });
+
+        //分页加载评论
+
     })();
 </script>
 </html>
