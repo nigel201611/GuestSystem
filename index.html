@@ -67,7 +67,7 @@
                 </div>
                 <div class="tipList">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="请输入标题" >
+                        <input type="text" class="form-control" name="title" placeholder="请输入标题" >
                         <span class="input-group-addon" id="search">
                             <span class="glyphicon glyphicon-search"></span>
                         </span>
@@ -434,7 +434,8 @@
 
 <script>
     (function () {
-        var username;
+        var username,
+            title = '';
         $('.headerWrap').load('common.inc/header.html',function () {
             var userInfo;
             if(window.localStorage.getItem('userInfo')){
@@ -607,7 +608,7 @@
         function showTz(curPage) {
             $.ajax({
                 type:"GET",
-                url:"data/showTz.php?page="+curPage,
+                url:"data/showTz.php?page="+curPage+"&title="+title,
                 dataType:"JSON",
                 async:false,
                 success:function (rsp) {
@@ -615,16 +616,6 @@
                         var totalPages = rsp.pagesCount;
                         //显示消息数据
                         var info = rsp.info;
-//                        for(var i=0;i<data.length;i++){
-//                            var imgSrc = "";
-//                            var index = Math.floor(Math.random()*6+1);
-//                            if(data[i].head_img){
-//                                imgSrc = "img/headPhoto/"+data[i].head_img;
-//                            }else{//如果头像不存在，就使用系统随机生成的头像
-//                                imgSrc = "img/headPhoto/"+index+".jpg";
-//                            }
-//                            data[i].head_img = imgSrc;
-//                        }
                         var dataHtml = document.getElementById("tzTemp").innerHTML;
                         var html = template(dataHtml,{info:info});
                         $(".tipList>ul").html(html);
@@ -688,6 +679,10 @@
         //处理froala编辑器，图片上传到本地，而不是上传到第三方服务器
 
         //增加搜索帖子功能
+        $(".tipList").on('click','#search',function () {
+            title = $(this).prev().val();
+            showTz(1);
+        });
     })()
 
 </script>

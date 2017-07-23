@@ -34,16 +34,23 @@ if(isset( $_SESSION['username']) && !empty( $_SESSION['username'])){
 if(isset($_GET['page']) && !empty($_GET['page'])){
     $issuePostArr['curPage'] = $_GET['page'];
 }
+$title =  $_GET['title'];
 //获取总记录数
 $config = [
     'mode'=>MYSQLI_ASSOC,
     'fileds'=>"id"
 ];
-$result = $db->fetchAll('article',$config);
-
-if($result){
-    $issuePostArr['recordCount'] = count($result);
+if( !empty($title) && isset($title) ){
+    $config = [
+        'mode'=>MYSQLI_ASSOC,
+        'fileds'=>"id",
+        'where'=>"pub_title like '%$title%'",
+    ];
 }
+
+$result = $db->fetchAll('article',$config);
+$issuePostArr['recordCount'] = count($result);
+
 //计算总页数
 $issuePostArr['pagesCount'] = ceil($issuePostArr['recordCount']/$issuePostArr['pageSize']);
 
@@ -55,6 +62,15 @@ $config1 = [
     'fileds'=>"*",
     'limits'=>"{$start},{$issuePostArr['pageSize']}"
 ];
+
+if(!empty($title) && isset($title)){
+    $config1 = [
+        'mode'=>MYSQLI_ASSOC,
+        'fileds'=>"*",
+        'where'=>"pub_title like '%$title%'",
+        'limits'=>"{$start},{$issuePostArr['pageSize']}"
+    ];
+}
 
 $result1 = $db->fetchAll('article',$config1);
 if($result1){

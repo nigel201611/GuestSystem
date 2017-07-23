@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-07-19 17:39:49
+Date: 2017-07-23 19:48:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `user` (
   `person_info` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -106,4 +106,8 @@ INSERT INTO `user` VALUES ('131', 'blackjack62', '11', null, null, null, null, n
 INSERT INTO `user` VALUES ('132', 'blackjack63', '11', null, null, null, null, null, null, null, null, null);
 INSERT INTO `user` VALUES ('133', 'blackjack64', '11', null, null, null, null, null, null, null, null, null);
 INSERT INTO `user` VALUES ('134', 'nigel_blackjack1111', '11', '63079099190dd749df5bf9f4983c0180', '6719dbf212c1786905d8af312b571036', '1149828479@qq.com', '1149828479', '2017-07-10 14:17:25', 'localhost', '3', '874d4c6669cdd471f9976784d63f8e3e.jpg', '114982847911498284791149828479114982847911498284791149828479114982847911498284791149828479');
-INSERT INTO `user` VALUES ('135', 'luoxianglian_nigel', '11', '4344904264b5b073e96d5a496440677c', '38a027db6b5c8717e0c665fa5076b663', '1149828479@qq.com', '1149828479', '2017-07-10 14:30:45', 'localhost', '13', '7fef8f4218dd3b4b48729252a275fbdd.jpg', 'modifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModal');
+INSERT INTO `user` VALUES ('135', 'luoxianglian_nigel', '11', '4344904264b5b073e96d5a496440677c', '38a027db6b5c8717e0c665fa5076b663', '1149828479@qq.com', '1149828479', '2017-07-10 14:30:45', 'localhost', '17', '7fef8f4218dd3b4b48729252a275fbdd.jpg', 'modifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModalmodifySuccessModal');
+INSERT INTO `user` VALUES ('153', 'nigel_blackJack1122', '11', '32282d6b0a533c91af0e804bddbae08d', '3753a24762aa3f24b07daedb6d5bcdfa', null, null, '2017-07-20 16:38:21', 'localhost', '1', null, null);
+INSERT INTO `user` VALUES ('154', 'luoxianglian_nigeldsdsdsdsd', '11', 'adc2553f23fa12a08fe6c785cdadd182', '0742460437a16b67d9cb2d9905ad336e', null, null, '2017-07-20 16:42:05', 'localhost', '1', 'a6b27e49b3e2e0092fc30aa7a45ea551.jpg', null);
+INSERT INTO `user` VALUES ('155', '18300093372sdsdffsd', '11', '0540009e544f38c67ca7f2983ffc3e5b', '042c2124964eca0277a8ad17edc31621', null, null, '2017-07-21 11:54:46', 'localhost', '1', null, null);
+INSERT INTO `user` VALUES ('156', '18300093372sdsdffsdsd', '11', 'f0ceac8cdac856dd0ebbeb87f7165a7c', '918c3cb91b4db6fb01c93947f95581cc', null, null, '2017-07-22 11:42:46', 'localhost', '1', null, null);

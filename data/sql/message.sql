@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-07-19 17:39:39
+Date: 2017-07-23 19:48:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `message` (
   `message_content` text,
   `message_state` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message
@@ -38,8 +38,7 @@ INSERT INTO `message` VALUES ('7', '18300093372', 'luoxianglian_nigel', '2017-07
 INSERT INTO `message` VALUES ('9', 'luoxianglian_nigel', 'blackjack52', '2017-07-14 16:21:50', 'friends with you', '0');
 INSERT INTO `message` VALUES ('10', 'luoxianglian_nigel', 'blackjack52', '2017-07-14 16:21:51', 'friends with you', '0');
 INSERT INTO `message` VALUES ('14', 'luoxianglian_nigel', 'blackjack52', '2017-07-14 16:22:14', 'friends with youdsdsss', '0');
-INSERT INTO `message` VALUES ('15', 'luoxianglian_nigel', 'blackjack52', '2017-07-14 16:22:15', 'friends with youdsdsss', '0');
-INSERT INTO `message` VALUES ('16', 'luoxianglian_nigel', 'blackjack52', '2017-07-14 16:22:16', 'friends with youdsdsss', '0');
+INSERT INTO `message` VALUES ('16', 'luoxianglian_nigel', 'blackjack52', '2017-07-14 16:22:16', 'friends with youdsdsss', '1');
 INSERT INTO `message` VALUES ('17', 'luoxianglian_nigel', 'blackjack52', '2017-07-14 16:22:17', 'friends with youdsdsss', '0');
 INSERT INTO `message` VALUES ('20', 'nigel_blackjack1111', 'luoxianglian_nigel', '2017-07-15 16:44:51', 'test', '0');
 INSERT INTO `message` VALUES ('21', 'luoxianglian_nigel', 'blackjack15', '2017-07-16 09:49:53', 'dsfsds', '0');
@@ -61,3 +60,4 @@ INSERT INTO `message` VALUES ('36', 'luoxianglian_nigel', 'blackjack15', '2017-0
 INSERT INTO `message` VALUES ('37', 'luoxianglian_nigel', 'blackjack15', '2017-07-16 11:55:58', 'dfsfd', '0');
 INSERT INTO `message` VALUES ('38', 'luoxianglian_nigel', 'blackjack15', '2017-07-16 15:08:26', 'dssds', '0');
 INSERT INTO `message` VALUES ('39', '18300093372', 'nigel_blackjack1111', '2017-07-18 15:18:16', 'dsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdffdfssdsfdsdsdfdsfdsfdssdfsfsdfdffdfssdsfdsdsdfdsfdsfdssdfsfsdfdsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdffdfssdsfdsdsdfdsfdsfdssdfsfsdfdsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdffdfssdsfdsdsdfdsfdsfdssdfsfsdfdsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdffdfssdsfdsdsdfdsfdsfdssdfsfsdfdsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdffdfssdsfdsdsdfdsfdsfdssdfsfsdfdsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdffdfssdsfdsdsdfdsfdsfdssdfsfsdfdsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdffdfssdsfdsdsdfdsfdsfdssdfsfsdfdsfsdfsdfssdfffffffffffffffffffffffffsdfsdfssffssdsdfssfsdsdffsdsdffdfssdsfdsdsdfdsfdsfdssdfsfsdf', '1');
+INSERT INTO `message` VALUES ('41', '18300093372', 'luoxianglian_nigel', '2017-07-19 19:33:38', 'fsdsdssssdsfsd', '1');
