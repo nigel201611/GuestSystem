@@ -34,10 +34,13 @@ if(isset( $_SESSION['username']) && !empty( $_SESSION['username'])){
 if(isset($_GET['page']) && !empty($_GET['page'])){
     $commentArr['curPage'] = $_GET['page'];
 }
+$article_id = $_GET['article_id'];
+
 //获取总记录数
 $config = [
     'mode'=>MYSQLI_ASSOC,
-    'fileds'=>"id"
+    'fileds'=>"id",
+    'where'=>"article_id={$article_id}"
 ];
 $result = $db->fetchAll('comment',$config);
 
@@ -49,10 +52,10 @@ $commentArr['pagesCount'] = ceil($commentArr['recordCount']/$commentArr['pageSiz
 
 //分页获取数据
 $start = ($commentArr['curPage']-1)*$commentArr['pageSize'];
-
 $config1 = [
     'mode'=>MYSQLI_ASSOC,
     'fileds'=>"*",
+    'where'=>"article_id={$article_id}",
     'limits'=>"{$start},{$commentArr['pageSize']}"
 ];
 

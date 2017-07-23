@@ -10,13 +10,13 @@ span.emotion:hover { background-position: 2px -28px }
 .qqFace table td img { cursor: pointer; border: 1px #fff solid; }
 .qqFace table td img:hover { border: 1px #0066cc solid; }
 #show {
-    width: 770px;
     margin: 20px auto;
     background: #fff;
     padding: 5px;
     border: 1px solid #DDD;
     vertical-align: top;
     min-height: 40px;
+    border-radius: 4px;
 }
 .sub_btn {
     color: #FFFFFF;

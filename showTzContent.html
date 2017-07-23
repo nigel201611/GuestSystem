@@ -54,58 +54,9 @@
 <body>
 <div class="headerWrap"></div>
 <div class="container">
-    <div class="outerWrap">
-
-    </div>
+    <div class="outerWrap"></div>
     <div class="com_wrap">
-        <div class="commentShow">
-            <div class="row" data-id="<%:=info.id%>">
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
-                        <div class="caption">
-                            <h3 class="username"><%:=info.username%></h3>(楼主)
-                            <div class="btnlist">
-                                <p class="btn_group">
-                                    <a href="#" class="btn btn-primary sendMessage" role="button"><span class="glyphicon glyphicon-phone"></span>发消息</a>
-                                    <a href="#" class="btn btn-primary writeMessage" role="button"><span class="glyphicon glyphicon-phone"></span>写留言</a>
-                                </p>
-                                <p class="btn_group">
-                                    <a href="#" class="btn btn-default addFriend" role="button"><span class="glyphicon glyphicon-user"></span>加好友</a>
-                                    <a href="#" class="btn btn-default addFlower" role="button"><span class="glyphicon glyphicon-heart-empty"></span>送花</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 col-sm-6">
-                    <div class="contentWrap">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    <p class="content_title">
-                                        Re:<%:=info.pub_title%>（<span><%:=info.username%></span>）
-                                    </p>
-                                    <div class="pull-right countWrap">
-                                        <span> <%:=info.pub_date%></span>
-                                        <span>评论次数( <%:=info.pub_commentCount%>)</span>
-                                        <span>楼层#1</span>
-                                    </div>
-                                </h4>
-                                <div class="content">
-                                    <%:=info.pub_content%>
-                                    <a href="#commentWrap" class="btn addComment pull-right" role="button">
-                                        <span class="glyphicon glyphicon-comment"></span>评论
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <div class="commentShow"></div>
         <!--分页list-->
         <div class="pagelist text-center">
             <nav aria-label="Page navigation" class="Page">
@@ -420,6 +371,7 @@
     <div class="row" data-id="<%:=info.id%>">
         <div class="col-md-3">
             <div class="thumbnail">
+                <!--头像暂时写死，到时需要从user表拿-->
                 <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
                 <div class="caption">
                     <h3 class="username"><%:=info.username%></h3>(楼主)
@@ -495,8 +447,8 @@
                             </div>
                             <div class="pull-right countWrap">
                                 <span> <%:=info[i].comment_date%></span>
-                                <span>评论次数( <%:=info[i].comment_count%>)</span>
-                                <span>楼层#<%:=i+(info.curPage-1)+2%></span>
+                                <!--<span>评论次数( <%:=info[i].comment_count%>)</span>-->
+                                <span>楼层#<%:=2*info.curPage+i%></span>
                             </div>
                         </h4>
                         <div class="content">
@@ -515,7 +467,20 @@
 
 <script>
     ;(function () {
-        var username;
+        function validateLogin() {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if( userInfo && userInfo.username){
+                return true;
+            }else{
+                $("#loginModal").modal('show');
+                return false;
+            }
+        }
+        var username,
+            article_id;
         $('.headerWrap').load('common.inc/header.html',function () {
             var userInfo;
             if(window.localStorage.getItem('userInfo')){
@@ -574,6 +539,8 @@
         //单击加好友，发信息，送花功能，前提需要登录
         $.addFFM($(".outerWrap"),username);
         var search = location.search;
+        article_id = search.substr(1).split('=')[1];
+
         //加载主题文章
         $.getJSON('data/showTzById.php'+search,function (rsp) {
             var dataHtml = document.getElementById("contentTemp").innerHTML;
@@ -582,7 +549,11 @@
         })
         //单击评论
         $(".container").on('click','.addComment',function () {
-            $(".commentWrap").show();
+            //单击评论一定要登录状态，并且有验证码验证
+            if( validateLogin() ){
+                $(".commentWrap").show();
+            }
+
         });
         $('.emotion').qqFace({
             assign:'saytext',
@@ -595,6 +566,7 @@
             str = str.replace(/\[em_([0-9]*)\]/g,'<img src="img/arclist/$1.gif" border="0" />');
             return str;
         }
+//        提交评论
         $(".sub_btn").click(function(){
             var str = $("#saytext").val();
             $("#show").html(replace_em(str));
@@ -610,21 +582,23 @@
                 article_id:article_id,
                 article_username:article_username,
             };
-
             $.ajax({
                 type:'POST',
                 url:'data/addComment.php',
                 dataType:'JSON',
                 data:data,
                 success:function (rsp) {
-                    console.log(rsp);
+                    //重新加载该页面--跳转到最后一页
+                    showComment(rsp.pagesCount);
+                    //清空之前输入的评论内容，并且隐藏
+                    var $commentWrap = $(".commentWrap")
+                    $commentWrap.hide();
+                    $commentWrap.find("#saytext").val("");
+                    $commentWrap.find("#show").html("");
                 }
             });
-
-
         });
         //分页加载评论
-
         function initAction($wrap){
             var $pagelist = $wrap.find(".pagelist").eq(0);
             $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
@@ -661,11 +635,10 @@
         function showComment(curPage) {
             $.ajax({
                 type:"GET",
-                url:"data/getComment.php?page="+curPage,
+                url:"data/getComment.php?page="+curPage+"&article_id="+article_id,
                 dataType:"JSON",
                 async:false,
                 success:function (rsp) {
-                    console.log(rsp);
                     if(rsp.code==0){
                         var totalPages = rsp.pagesCount;
                         //显示消息数据
