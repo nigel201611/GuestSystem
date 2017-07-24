@@ -511,7 +511,11 @@
 //帖子编辑器初始化
         var $issuePostForm = $("#issuePostForm"),
             $issueTzModal = $("#issueTzModal");
-        $('#edit').editable({inlineMode: false, alwaysBlank: true});
+        $('#edit').editable({
+            inlineMode: false,
+            alwaysBlank: true,
+            imageUploadURL:'data/upload_file.php'
+        });
         //隐藏模态框时，清空帖子模态框内容
         $issueTzModal.on('hide.bs.modal',function () {
             $issueTzModal.find("input[name=article_title]").val("");
@@ -676,8 +680,7 @@
             }
         }
         $.addFFM($(".newMembership"),username);
-        //处理froala编辑器，图片上传到本地，而不是上传到第三方服务器
-
+        //处理froala编辑器，图片上传到本地，而不是上传到第三方服务器！！！
         //增加搜索帖子功能
         $(".tipList").on('click','#search',function () {
             title = $(this).prev().val();

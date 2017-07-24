@@ -7,10 +7,24 @@ function getFN($filename){
 	return $newName;
 }
 
-$fileName = $_FILES['userfile']['tmp_name'];//上传的文件存储在临时路径下
-$name = $_FILES['userfile']['name'];//文件名
-$target = 'upload/'.getFN($name);//目标路径
+$fileName = $_FILES['file']['tmp_name'];//上传的文件存储在临时路径下
+$name = $_FILES['file']['name'];//文件名
+
+$dirname = '../img/upload/';
+if(!file_exists($dirname)){
+    mkdir($dirname);
+}
+$target = $dirname.getFN($name);//目标路径
 $suc = move_uploaded_file($fileName, $target);
 
-echo $suc ? '上传成功':'上传失败';
+$hashMap = [
+    'link'=>''
+];
+if($suc){
+    $filename = basename($target);
+    $hashMap['link'] = "img/upload/".$filename;
+}
+
+echo json_encode($hashMap);
+
 ?>
