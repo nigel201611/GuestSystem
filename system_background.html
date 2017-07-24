@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="zyupload/skins/zyupload-1.0.0.min.css " type="text/css">
+    <title>后台管理</title>
+</head>
+<style>
+    .wrapItem{
+        display: none;
+    }
+    .wrapItem.active{
+        display: block;
+    }
+    .errcheck{
+        color: #FF0000;
+        display: none;
+    }
+    .yzcodeImg{
+        cursor: pointer;
+    }
+    .form-control[readonly]{
+        background-color: #ffffff;
+        opacity: 1;
+    }
+    .personInfoWrap .label-title{
+        font-weight:bold;
+        display: inline-block;
+        width: 60px;
+        text-align: right;
+    }
+    .personInfoWrap .label-content{
+        display: inline-block;
+        white-space: normal;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+    .personInfoWrap .personinfo_content{
+        padding: 0 10px;
+    }
+
+    .loadingWrap{
+        width:100%;
+        height:100%;
+        position: fixed;
+        top:0;
+        left:0;
+        background: rgba(0,0,0,0.3);
+        display: none;
+    }
+    .loadingWrap img{
+        position: absolute;
+        width: 100px;
+        top:50%;
+        left:50%;
+        display: block;
+        transform: translate(-50%,-50%);
+    }
+
+    .allCheck{
+        margin:0 0 20px 0;
+    }
+    .totalPage{
+        margin:0 0 0 10px;
+    }
+    .totalPage,
+    .curPage{
+        line-height: 30px;
+        padding:0 5px;
+    }
+    .buttonList{
+        float: right;
+        overflow: hidden;
+    }
+    .buttonList label{
+        position: relative;
+        top:-2px;
+    }
+    .showMessageWrap table tr,
+    .friendWrap table tr,
+    .flowerWrap table tr{
+        cursor: pointer;
+    }
+    .noty_text{
+        white-space: normal;
+        word-wrap:break-word;
+        word-break:break-all;
+    }
+    .deleteAll,
+    .readAll,
+    .validateAll{
+        float: left;
+        margin:0 0 0 10px;
+    }
+    .pagelist{
+        clear: both;
+    }
+
+    .text-success{
+        color: #3c763d;
+    }
+    .flower{
+        color: #FF0000;
+    }
+
+</style>
+
+<body>
+
+<div class="headerWrap"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default panel-primary">
+                <div class="panel-heading">
+                    系统管理
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="#" id="personInfo">后台首页</a></li>
+                        <li class="list-group-item"><a href="#" id="modifyInfo">系统设置</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default panel-primary">
+                <div class="panel-heading">
+                    会员管理
+                </div>
+                <div class="panel-body othersManage">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="#showMessageWrap">普通会员</a></li>
+                        <li class="list-group-item"><a href="#friendWrap">特殊会员</a></li>
+                        <li class="list-group-item"><a href="#flowerWrap">职业任命</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default panel-primary">
+                <div class="panel-heading">
+                    帖子管理
+                </div>
+                <div class="panel-body othersManage">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="#showMessageWrap">主题管理</a></li>
+                        <li class="list-group-item"><a href="#friendWrap">回帖管理</a></li>
+                        <li class="list-group-item"><a href="#flowerWrap">批量删除</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default panel-primary">
+                <div class="panel-heading">
+                    后台管理中心
+                </div>
+                <div class="panel-body">
+                    <!--账号管理-->
+                    <!--个人信息展示-->
+                    <div class="personInfoWrap wrapItem">
+                        <ul class="list-group">
+                            <li class="list-group-item username">
+                                <span class="label-title">用户名:</span>
+                                <span class="label-content"></span>
+                            </li>
+                        </ul>
+
+                        <!--加载动画-->
+                        <div class="loadingWrap">
+                            <img src="img/loading.gif" alt="加载中...">
+                        </div>
+                    </div>
+                    <!--修改资料-->
+                    <div class="modifyWrap wrapItem">
+                        <form class="form-horizontal" id="modifyinfoForm">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6 col-sm-offset-2 errcheck errcheck_repeat">
+                                    用户名已经存在
+                                </div>
+                                <div class="col-sm-6 col-sm-offset-2 errcheck errcheck_empty">
+                                    用户名不能为空
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">邮箱</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">qq</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="qq">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">个人简介</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" name="person_info" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">验证码</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="yzcode">
+                                </div>
+                                <div class="col-sm-2">
+                                    <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                                    验证码不正确
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-6">
+                                    <button type="submit" class="btn btn-default">提交</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">个人头像</label>
+                            <div class="col-sm-8">
+                                <div id="zyupload" class="zyupload"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--其他管理-->
+                    <!--短信查询-->
+                    <div class="showMessageWrap wrapItem" id="showMessageWrap">
+                        <table class="table table-responsive table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <td>发送人</td>
+                                <td>接收人</td>
+                                <td>消息内容</td>
+                                <td>日期</td>
+                                <td style="text-align: center">状态</td>
+                                <td style="text-align: center">操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        <div class="buttonList">
+                            <div class="deleteAll">
+                                <input type="checkbox" class="allCheck">
+                                <label>删除本页</label>
+                            </div>
+                            <div class="readAll">
+                                <input type="checkbox" class="allRead">
+                                <label>全部已读</label>
+                            </div>
+                        </div>
+                        <!--分页list-->
+                        <div class="pagelist text-center">
+                            <nav aria-label="Page navigation" class="Page">
+
+                            </nav>
+                        </div>
+                    </div>
+                    <!--好友设置-->
+                    <div class="friendWrap wrapItem" id="friendWrap">
+                        <!--只显示加当前用户的好友-->
+                        <table class="table table-responsive table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <td>添加人</td>
+                                <td>验证好友内容</td>
+                                <td>日期</td>
+                                <td style="text-align: center">状态</td>
+                                <td style="text-align: center">操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        <div class="buttonList">
+                            <div class="deleteAll">
+                                <input type="checkbox" class="allCheck">
+                                <label>删除本页</label>
+                            </div>
+                            <div class="readAll">
+                                <input type="checkbox" class="allRead">
+                                <label>全部验证</label>
+                            </div>
+                        </div>
+                        <!--分页list-->
+                        <div class="pagelist text-center">
+                            <nav aria-label="Page navigation" class="Page">
+
+                            </nav>
+                        </div>
+                    </div>
+                    <!--查询花朵-->
+                    <div class="flowerWrap wrapItem" id="flowerWrap">
+                        <table class="table table-responsive table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <td>送花者</td>
+                                <td>送花附加内容</td>
+                                <td>日期</td>
+                                <td style="text-align: center">花朵数量</td>
+                                <td style="text-align: center">操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        <div class="buttonList">
+                            <div class="deleteAll">
+                                <input type="checkbox" class="allCheck">
+                                <label>删除本页</label>
+                            </div>
+                        </div>
+                        <!--分页list-->
+                        <div class="pagelist text-center">
+                            <nav aria-label="Page navigation" class="Page">
+
+                            </nav>
+                        </div>
+                    </div>
+                    <!--个人相册-->
+                    <div class="personPhotoWrap wrapItem" id="personPhotoWrap">
+                        个人相册
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footerWrap"></div>
+
+<!--登录模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">登录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="wrap login_wrap">
+                    <div class="content">
+                        <div class="logo"></div>
+                        <div class="login_box">
+                            <div class="login_form">
+                                <div class="login_title">
+                                    登录
+                                </div>
+                                <form action="#" method="post" id="login_form">
+                                    <div class="form_text_ipt">
+                                        <input name="username" type="text" placeholder="手机号/邮箱">
+                                    </div>
+                                    <div class="ececk_warning"><span>请输入手机号或邮箱</span></div>
+                                    <div class="ececk_warning loginUsername"><span>手机号或邮箱不存在</span></div>
+                                    <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号或邮箱</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="password" type="password" placeholder="密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>请输入密码</span></div>
+                                    <div class="ececk_warning passwordInput"><span>请检查密码是否输入正确</span></div>
+                                    <div class="form_check_ipt">
+                                        <div class="left check_left">
+                                            <label><input name="autoLogin" data-value="0" type="checkbox"> 下次自动登录</label>
+                                        </div>
+                                        <div class="right check_right">
+                                            <a href="#">忘记密码</a>
+                                        </div>
+                                    </div>
+                                    <div class="form_btn">
+                                        <button type="submit">登录</button>
+                                    </div>
+                                    <div class="form_reg_btn">
+                                        <span>还没有帐号？</span><a href="#" id="goRegister" data-toggle="modal" data-target="#registerModal">马上注册</a>
+                                    </div>
+                                </form>
+                                <div class="other_login">
+                                    <div class="left other_left">
+                                        <span>其它登录方式</span>
+                                    </div>
+                                    <div class="right other_right">
+                                        <a href="#">QQ登录</a>
+                                        <a href="#">微信登录</a>
+                                        <a href="#">微博登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--content -->
+                </div>
+            </div><!-- /.modal-body -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--注册模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="registerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">注册</h4>
+            </div>
+            <div class="modal-body">
+                <div class="wrap login_wrap">
+                    <div class="content">
+
+                        <div class="logo"></div>
+
+                        <div class="login_box">
+
+                            <div class="login_form">
+                                <div class="login_title">
+                                    注册
+                                </div>
+                                <form action="#" method="post" id="register_form">
+
+                                    <div class="form_text_ipt">
+                                        <input name="username" type="text" placeholder="手机号/邮箱">
+                                    </div>
+                                    <div class="ececk_warning"><span>手机或者邮箱不能为空</span></div>
+                                    <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号，邮箱</span></div>
+                                    <div class="ececk_warning repeatUser"><span>手机号，邮箱已存在</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="password" type="password" placeholder="密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>密码不能为空</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="repassword" type="password" placeholder="重复密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>密码不能为空</span></div>
+                                    <div class="ececk_warning confirmPwd"><span>确认密码和原密码不一致</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="code" type="text" placeholder="验证码">
+                                    </div>
+                                    <div class="ececk_warning"><span>验证码不能为空</span></div>
+
+                                    <div class="form_btn">
+                                        <button type="submit">注册</button>
+                                    </div>
+                                    <div class="form_reg_btn">
+                                        <span>已有帐号？</span><a href="#" id="goLogin" data-toggle="modal" data-target="#loginModal">马上登录</a>
+                                    </div>
+                                </form>
+                                <div class="other_login">
+                                    <div class="left other_left">
+                                        <span>其它登录方式</span>
+                                    </div>
+                                    <div class="right other_right">
+                                        <a href="#">QQ登录</a>
+                                        <a href="#">微信登录</a>
+                                        <a href="#">微博登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--资料修改成功提示模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="modifySuccessModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">信息修改提示框</h4>
+            </div>
+            <div class="modal-body">
+                个人信息修改成功！
+            </div><!-- /.modal-body -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--资料修改失败提示模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="modifyFailModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">信息修改提示框</h4>
+            </div>
+            <div class="modal-body">
+                非法操作！请重新登录再次修改试试！
+            </div><!-- /.modal-body -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/login_register.js"></script>
+<script type="text/javascript" src="zyupload/zyupload.basic-1.0.0.min.js"></script>
+<script src="js/themes/default.js"></script>
+<script src="js/noty.min.js"></script>
+<script src="js/template.js"></script>
+
+<script>
+    function validateLogin() {
+        var userInfo;
+        if(window.localStorage.getItem('userInfo')){
+            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+        }
+        if( userInfo && userInfo.username){
+            $('.headerWrap').find('.username_head').text(userInfo.username);
+            $('.headerWrap').find('.login').hide();
+            $('.headerWrap').find('.register').hide();
+            $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+            //请求信息接口，获取未查看信息条数
+            $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                if(count>0){
+                    $(".envelope_count").text(count).css({display:"inline-block"});
+                }
+            });
+            if(localStorage.getItem("menuList")){
+                menuList = JSON.parse(localStorage.getItem("menuList"));
+                $(".wrapItem").removeClass("active");
+                for(var i=0;i<menuList.length;i++){
+                    if(menuList[i] == 1){
+                        switch (i){
+                            case 0://个人信息
+                                getPersonInfo(userInfo.username);
+                                break;
+                            case 2://短信查询
+                                showMessage(1);
+                                break;
+                            case 3://好友查询
+                                showFriend(1);
+                                break;
+                            case 4://花朵查询
+                                showflower(1);
+                                break;
+                            case 5://个人相册
+                                break;
+                        }
+                        $(".wrapItem").eq(i).addClass('active');
+                    }
+                }
+            }else{
+                menuList = [1,0,0,0,0,0];
+                localStorage.setItem("menuList",JSON.stringify(menuList));
+                getPersonInfo(userInfo.username);
+            }
+
+            //消息增加点击事件，跳转到信息查看页面
+            $('.envelope_wrap').click(function () {
+                var menuList = [0,0,1,0,0,0];
+                localStorage.setItem("menuList",JSON.stringify(menuList));
+                location.href = 'person_center.html';
+            });
+
+        }else{
+            //请登录后操作
+            //使用unique防止伪登录
+            //注册时生成唯一unique,登录时，将unique存在cookie或者session中
+            //登录需要对密码进行加密-暂时不做
+            //未激活不能登录，激活过的用户，active设置为空，邮箱激活或者手机验证码激活--暂时不做
+
+            //做资料修改的时候，需要进行敏感验证，必须比对cookie和数据库的唯一标识符，防止伪造登录cookie
+            //如果做到更安全，在敏感操作后，可以重新生成唯一标识符，并且写入数据库写入cookie
+            $("#loginModal").modal('show');
+        }
+    }
+    function validateLogin2() {
+        var userInfo;
+        if(window.localStorage.getItem('userInfo')){
+            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+        }
+        if( userInfo && userInfo.username){
+            $('.headerWrap').find('.username_head').text(userInfo.username);
+            $('.headerWrap').find('.login').hide();
+            $('.headerWrap').find('.register').hide();
+            $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+            //请求信息接口，获取未查看信息条数
+            $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                if(count>0){
+                    $(".envelope_count").text(count).css({display:"inline-block"});
+                }
+            });
+
+            return true;
+
+        }else{
+            $("#loginModal").modal('show');
+            return false;
+        }
+    }
+    //        加载头部，验证登陆
+    $('.headerWrap').load('common.inc/header.html',function () {
+        //validateLogin();
+    });
+    $('.footerWrap').load('common.inc/footer.html');
+</script>
+</html>
