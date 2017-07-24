@@ -60,6 +60,7 @@ $start = ($issuePostArr['curPage']-1)*$issuePostArr['pageSize'];
 $config1 = [
     'mode'=>MYSQLI_ASSOC,
     'fileds'=>"*",
+    'order_fileds'=>'pub_date DESC',
     'limits'=>"{$start},{$issuePostArr['pageSize']}"
 ];
 
@@ -67,6 +68,7 @@ if(!empty($title) && isset($title)){
     $config1 = [
         'mode'=>MYSQLI_ASSOC,
         'fileds'=>"*",
+        'order_fileds'=>'pub_date DESC',
         'where'=>"pub_title like '%$title%'",
         'limits'=>"{$start},{$issuePostArr['pageSize']}"
     ];

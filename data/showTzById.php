@@ -28,10 +28,10 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
 }
 $config = [
     'mode'=>MYSQLI_ASSOC,
-    'fileds'=>"*",
-    'where'=>"id={$id}"
+    'fileds'=>"article.*,user.head_img",
+    'where'=>"article.id={$id} and article.username=user.username"
 ];
-$result = $db->fetchOne('article',$config);
+$result = $db->fetchOne('article,user',$config);
 
 if($result){
     $showTzArr['code'] = 0;//成功获取到分页数据

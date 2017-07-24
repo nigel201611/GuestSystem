@@ -54,8 +54,10 @@
 <body>
 <div class="headerWrap"></div>
 <div class="container">
+    <!--主题帖加载-->
     <div class="outerWrap"></div>
     <div class="com_wrap">
+        <!--评论页加载-->
         <div class="commentShow"></div>
         <!--分页list-->
         <div class="pagelist text-center">
@@ -64,7 +66,7 @@
             </nav>
         </div>
     </div>
-
+<!--评论输入-->
     <div class="col-md-8 col-md-offset-3 commentWrap" id="commentWrap">
         <div id="show"></div>
         <div class="comment">
@@ -372,7 +374,7 @@
         <div class="col-md-3">
             <div class="thumbnail">
                 <!--头像暂时写死，到时需要从user表拿-->
-                <img src="img/headPhoto/5.jpg" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
+                <img src="<%:=info.head_img%>" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
                 <div class="caption">
                     <h3 class="username"><%:=info.username%></h3>(楼主)
                     <div class="btnlist">
@@ -545,7 +547,16 @@
         //加载主题文章
         $.getJSON('data/showTzById.php'+search,function (rsp) {
             var dataHtml = document.getElementById("contentTemp").innerHTML;
-            var html = template(dataHtml,{info:rsp.info});
+            var data = rsp.info;
+            var imgSrc = "";
+            var index = Math.floor(Math.random()*6+1);
+            if(data.head_img){
+                imgSrc = "img/headPhoto/"+data.head_img;
+            }else{//如果头像不存在，就使用系统随机生成的头像
+                imgSrc = "img/headPhoto/"+index+".jpg";
+            }
+            data.head_img = imgSrc;
+            var html = template(dataHtml,{info:data});
             $(".outerWrap").html(html);
         })
         //单击评论
@@ -668,6 +679,7 @@
             });
         }
         showComment(1);
+        //评论者头像处理，跨表查询
     })();
 </script>
 </html>

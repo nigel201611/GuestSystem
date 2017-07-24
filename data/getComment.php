@@ -50,16 +50,16 @@ if($result){
 //计算总页数
 $commentArr['pagesCount'] = ceil($commentArr['recordCount']/$commentArr['pageSize']);
 
-//分页获取数据
+//分页获取数据，同时向user表中获取头像，comment获取相关信息
 $start = ($commentArr['curPage']-1)*$commentArr['pageSize'];
 $config1 = [
     'mode'=>MYSQLI_ASSOC,
-    'fileds'=>"*",
-    'where'=>"article_id={$article_id}",
+    'fileds'=>"comment.*,user.head_img",
+    'where'=>"article_id={$article_id} and comment.comment_username=user.username",
     'limits'=>"{$start},{$commentArr['pageSize']}"
 ];
 
-$result1 = $db->fetchAll('comment',$config1);
+$result1 = $db->fetchAll('comment,user',$config1);
 if($result1){
     $commentArr['code'] = 0;//成功获取到分页数据
     $commentArr['msg'] = "success";
