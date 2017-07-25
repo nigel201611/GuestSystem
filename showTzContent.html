@@ -11,6 +11,9 @@
     <title>帖子详情</title>
 </head>
 <style>
+    .outerWrap{
+        margin:40px 0 0 0;
+    }
     .outerWrap .username{
         font-size: 20px;
         white-space: normal;
@@ -373,7 +376,6 @@
     <div class="row" data-id="<%:=info.id%>">
         <div class="col-md-3">
             <div class="thumbnail">
-                <!--头像暂时写死，到时需要从user表拿-->
                 <img src="<%:=info.head_img%>" alt="<%:=info.username%>" style="width: 200px;height: 200px;">
                 <div class="caption">
                     <h3 class="username"><%:=info.username%></h3>(楼主)
@@ -506,7 +508,7 @@
                 $('.envelope_wrap').click(function () {
                     var menuList = [0,0,1,0,0,0];
                     localStorage.setItem("menuList",JSON.stringify(menuList));
-                    location.href = 'person_center.html';
+                    location.href = 'center.html';
                 });
 
             }

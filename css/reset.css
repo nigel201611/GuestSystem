@@ -11,7 +11,7 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
 }
 article, aside, figure, footer, header, nav, section, details, summary {display: block;}
 html, body { height: 100%;  color: #333; font-size: 12px; font-family: "微软雅黑",MicrosoftYaHei;}
-a { text-decoration: none; color: #3cf; -webkit-tap-highlight-color: transparent;}
+a { text-decoration: none; color: #777;  -webkit-tap-highlight-color: transparent;}
 li{list-style: none;}
 table{border-collapse: collapse;}
 input {outline: medium none;font-family: "微软雅黑",MicrosoftYaHei;font-size: 14px;}

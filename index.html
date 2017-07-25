@@ -43,6 +43,9 @@
     .newMembership{
         padding: 40px 0 0 0;
     }
+    .otherDetail>span{
+        color: #66afe9;
+    }
 </style>
 
 <body>
@@ -420,7 +423,7 @@
     <%for(var i = 0; i < info.length; i++) {%>
     <li class="list-group-item">
         <a href="showTzContent.html?id=<%:=info[i].id%>" target="_blank" class="title" data-title="<%:=info[i].pub_title%>" data-id="<%:=info[i].id%>"><%:=info[i].pub_title%></a>
-        <span class="pull-right">
+        <span class="pull-right otherDetail">
             <span class="readCount">阅读次数(<%:=info[i].pub_readCount%>)</span>
             <span class="commentCount">评论次数(<%:=info[i].pub_commentCount%>)</span>
             <span class="time"> <%:=info[i].pub_date%></span>
@@ -459,7 +462,7 @@
                 $('.envelope_wrap').click(function () {
                     var menuList = [0,0,1,0,0,0];
                     localStorage.setItem("menuList",JSON.stringify(menuList));
-                    location.href = 'person_center.html';
+                    location.href = 'center.html';
                 });
 
             }
@@ -477,6 +480,25 @@
                         text: '关闭',
                         onClick: function ($noty) {
                             $noty.close();
+                        }
+                    }
+                ]
+            });
+        }
+        //发布帖子成功
+        function notyInfoSuc(data) {
+            noty({
+                text: data,
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '关闭',
+                        onClick: function ($noty) {
+                            $noty.close();
+                            location.reload();
                         }
                     }
                 ]
@@ -596,7 +618,7 @@
               data:data,
               success:function (rsp) {
                   if(rsp.code==0){
-                      notyInfo("发布成功");
+                      notyInfoSuc("发布成功");
                       $issueTzModal.modal('hide');
                   }else if(rsp.code==2){
                       //重新登录
