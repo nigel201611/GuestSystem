@@ -5,632 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68d5847e-3562-4bf9-a746-3ae868a334fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/TaurusNormal.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/TaurusNormal.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/404/left.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/404/right.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/1.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/10.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/11.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/12.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/13.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/14.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/15.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/16.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/17.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/18.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/19.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/20.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/21.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/22.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/23.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/25.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/26.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/27.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/28.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/29.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/3.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/30.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/31.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/32.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/33.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/34.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/35.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/36.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/37.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/38.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/39.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/4.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/40.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/41.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/42.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/43.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/44.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/45.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/46.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/47.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/48.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/49.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/5.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/50.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/51.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/52.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/53.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/54.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/55.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/56.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/57.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/58.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/59.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/6.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/60.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/61.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/62.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/63.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/64.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/65.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/66.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/67.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/68.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/69.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/7.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/70.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/71.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/72.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/73.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/74.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/75.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/8.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/arclist/9.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/backtop.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/banner/banner_01.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/banner/banner_02.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/banner/banner_03.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/baoman/baoman_01.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/baoman/baoman_02.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/browser.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/excerpt.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/10.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/101.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/102.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/103.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/104.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/105.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/106.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/107.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/108.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/109.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/11.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/110.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/12.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/13.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/14.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/15.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/17.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/19.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/20.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/21.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/22.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/23.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/24.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/25.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/26.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/27.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/28.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/29.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/30.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/31.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/32.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/33.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/34.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/35.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/37.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/38.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/39.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/40.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/41.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/42.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/43.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/44.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/45.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/46.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/47.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/49.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/50.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/51.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/52.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/53.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/54.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/55.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/56.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/57.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/58.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/59.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/60.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/61.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/62.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/63.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/64.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/65.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/66.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/67.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/68.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/69.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/70.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/71.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/72.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/73.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/74.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/75.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/76.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/77.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/78.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/79.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/8.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/80.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/81.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/82.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/83.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/84.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/85.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/86.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/87.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/88.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/89.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/90.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/91.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/92.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/93.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/94.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/95.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/96.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/97.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/98.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/face/99.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/icon/favicon.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/icon/favicon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/icon/favicon.psd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/icon/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/icon/icon.psd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/news-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/occupying.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/snow/snow0.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/snow/snow1.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/snow/snow2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/snow/snow3.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/images/weixin.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_chm.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_default.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_doc.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_exe.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_jpg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_mp3.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_mv.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_ppt.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_psd.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_rar.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_txt.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/fileTypeImages/icon_xls.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/alignicon.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/alignicon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/file-icons.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/file-icons.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/icons.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/icons.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/image.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/progress.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/success.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/images/success.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/background/images/bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/background/images/success.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/images/charts0.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/images/charts1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/images/charts2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/images/charts3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/images/charts4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/images/charts5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/0.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/bface.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/cface.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/fface.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/jxface2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/neweditor-tab-bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/tface.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/wface.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/images/yface.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/images/alignicon.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/images/bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/images/icons.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/images/icons.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/images/image.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/images/progress.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/images/success.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/images/success.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/addimg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/brush.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/delimg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/delimgH.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/empty.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/emptyH.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/eraser.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/redo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/redoH.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/scale.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/scaleH.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/size.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/undo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/images/undoH.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/table/dragicon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/images/bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/images/pre0.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/images/pre1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/images/pre2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/images/pre3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/images/pre4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/center_focus.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/file-icons.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/file-icons.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/icons.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/icons.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/image.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/left_focus.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/none_focus.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/progress.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/right_focus.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/success.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/images/success.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/wordimage/fClipboard_ueditor.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/wordimage/imageUploader.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/addimage.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/alldeletebtnhoverskin.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/alldeletebtnupskin.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/background.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/button.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/copy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/deletedisable.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/deleteenable.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/listbackground.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/localimage.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/music.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/rotateleftdisable.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/rotateleftenable.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/rotaterightdisable.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/rotaterightenable.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/images/upload.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/zh-cn/images/copy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/zh-cn/images/localimage.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/zh-cn/images/music.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/zh-cn/images/upload.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/anchor.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/arrow_down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/arrow_up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/button-bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/cancelbutton.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/charts.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/cursor_h.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/cursor_h.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/cursor_v.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/cursor_v.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/dialog-title-bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/filescan.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/highlighted.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/icons-all.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/icons.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/icons.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/loaderror.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/lock.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/neweditor-tab-bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/pagebreak.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/scale.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/sortable.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/spacer.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/sparator_v.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/table-cell-align.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/tangram-colorpicker.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/toolbar_bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/unhighlighted.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/upload.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/videologo.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/word.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/images/wordpaste.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/snapscreen/UEditorSnapscreen.exe" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/font/vjs.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/font/vjs.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/font/vjs.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/video-js.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/Uploader.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/zeroclipboard/ZeroClipboard.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/demo.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/jquery.mmenu.all.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/jQuery.mmenu/jquery.mmenu.all.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/add-article.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/add-category.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/add-flink.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/add-notice.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/article.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/category.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/comment.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/css/login.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/flink.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/TaurusNormal.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/js/admin-scripts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/js/html5shiv.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/js/jquery-1.11.1.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/js/jquery-2.1.4.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/js/respond.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/js/selectivizr-min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ar-AR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ar-AR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-bg-BG.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-bg-BG.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ca-ES.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ca-ES.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-cs-CZ.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-cs-CZ.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-da-DK.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-da-DK.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-de-DE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-de-DE.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-es-ES.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-es-ES.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-es-EU.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-es-EU.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-fa-IR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-fa-IR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-fi-FI.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-fi-FI.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-fr-FR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-fr-FR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-he-IL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-he-IL.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-hu-HU.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-hu-HU.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-id-ID.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-id-ID.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-it-IT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-it-IT.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ja-JP.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ja-JP.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ko-KR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ko-KR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-lt-LT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-lt-LT.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-nb-NO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-nb-NO.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-nl-NL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-nl-NL.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-pl-PL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-pl-PL.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-pt-BR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-pt-BR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-pt-PT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-pt-PT.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ro-RO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ro-RO.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ru-RU.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-ru-RU.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sk-SK.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sk-SK.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sl-SI.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sl-SI.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sr-RS-Latin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sr-RS-Latin.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sr-RS.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sr-RS.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sv-SE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-sv-SE.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-th-TH.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-th-TH.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-tr-TR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-tr-TR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-uk-UA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-uk-UA.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-vi-VN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-vi-VN.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-zh-CN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-zh-CN.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-zh-TW.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/lang/summernote-zh-TW.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/summernote.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/summernote.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/summernote/summernote.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/anchor/anchor.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/attachment.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/attachment.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/attachment/attachment.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/background/background.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/background/background.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/background/background.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/chart.config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/charts.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/charts.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/charts/charts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/emotion.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/emotion.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/emotion/emotion.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/gmap/gmap.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/help/help.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/help/help.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/help/help.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/image.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/image.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/image/image.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/insertframe/insertframe.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/internal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/link/link.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/map/map.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/map/show.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/music/music.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/music/music.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/music/music.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/preview/preview.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/scrawl.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/scrawl.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/scrawl/scrawl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/searchreplace/searchreplace.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/searchreplace/searchreplace.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/snapscreen/snapscreen.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/spechars/spechars.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/spechars/spechars.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/table/edittable.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/table/edittable.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/table/edittable.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/table/edittd.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/table/edittip.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/template.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/template.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/template/template.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/video.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/video.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/video/video.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/webapp/webapp.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/wordimage/tangram.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/wordimage/wordimage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/dialogs/wordimage/wordimage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/en/en.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/lang/zh-cn/zh-cn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/php/Uploader.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/php/action_crawler.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/php/action_list.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/php/action_upload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/php/config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/php/controller.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/css/ueditor.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/css/ueditor.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/default/dialogbase.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/themes/iframe.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/SyntaxHighlighter/shCore.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/codemirror/codemirror.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/codemirror/codemirror.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/adapters/mootools-adapter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/adapters/mootools-adapter.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/adapters/prototype-adapter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/adapters/prototype-adapter.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/adapters/standalone-framework.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/adapters/standalone-framework.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/highcharts-more.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/highcharts-more.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/highcharts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/highcharts.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/annotations.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/annotations.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/canvas-tools.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/canvas-tools.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/data.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/drilldown.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/drilldown.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/exporting.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/exporting.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/funnel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/funnel.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/heatmap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/heatmap.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/map.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/map.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/no-data-to-display.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/modules/no-data-to-display.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/themes/dark-blue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/themes/dark-green.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/themes/gray.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/themes/grid.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/highcharts/themes/skies.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/jquery-1.10.2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/jquery-1.10.2.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/jquery-1.10.2.min.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/font/vjs.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/video-js.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/video-js.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/video.dev.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/video-js/video.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.custom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.custom.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.flashonly.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.flashonly.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.html5only.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.html5only.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.withoutimage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/webuploader/webuploader.withoutimage.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/zeroclipboard/ZeroClipboard.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/ueditor.all.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/ueditor.all.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/ueditor.config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/ueditor.parse.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/lib/ueditor/ueditor.parse.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/login.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/loginlog.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/manage-user.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/notice.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/readset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/setting.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/update-article.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/update-category.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/system_backdrop/update-flink.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/center.html" afterPath="$PROJECT_DIR$/center.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common.inc/header.html" afterPath="$PROJECT_DIR$/common.inc/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system_background.html" afterPath="$PROJECT_DIR$/system_background.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/advance-search.html" afterPath="$PROJECT_DIR$/js/jquery.advance_query/advance-search.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/advanceSearch.html" afterPath="$PROJECT_DIR$/js/jquery.advance_query/advanceSearch.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/js/jquery.advance_query/css/bootstrap.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/js/jquery.advance_query/css/font-awesome.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/css/jedate.css" afterPath="$PROJECT_DIR$/js/jquery.advance_query/css/jedate.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/css/jquery.advance_query.css" afterPath="$PROJECT_DIR$/js/jquery.advance_query/css/jquery.advance_query.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/bootstrap.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/jquery.advance_query.js" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/jquery.advance_query.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/jquery.jedate.min.js" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/jquery.jedate.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/jquery.js" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/jquery.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/need/laydate.css" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/need/laydate.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/skins/dahong/icon.png" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/skins/dahong/icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/skins/dahong/laydate.css" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/skins/dahong/laydate.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/skins/default/icon.png" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/skins/default/icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/skins/default/laydate.css" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/skins/default/laydate.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/skins/molv/icon.png" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/skins/molv/icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.advance_query/js/skins/molv/laydate.css" afterPath="$PROJECT_DIR$/js/jquery.advance_query/js/skins/molv/laydate.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/demo.css" afterPath="$PROJECT_DIR$/css/demo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/jQuery.mmenu/jquery.mmenu.all.js" afterPath="$PROJECT_DIR$/js/jQuery.mmenu/jquery.mmenu.all.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system_backdrop/index.html" afterPath="$PROJECT_DIR$/system_backdrop/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -642,50 +22,65 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="person_center.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/person_center.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system_backdrop/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="119" column="28" lean-forward="false" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="28" />
+            <state relative-caret-position="115">
+              <caret line="194" column="99" lean-forward="false" selection-start-line="194" selection-start-column="99" selection-end-line="194" selection-end-column="99" />
               <folding>
-                <element signature="n#style#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#script#8;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#script#9;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#script#11;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#27396#27872#0" expanded="false" />
-                <element signature="e#27929#30011#0" expanded="false" />
-                <element signature="e#30059#31921#0" expanded="false" />
-                <element signature="e#31954#32430#0" expanded="false" />
-                <element signature="e#32477#33897#0" expanded="false" />
-                <element signature="e#33944#35856#0" expanded="false" />
-                <element signature="e#36286#37670#0" expanded="false" />
-                <element signature="e#37704#40605#0" expanded="false" />
-                <element signature="e#40640#41583#0" expanded="false" />
-                <element signature="n#script#12;n#html#0;n#!!top" expanded="false" />
-                <marker date="1500698311477" expanded="true" signature="45575:46201" ph="..." />
-                <marker date="1500698311477" expanded="true" signature="45785:45993" ph="..." />
-                <marker date="1500698311477" expanded="true" signature="45860:45958" ph="..." />
-                <marker date="1500698311477" expanded="true" signature="46025:46201" ph="..." />
-                <marker date="1500698311477" expanded="true" signature="46102:46201" ph="..." />
-                <marker date="1500698311477" expanded="true" signature="46305:46512" ph="..." />
-                <marker date="1500698311477" expanded="true" signature="46378:46477" ph="..." />
-                <marker date="1500698311477" expanded="true" signature="46546:46764" ph="..." />
-                <marker date="1500698311477" expanded="true" signature="46631:46729" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/demo.css">
+      <file leaf-file-name="center.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/center.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="292">
+              <caret line="622" column="36" lean-forward="false" selection-start-line="622" selection-start-column="36" selection-end-line="622" selection-end-column="36" />
+              <folding>
+                <element signature="e#2756#2788#0" expanded="false" />
+                <element signature="n#table#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#3;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#table#0;n#div#3;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#4;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#table#0;n#div#4;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#script#10;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#script#11;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#script#12;n#html#0;n#!!top" expanded="false" />
+                <element signature="e#23761#24237#0" expanded="false" />
+                <element signature="e#24294#26321#0" expanded="false" />
+                <element signature="e#26369#28231#0" expanded="false" />
+                <element signature="e#28264#28740#0" expanded="false" />
+                <element signature="e#28787#30207#0" expanded="false" />
+                <element signature="e#30254#32166#0" expanded="false" />
+                <element signature="e#32880#34107#0" expanded="false" />
+                <element signature="e#34141#37045#0" expanded="false" />
+                <element signature="e#37080#38023#0" expanded="false" />
+                <element signature="e#38111#38151#0" expanded="false" />
+                <element signature="e#38287#39723#0" expanded="false" />
+                <element signature="e#39798#40915#0" expanded="false" />
+                <element signature="e#40964#42389#0" expanded="false" />
+                <element signature="e#42463#42860#0" expanded="false" />
+                <element signature="e#42917#44341#0" expanded="false" />
+                <element signature="e#44404#44570#0" expanded="false" />
+                <element signature="e#46279#52482#0" expanded="false" />
+                <element signature="e#52959#53431#0" expanded="false" />
+                <element signature="e#54470#55043#0" expanded="false" />
+                <element signature="e#55076#55649#0" expanded="false" />
+                <element signature="e#55095#55637#0" expanded="false" />
+                <element signature="n#script#15;n#html#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -719,8 +114,8 @@
       <find>pagelist</find>
       <find>nowPage</find>
       <find>username</find>
-      <find>console</find>
       <find>pages</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -729,9 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/template/sendMessage.html" />
-        <option value="$PROJECT_DIR$/data/login.php" />
-        <option value="$PROJECT_DIR$/data/isFriend.php" />
         <option value="$PROJECT_DIR$/data/addFriend.php" />
         <option value="$PROJECT_DIR$/data/common.func.php" />
         <option value="$PROJECT_DIR$/data/common.php" />
@@ -777,9 +169,12 @@
         <option value="$PROJECT_DIR$/showTzContent.html" />
         <option value="$PROJECT_DIR$/data/showTzById.php" />
         <option value="$PROJECT_DIR$/data/phpClass/MySQL.class.php" />
-        <option value="$PROJECT_DIR$/common.inc/header.html" />
-        <option value="$PROJECT_DIR$/css/demo.css" />
         <option value="$PROJECT_DIR$/system_background.html" />
+        <option value="$PROJECT_DIR$/js/jQuery.mmenu/jquery.mmenu.all.js" />
+        <option value="$PROJECT_DIR$/common.inc/header.html" />
+        <option value="$PROJECT_DIR$/system_backdrop/index.html" />
+        <option value="$PROJECT_DIR$/css/demo.css" />
+        <option value="$PROJECT_DIR$/center.html" />
       </list>
     </option>
   </component>
@@ -841,6 +236,66 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="system_backdrop" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jQuery.mmenu" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuestSystem" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="common.inc" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -860,9 +315,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\js\jQuery.mmenu" />
       <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\system_backdrop" />
       <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\css" />
-      <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\js\jQuery.mmenu" />
       <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem" />
       <recent name="D:\phpStudy\WWW\EXERSIZE\GuestSystem\data\sql" />
     </key>
@@ -993,18 +448,18 @@
       <workItem from="1500692818456" duration="25528000" />
       <workItem from="1500796165566" duration="14528000" />
       <workItem from="1500857799762" duration="21604000" />
-      <workItem from="1500944711840" duration="9959000" />
+      <workItem from="1500944711840" duration="23118000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="312403000" />
+    <option name="totallyTimeSpent" value="325562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18446602" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14644013" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292232" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1031,29 +486,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/page.js" />
-    <entry file="file://$PROJECT_DIR$/js/cookie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/login.html" />
-    <entry file="file://$PROJECT_DIR$/template/register.html" />
-    <entry file="file://$PROJECT_DIR$/template/sendMessage.html" />
-    <entry file="file://$PROJECT_DIR$/template/modalTemplate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="67" lean-forward="false" selection-start-line="1" selection-start-column="67" selection-end-line="1" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/getFlower.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1112,27 +549,6 @@
           <caret line="156" column="20" lean-forward="false" selection-start-line="156" selection-start-column="20" selection-end-line="156" selection-end-column="20" />
           <folding>
             <element signature="e#1926#3171#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/myPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="83" column="14" lean-forward="false" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="14" />
-          <folding>
-            <element signature="n#!!block;n#mlist#0" expanded="false" />
-            <element signature="n#!!block;n#flist#0" expanded="false" />
-            <element signature="n#!!block;n#llist#0" expanded="false" />
-            <marker date="1500627213489" expanded="true" signature="2305:2931" ph="..." />
-            <marker date="1500627213489" expanded="true" signature="2515:2723" ph="..." />
-            <marker date="1500627213489" expanded="true" signature="2590:2688" ph="..." />
-            <marker date="1500627213489" expanded="true" signature="2755:2931" ph="..." />
-            <marker date="1500627213489" expanded="true" signature="2832:2931" ph="..." />
-            <marker date="1500627213489" expanded="true" signature="3003:3210" ph="..." />
-            <marker date="1500627213489" expanded="true" signature="3076:3175" ph="..." />
-            <marker date="1500627213489" expanded="true" signature="3244:3462" ph="..." />
-            <marker date="1500627213489" expanded="true" signature="3329:3427" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1345,8 +761,8 @@
         <state relative-caret-position="-891">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3410#3667#1" expanded="true" />
-            <element signature="e#3966#4223#1" expanded="true" />
+            <element signature="e#3410#3667#1" expanded="false" />
+            <element signature="e#3966#4223#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1382,22 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common.inc/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/demo.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/system_background.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -1406,18 +806,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/jQuery.mmenu/jquery.mmenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-912">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jQuery.mmenu/jquery.mmenu.all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/noty.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/myPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="83" column="14" lean-forward="false" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="14" />
+          <folding>
+            <element signature="n#!!block;n#mlist#0" expanded="false" />
+            <element signature="n#!!block;n#flist#0" expanded="false" />
+            <element signature="n#!!block;n#llist#0" expanded="false" />
+            <marker date="1500627213489" expanded="true" signature="2305:2931" ph="..." />
+            <marker date="1500627213489" expanded="true" signature="2515:2723" ph="..." />
+            <marker date="1500627213489" expanded="true" signature="2590:2688" ph="..." />
+            <marker date="1500627213489" expanded="true" signature="2755:2931" ph="..." />
+            <marker date="1500627213489" expanded="true" signature="2832:2931" ph="..." />
+            <marker date="1500627213489" expanded="true" signature="3003:3210" ph="..." />
+            <marker date="1500627213489" expanded="true" signature="3076:3175" ph="..." />
+            <marker date="1500627213489" expanded="true" signature="3244:3462" ph="..." />
+            <marker date="1500627213489" expanded="true" signature="3329:3427" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/person_center.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="119" column="28" lean-forward="false" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="28" />
+        <state relative-caret-position="587">
+          <caret line="1501" column="9" lean-forward="true" selection-start-line="1501" selection-start-column="9" selection-end-line="1501" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#ul#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#table#0;n#div#2;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#table#0;n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#table#0;n#div#4;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#script#8;n#html#0;n#!!top" expanded="false" />
             <element signature="n#script#9;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#10;n#html#0;n#!!top" expanded="false" />
             <element signature="n#script#11;n#html#0;n#!!top" expanded="false" />
             <element signature="e#27396#27872#0" expanded="false" />
             <element signature="e#27929#30011#0" expanded="false" />
@@ -1438,6 +891,89 @@
             <marker date="1500698311477" expanded="true" signature="46378:46477" ph="..." />
             <marker date="1500698311477" expanded="true" signature="46546:46764" ph="..." />
             <marker date="1500698311477" expanded="true" signature="46631:46729" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common.inc/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common.inc/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system_backdrop/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="194" column="99" lean-forward="false" selection-start-line="194" selection-start-column="99" selection-end-line="194" selection-end-column="99" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/demo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="52" column="31" lean-forward="false" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/center.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="622" column="36" lean-forward="false" selection-start-line="622" selection-start-column="36" selection-end-line="622" selection-end-column="36" />
+          <folding>
+            <element signature="e#2756#2788#0" expanded="false" />
+            <element signature="n#table#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#table#0;n#div#3;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#table#0;n#div#4;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#10;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#11;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#12;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#23761#24237#0" expanded="false" />
+            <element signature="e#24294#26321#0" expanded="false" />
+            <element signature="e#26369#28231#0" expanded="false" />
+            <element signature="e#28264#28740#0" expanded="false" />
+            <element signature="e#28787#30207#0" expanded="false" />
+            <element signature="e#30254#32166#0" expanded="false" />
+            <element signature="e#32880#34107#0" expanded="false" />
+            <element signature="e#34141#37045#0" expanded="false" />
+            <element signature="e#37080#38023#0" expanded="false" />
+            <element signature="e#38111#38151#0" expanded="false" />
+            <element signature="e#38287#39723#0" expanded="false" />
+            <element signature="e#39798#40915#0" expanded="false" />
+            <element signature="e#40964#42389#0" expanded="false" />
+            <element signature="e#42463#42860#0" expanded="false" />
+            <element signature="e#42917#44341#0" expanded="false" />
+            <element signature="e#44404#44570#0" expanded="false" />
+            <element signature="e#46279#52482#0" expanded="false" />
+            <element signature="e#52959#53431#0" expanded="false" />
+            <element signature="e#54470#55043#0" expanded="false" />
+            <element signature="e#55076#55649#0" expanded="false" />
+            <element signature="e#55095#55637#0" expanded="false" />
+            <element signature="n#script#15;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
