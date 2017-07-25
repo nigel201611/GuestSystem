@@ -124,8 +124,8 @@ $('[data-toggle="tooltip"]').tooltip();
 //Console
 try {
     if (window.console && window.console.log) {
-        console.log("\n欢迎访问异清轩博客！\n\n在本站可以看到前端技术，后端程序，网站内容管理系统等文章；\n\n还有我的程序人生！！！\n");
-        console.log("\n请记住我们的网址：%c www.ylsat.com", "color:red");
-        console.log("\nPOWERED BY WY ALL RIGHTS RESERVED");
+        console.log("\n欢迎访问罗湘连多用户留言系统！\n\n在本站可以看到前端技术，后端程序，网站内容管理系统等文章；\n\n还有我的程序人生！！！\n");
+        console.log("\n请记住我们的网址：%c www.nigelcode.com", "color:red");
+        console.log("\nPOWERED BY nigel ALL RIGHTS RESERVED");
     }
 } catch (e) {};

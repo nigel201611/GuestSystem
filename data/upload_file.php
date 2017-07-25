@@ -1,4 +1,5 @@
 <?php
+//发表帖子时，上传图片所用
 header('content-type:application/json;');
 function getFN($filename){
 	$extArr = explode('.', $filename);

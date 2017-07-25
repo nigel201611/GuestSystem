@@ -25,18 +25,31 @@
 
 <body class="user-select">
 <section class="container-fluid">
+
   <header>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a class="navbar-brand" href="/">YlsatCMS</a> </div>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="www.nigelcode.com" target="_blank">www.nigelcode.com</a>
+        </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="">消息 <span class="badge">1</span></a></li>
-            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">admin <span class="caret"></span></a>
+            <li><a href="../index.html">首页 </a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                admin <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu dropdown-menu-left">
-                <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
+                <li>
+                  <a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a>
+                </li>
                 <li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>
               </ul>
             </li>
@@ -47,13 +60,15 @@
             <div class="input-group">
               <input type="text" class="form-control" autocomplete="off" placeholder="键入关键字搜索" maxlength="15">
               <span class="input-group-btn">
-              <button class="btn btn-default" type="submit">搜索</button>
-              </span> </div>
+                <button class="btn btn-default" type="submit">搜索</button>
+              </span>
+            </div>
           </form>
         </div>
       </div>
     </nav>
   </header>
+
   <div class="row">
     <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
       <ul class="nav nav-sidebar">
@@ -61,21 +76,23 @@
       </ul>
       <ul class="nav nav-sidebar">
         <li><a href="article.html">文章</a></li>
-        <li><a href="notice.html">公告</a></li>
+        <!--<li><a href="notice.html">公告</a></li>-->
         <li><a href="comment.html">评论</a></li>
-        <li><a data-toggle="tooltip" data-placement="bottom" title="网站暂无留言功能">留言</a></li>
+        <!--<li><a data-toggle="tooltip" data-placement="bottom" title="网站暂无留言功能">留言</a></li>-->
       </ul>
       <ul class="nav nav-sidebar">
         <li><a href="category.html">栏目</a></li>
-        <li><a class="dropdown-toggle" id="otherMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他</a>
+        <li>
+          <a class="dropdown-toggle" id="otherMenu" data-toggle="dropdown">其他</a>
           <ul class="dropdown-menu" aria-labelledby="otherMenu">
-            <li><a href="flink.html">友情链接</a></li>
+            <!--<li><a href="flink.html">友情链接</a></li>-->
             <li><a data-toggle="modal" data-target="#areDeveloping">访问记录</a></li>
           </ul>
         </li>
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a class="dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">用户</a>
+        <li>
+          <a class="dropdown-toggle" id="userMenu" data-toggle="dropdown">用户</a>
           <ul class="dropdown-menu" aria-labelledby="userMenu">
             <li><a data-toggle="modal" data-target="#areDeveloping">管理用户组</a></li>
             <li><a href="manage-user.html">管理用户</a></li>
@@ -191,6 +208,7 @@
     </div>
   </div>
 </section>
+
 <!--个人信息模态框-->
 <div class="modal fade" id="seeUserInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -321,15 +339,15 @@
   </div>
 </div>
 <!--右键菜单列表-->
-<div id="rightClickMenu">
-  <ul class="list-group rightClickMenuList">
-    <li class="list-group-item disabled">欢迎访问异清轩博客</li>
-    <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
-    <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
-    <li class="list-group-item"><span>系统：</span>Windows10 </li>
-    <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
-  </ul>
-</div>
+<!--<div id="rightClickMenu">-->
+  <!--<ul class="list-group rightClickMenuList">-->
+    <!--<li class="list-group-item disabled">欢迎访问异清轩博客</li>-->
+    <!--<li class="list-group-item"><span>IP：</span>172.16.10.129</li>-->
+    <!--<li class="list-group-item"><span>地址：</span>河南省郑州市</li>-->
+    <!--<li class="list-group-item"><span>系统：</span>Windows10 </li>-->
+    <!--<li class="list-group-item"><span>浏览器：</span>Chrome47</li>-->
+  <!--</ul>-->
+<!--</div>-->
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/admin-scripts.js"></script>
 </body>

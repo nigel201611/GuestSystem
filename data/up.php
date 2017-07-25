@@ -1,4 +1,5 @@
 <?php
+//修改个人信息中的上传头像
 session_start();
 include_once "common.php";
 $uploaddir = '../img/headPhoto';
