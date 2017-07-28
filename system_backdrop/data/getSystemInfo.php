@@ -1,0 +1,29 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: nigel
+ * Date: 2017/7/26
+ * Time: 10:10
+ */
+
+//print_r(pathinfo(__FILE__));
+//预定义变量,$_ENV,$_SERVER
+//魔术常量，__LINE_,__FILE__(返回文件完整的路径和文件名),__CLASS__，__METHOD__(返回类的方法名称)，__FUNCTION__(返回函数名称)
+//__DIR__（返回文件所在的目录）,__NAMESPACE__(返回当前命名空间名称)
+
+$systemObj = [
+    'php_version'=>PHP_VERSION,//php版本
+    'operate_system'=>1,//操作系统
+    'server_software'=>$_SERVER[SERVER_SOFTWARE], //服务器软件
+    'http_user_agent'=>$_SERVER[HTTP_USER_AGENT],//浏览器
+    'http_host'=>$_SERVER[HTTP_HOST],//登录者ip
+    
+];
+
+echo "<pre>";
+print_r($_ENV);
+echo "</pre>";
+
+echo "<pre>";
+print_r($_SERVER);
+echo "</pre>";
