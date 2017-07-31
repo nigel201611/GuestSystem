@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>多用户管理系统——相册</title>
+</head>
+<style>
+    .photoButton{
+        margin:0 0 20px 10px;
+        float: right;
+    }
+    .photoBox{
+        clear: both;
+    }
+    .photoBox .photoDesc{
+        font-size: 16px;
+        white-space: nowrap;
+        text-overflow:ellipsis;
+        overflow:hidden;
+    }
+</style>
+<body>
+<div class="headerWrap"></div>
+<div class="container">
+    <div class="photoWrap">
+        <!--需要增加搜索功能，样式需要优化点-->
+        <div class="photoButton">
+            <button id="uploadPhoto" class="btn btn-danger">
+                <span class="glyphicon glyphicon-picture"></span>
+                上传照片
+            </button>
+            <button class="btn btn-success" id="createAlbum">
+                创建相册
+            </button>
+        </div>
+        <div class="photoBox">
+            <!--相册列表-->
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <img src="img/headPhoto/1.jpg" alt="...">
+                        <div class="caption">
+                            <p class="photoDesc">dssskk</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <img src="img/headPhoto/1.jpg" alt="...">
+                        <div class="caption">
+                            <p class="photoDesc">
+                                旅游家庭旅游之珠海海洋王国71旅游桂林山水
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <img src="img/headPhoto/1.jpg" alt="...">
+                        <div class="caption">
+                            <p class="photoDesc">
+                                旅游家庭旅游之珠海海洋王国71旅游桂林山水
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <img src="img/headPhoto/1.jpg" alt="...">
+                        <div class="caption">
+                            <p class="photoDesc">
+                                旅游家庭旅游之珠海海洋王国71旅游桂林山水
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--分页list-->
+        <div class="pagelist text-center">
+            <nav aria-label="Page navigation" class="Page">
+
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="footerWrap"></div>
+</body>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/login_register.js"></script>
+
+<script src="js/themes/default.js"></script>
+<script src="js/noty.min.js"></script>
+<script src="js/template.js"></script>
+<script src="js/myPage.js"></script>
+
+<script>
+    $('.headerWrap').load('common.inc/header.html',function () {
+        var userInfo;
+        if(window.localStorage.getItem('userInfo')){
+            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+        }
+        if(userInfo && userInfo.username){
+            username = userInfo.username;
+            $('.headerWrap').find('.username_head').text(userInfo.username);
+            $('.headerWrap').find('.login').hide();
+            $('.headerWrap').find('.register').hide();
+            $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+            //请求信息接口，获取未查看信息条数
+            $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                if(count>0){
+                    $(".envelope_count").text(count).css({display:"inline-block"});
+                }
+            });
+
+            //消息增加点击事件，跳转到信息查看页面
+            $('.envelope_wrap').click(function () {
+                var menuList = [0,0,1,0,0,0];
+                localStorage.setItem("menuList",JSON.stringify(menuList));
+                location.href = 'center.html';
+            });
+
+        }
+    });
+    $('.footerWrap').load('common.inc/footer.html');
+</script>
+</html>
