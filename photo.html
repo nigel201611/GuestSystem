@@ -23,6 +23,24 @@
         text-overflow:ellipsis;
         overflow:hidden;
     }
+    .line_theme_check{
+        position: relative;
+        top: 6px;
+    }
+    .line_theme_check .type-name i{
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        margin-right: 2px;
+        background-image: url(img/photo_pop.png);
+        vertical-align: middle;
+    }
+    .line_theme_check .icon-child{
+        background-position: -202px -28px;
+    }
+    .line_theme_check .icon-travel{
+        background-position: -213px 0;
+    }
 </style>
 <body>
 <div class="headerWrap"></div>
@@ -94,6 +112,216 @@
     </div>
 </div>
 <div class="footerWrap"></div>
+
+<!--登录模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">登录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="wrap login_wrap">
+                    <div class="content">
+                        <div class="logo"></div>
+                        <div class="login_box">
+                            <div class="login_form">
+                                <div class="login_title">
+                                    登录
+                                </div>
+                                <form action="#" method="post" id="login_form">
+                                    <div class="form_text_ipt">
+                                        <input name="username" type="text" placeholder="手机号/邮箱">
+                                    </div>
+                                    <div class="ececk_warning"><span>请输入手机号或邮箱</span></div>
+                                    <div class="ececk_warning loginUsername"><span>手机号或邮箱不存在</span></div>
+                                    <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号或邮箱</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="password" type="password" placeholder="密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>请输入密码</span></div>
+                                    <div class="ececk_warning passwordInput"><span>请检查密码是否输入正确</span></div>
+                                    <div class="form_check_ipt">
+                                        <div class="left check_left">
+                                            <label><input name="autoLogin" data-value="0" type="checkbox"> 下次自动登录</label>
+                                        </div>
+                                        <div class="right check_right">
+                                            <a href="#">忘记密码</a>
+                                        </div>
+                                    </div>
+                                    <div class="form_btn">
+                                        <button type="submit">登录</button>
+                                    </div>
+                                    <div class="form_reg_btn">
+                                        <span>还没有帐号？</span><a href="#" id="goRegister" data-toggle="modal" data-target="#registerModal">马上注册</a>
+                                    </div>
+                                </form>
+                                <div class="other_login">
+                                    <div class="left other_left">
+                                        <span>其它登录方式</span>
+                                    </div>
+                                    <div class="right other_right">
+                                        <a href="#">QQ登录</a>
+                                        <a href="#">微信登录</a>
+                                        <a href="#">微博登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--content -->
+                </div>
+            </div><!-- /.modal-body -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--注册模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="registerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">注册</h4>
+            </div>
+            <div class="modal-body">
+                <div class="wrap login_wrap">
+                    <div class="content">
+
+                        <div class="logo"></div>
+
+                        <div class="login_box">
+
+                            <div class="login_form">
+                                <div class="login_title">
+                                    注册
+                                </div>
+                                <form action="#" method="post" id="register_form">
+
+                                    <div class="form_text_ipt">
+                                        <input name="username" type="text" placeholder="手机号/邮箱">
+                                    </div>
+                                    <div class="ececk_warning"><span>手机或者邮箱不能为空</span></div>
+                                    <div class="ececk_warning phoneAndEmailErr"><span>请输入正确格式的手机号，邮箱</span></div>
+                                    <div class="ececk_warning repeatUser"><span>手机号，邮箱已存在</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="password" type="password" placeholder="密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>密码不能为空</span></div>
+                                    <div class="form_text_ipt">
+                                        <input name="repassword" type="password" placeholder="重复密码">
+                                    </div>
+                                    <div class="ececk_warning"><span>密码不能为空</span></div>
+                                    <div class="ececk_warning confirmPwd"><span>确认密码和原密码不一致</span></div>
+                                    <!--<div class="form_text_ipt">-->
+                                    <!--<input name="code" type="text" placeholder="验证码">-->
+                                    <!--</div>-->
+                                    <!--<div class="ececk_warning"><span>验证码不能为空</span></div>-->
+
+                                    <div class="form_btn">
+                                        <button type="submit">注册</button>
+                                    </div>
+                                    <div class="form_reg_btn">
+                                        <span>已有帐号？</span><a href="#" id="goLogin" data-toggle="modal" data-target="#loginModal">马上登录</a>
+                                    </div>
+                                </form>
+                                <div class="other_login">
+                                    <div class="left other_left">
+                                        <span>其它登录方式</span>
+                                    </div>
+                                    <div class="right other_right">
+                                        <a href="#">QQ登录</a>
+                                        <a href="#">微信登录</a>
+                                        <a href="#">微博登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--创建相册模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="createAlbumModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">创建相册</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="albumForm" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">相册名称</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="albumName" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck albumNameErr" >
+                            相册名称不能为空
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">相册描述</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" name="albumContent" autocomplete="off"
+                                      placeholder="说说这个相册的故事...(非必填)"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">主题</label>
+                        <div class="col-sm-6">
+                            <p class="line_theme_check">
+                                <span id="js-normal">
+                                    <input type="radio" id="js-normal-checkbox" name="choose-type" checked="checked" class="v_radiobutton" data-value="0">
+                                    <label class="type-name" for="js-normal-checkbox">普通</label>
+                                </span>
+                                <span id="js-baby">
+                                    <input type="radio" id="js-baby-checkbox" name="choose-type" class="v_radiobutton" data-value="1">
+                                    <label class="type-name" for="js-baby-checkbox">
+                                        <i class="icon-child"></i>亲子
+                                    </label>
+                                </span>
+                                <span id="js-travel">
+                                    <input type="radio" id="js-travel-checkbox" name="choose-type" class="v_radiobutton" data-value="2">
+                                    <label class="type-name" for="js-travel-checkbox">
+                                        <i class="icon-travel"></i>旅游
+                                    </label>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-primary">确定</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 
 <script src="js/jquery-1.11.3.js"></script>
@@ -107,34 +335,181 @@
 <script src="js/myPage.js"></script>
 
 <script>
-    $('.headerWrap').load('common.inc/header.html',function () {
-        var userInfo;
-        if(window.localStorage.getItem('userInfo')){
-            userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+    ;(function () {
+        function notyInfo(data){
+            noty({
+                text: data,
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '关闭',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
+                    }
+                ]
+            });
         }
-        if(userInfo && userInfo.username){
-            username = userInfo.username;
-            $('.headerWrap').find('.username_head').text(userInfo.username);
-            $('.headerWrap').find('.login').hide();
-            $('.headerWrap').find('.register').hide();
-            $('.headerWrap').find(".loginOut").removeClass('hidden');
+        function validateLogin2() {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if( userInfo && userInfo.username){
+                $('.headerWrap').find('.username_head').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
 
-            //请求信息接口，获取未查看信息条数
-            $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
-                if(count>0){
-                    $(".envelope_count").text(count).css({display:"inline-block"});
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    if(count>0){
+                        $(".envelope_count").text(count).css({display:"inline-block"});
+                    }
+                });
+
+                return true;
+
+            }else{
+                $("#loginModal").modal('show');
+                return false;
+            }
+        }
+
+        $('.headerWrap').load('common.inc/header.html',function () {
+            var userInfo;
+            if(window.localStorage.getItem('userInfo')){
+                userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            }
+            if(userInfo && userInfo.username){
+                username = userInfo.username;
+                $('.headerWrap').find('.username_head').text(userInfo.username);
+                $('.headerWrap').find('.login').hide();
+                $('.headerWrap').find('.register').hide();
+                $('.headerWrap').find(".loginOut").removeClass('hidden');
+
+                //请求信息接口，获取未查看信息条数
+                $.get("data/getMessageCount.php?username="+userInfo.username,function (count) {
+                    if(count>0){
+                        $(".envelope_count").text(count).css({display:"inline-block"});
+                    }
+                });
+
+                //消息增加点击事件，跳转到信息查看页面
+                $('.envelope_wrap').click(function () {
+                    var menuList = [0,0,1,0,0,0];
+                    localStorage.setItem("menuList",JSON.stringify(menuList));
+                    location.href = 'center.html';
+                });
+
+            }
+        });
+        $('.footerWrap').load('common.inc/footer.html');
+
+        //单击创建相册
+        var $albumForm = $("#albumForm"),
+            $createAlbumModal = $("#createAlbumModal");
+        //隐藏模态框时，清空模态框内容
+        $createAlbumModal.on('hide.bs.modal',function () {
+            $createAlbumModal.find("input").val("");
+            $createAlbumModal.find(".yzcodeImg").attr('src',"data/yzCode.php");
+        });
+        $albumForm.find(".yzcodeImg").click(function () {
+            this.src= "data/yzCode.php";
+        });
+        $albumForm.on('blur keyup','input[name=yzcode]',function () {
+            var yzcode = $(this).val();
+            //验证用户输入的验证码是否和服务器端生成的一样
+            if(yzcode != getCookie('yzcode')){
+                $(".yzcodeErr").show();
+                //提交禁用
+                $albumForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".yzcodeErr").hide();
+                $albumForm.find("button[type=submit]").attr('disabled',false);
+            }
+        });
+        $albumForm.find("input[name=yzcode]").focus(function () {
+            $(".yzcodeErr").hide();
+        });
+        $albumForm.on('blur keyup','input[name=albumName]',function () {
+            var albumName = $(this).val();
+            //验证用户输入的验证码是否和服务器端生成的一样
+            if(albumName==''){
+                $(".albumNameErr").show();
+                //提交禁用
+                $albumForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".albumNameErr").hide();
+                //提交
+                $albumForm.find("button[type=submit]").attr('disabled',false);
+            }
+        });
+        $("#createAlbum").click(function () {
+            var loginFlag =  validateLogin2();
+            if(loginFlag){
+                $createAlbumModal.modal('show');
+            }
+        });
+        $albumForm.submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serializeArray();
+            var albumName = data[0].value,
+                albumContent = data[1].value,
+                yzcode = data[3].value,
+                choose_type = $albumForm.find("input[name=choose-type]:checked").attr('data-value');
+            //验证码验证
+            if(yzcode != getCookie('yzcode') || yzcode==''){
+                $(".yzcodeErr").show();
+                //提交禁用
+                $albumForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".yzcodeErr").hide();
+                //提交禁用
+                $albumForm.find("button[type=submit]").attr('disabled',false);
+            }
+            //帖子标题不能为空
+            if(albumName==''){
+                $(".albumNameErr").show();
+                //提交禁用
+                $albumForm.find("button[type=submit]").attr('disabled',true);
+                return;
+            }else{
+                $(".albumNameErr").hide();
+                //提交
+                $albumForm.find("button[type=submit]").attr('disabled',false);
+            }
+            //提交数据
+            $.ajax({
+                type:"POST",
+                url:"data/createAlbum.php",
+                data:{
+                    albumName:albumName,
+                    albumContent:albumContent,
+                    choose_type:choose_type
+                },
+                dataType:"JSON",
+                success:function (rsp) {
+                    if(rsp.code==1){
+                        $createAlbumModal.modal('hide');
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }else if(rsp.code==-1){
+                        notyInfo("创建失败");
+                    }
                 }
             });
+        });
+    })();
 
-            //消息增加点击事件，跳转到信息查看页面
-            $('.envelope_wrap').click(function () {
-                var menuList = [0,0,1,0,0,0];
-                localStorage.setItem("menuList",JSON.stringify(menuList));
-                location.href = 'center.html';
-            });
-
-        }
-    });
-    $('.footerWrap').load('common.inc/footer.html');
 </script>
+
+
 </html>

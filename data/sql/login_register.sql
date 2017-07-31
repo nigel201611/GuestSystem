@@ -69,4 +69,12 @@ CREATE TABLE IF NOT EXISTS comment(
 	article_username VARCHAR(100)
 );
 
+CREATE TABLE IF NOT EXISTS album(
+	id INT PRIMARY KEY auto_increment,
+	album_name VARCHAR(255),
+	album_content TEXT,
+	album_create_time DATETIME,
+	album_type TINYINT(1)
+);
+
 INSERT INTO user VALUE(NULL,'18300093372','123456');
