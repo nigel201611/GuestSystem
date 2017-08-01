@@ -43,7 +43,62 @@
     }
     .photoBox .thumbnail{
         cursor: pointer;
+        position: relative;
     }
+    .photoBox .theme-album {
+        position: absolute;
+        z-index: 10;
+        top: -6px;
+        left: -6px;
+        width: 40px;
+        height: 25px;
+        padding: 4px 4px 0;
+        text-align: center;
+        font-size: 16px;
+        white-space: nowrap;
+        color: #FFF;
+        cursor: pointer;
+    }
+    .photoBox .mod-arr {
+        position: absolute;
+        z-index: -1;
+        top: 20px;
+        left: 0;
+        border-width: 10px 20px;
+        border-style: solid solid dashed;
+        border-bottom-color: transparent;
+    }
+    .mod-arr, .mod-arr span {
+        display: inline-block;
+        position: relative;
+        width: 0;
+        height: 0;
+        font-size: 0;
+        line-height: 0;
+        border-style: dashed;
+    }
+
+    .c-tx4 {
+        color: #fff;
+    }
+    .bg4 {
+        background-color: #f06090;
+    }
+    .bor-bg4 {
+        border-color: #f06090;
+    }
+    .album_dropdown{
+        position: absolute;
+        z-index: 10;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        display: none;
+    }
+    .photoBox .thumbnail:hover .album_dropdown{
+        display: block;
+    }
+
 </style>
 <body>
 <div class="headerWrap"></div>
@@ -343,6 +398,22 @@
     <%for(var i = 0; i < data.length; i++) {%>
     <div class="col-sm-6 col-md-3">
         <div class="thumbnail" data-id="<%:=data[i].id%>">
+            <%if(data[i].album_type==1) {%>
+            <span class="bg4 c-tx4 theme-album">亲子<span class="bor-bg4 mod-arr"></span></span>
+            <%}%>
+            <%if(data[i].album_type==2) {%>
+            <span class="bg4 c-tx4 theme-album">旅游<span class="bor-bg4 mod-arr"></span></span>
+            <%}%>
+            <div class="dropdown album_dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">编辑</a></li>
+                    <li><a href="#">制作封面</a></li>
+                    <li><a href="#">删除</a></li>
+                </ul>
+            </div>
             <img src="<%:=data[i].album_thumbnail%>" alt="..." title="<%:=data[i].album_content%>">
             <div class="caption">
                 <p class="photoDesc" title="<%:=data[i].album_name%>"><%:=data[i].album_name%></p>
