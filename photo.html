@@ -41,6 +41,9 @@
     .line_theme_check .icon-travel{
         background-position: -213px 0;
     }
+    .photoBox .thumbnail{
+        cursor: pointer;
+    }
 </style>
 <body>
 <div class="headerWrap"></div>
@@ -63,7 +66,7 @@
                     <div class="thumbnail">
                         <img src="img/headPhoto/1.jpg" alt="...">
                         <div class="caption">
-                            <p class="photoDesc">dssskk</p>
+                            <p class="photoDesc" title="dssskk">dssskk</p>
                         </div>
                     </div>
                 </div>
@@ -334,6 +337,20 @@
 <script src="js/template.js"></script>
 <script src="js/myPage.js"></script>
 
+
+<!--相册列表模板-->
+<script id="albumTemplate" type="text/html">
+    <%for(var i = 0; i < data.length; i++) {%>
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail" data-id="<%:=data[i].id%>">
+            <img src="<%:=data[i].album_thumbnail%>" alt="..." title="<%:=data[i].album_content%>">
+            <div class="caption">
+                <p class="photoDesc" title="<%:=data[i].album_name%>"><%:=data[i].album_name%></p>
+            </div>
+        </div>
+    </div>
+    <%}%>
+</script>
 <script>
     ;(function () {
         function notyInfo(data){
@@ -415,6 +432,7 @@
         //隐藏模态框时，清空模态框内容
         $createAlbumModal.on('hide.bs.modal',function () {
             $createAlbumModal.find("input").val("");
+            $createAlbumModal.find("textarea").val("");
             $createAlbumModal.find(".yzcodeImg").attr('src',"data/yzCode.php");
         });
         $albumForm.find(".yzcodeImg").click(function () {
@@ -450,12 +468,13 @@
                 $albumForm.find("button[type=submit]").attr('disabled',false);
             }
         });
-        $("#createAlbum").click(function () {
+        $("body").on('click','#createAlbum',function () {
             var loginFlag =  validateLogin2();
             if(loginFlag){
                 $createAlbumModal.modal('show');
             }
         });
+        //提交相册相关内容
         $albumForm.submit(function (e) {
             e.preventDefault();
             var data = $(this).serializeArray();
@@ -507,6 +526,66 @@
                 }
             });
         });
+        //显示相册
+        function initAction($wrap){
+            var $pagelist = $wrap.find(".pagelist").eq(0);
+            $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($(this).attr('data-page'));
+                showAlbum(curPage);
+            });
+            //上一页，下一页
+            $pagelist.on('click','.prev',function (e) {
+                e.preventDefault();
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage--;
+                if(curPage>0){
+                    showAlbum(curPage);
+                }else{
+                    showAlbum(1);
+                }
+            });
+            $pagelist.on('click','.next',function (e) {
+                e.preventDefault();
+                //获取当前页curPage
+                var totalPages = $pagelist.find(".totalPage").attr('data-total');
+                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
+                curPage++;
+                if(curPage<=totalPages){
+                    showAlbum(curPage);
+                }else{
+                    //获取中页数
+                    showAlbum(totalPages);
+                }
+            });
+        }
+        initAction($(".photoWrap"));
+        function showAlbum(curPage) {
+            $.ajax({
+                type:"GET",
+                url:"data/getAlbum.php?page="+curPage,
+                dataType:"JSON",
+                async:false,
+                success:function (rsp) {
+                    if(rsp.code==0){
+                        var totalPages = rsp.pagesCount;
+                        //显示消息数据
+                        var data = rsp.info;
+                        var dataHtml = document.getElementById("albumTemplate").innerHTML;
+                        var html = template(dataHtml,{data:data});
+                        $(".photoBox>.row").html(html);
+                        //生成分页list
+                        $(".pagelist .Page").html(pages(totalPages,curPage));
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }else{
+                        $(".photoBox>.row").html("<a href='#' id='createAlbum'>您没有创建相册</a>");
+                    }
+                }
+            });
+        }
+        showAlbum(1);
     })();
 
 </script>

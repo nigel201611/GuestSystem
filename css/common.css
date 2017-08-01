@@ -226,3 +226,7 @@
 #flowerMenu li:hover{
 	background-color: #00A2D4;
 }
+
+.pagination > li > a, .pagination > li > span{
+	cursor: pointer;
+}
