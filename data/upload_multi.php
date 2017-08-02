@@ -1,4 +1,6 @@
 <?php
+require_once 'phpClass/MySQL.class.php';
+$db = MySQL::getObj('localhost','root','root','nigel');
 function getArrFile(){
     //单文件和多文件获取名字合一
     foreach($_FILES as $key => $value){
@@ -19,7 +21,6 @@ function getArrFile(){
             }
         }
     }//foreach
-
     return $newArr;
 }
 
@@ -33,23 +34,39 @@ function getFN($filename){
     return $newName;
 }
 function uploadFile(){
-    $uploadFileResult = ['code'=>-1,'msg'=>'','imgPath'=>''];
+    global $dir;
+    global $album_name;
+    $uploadFileResult = ['code'=>-1,'msg'=>'','imgPath'=>[]];
     $files = getArrFile();
+    $conn = MySQL::getObj('localhost','root','root','nigel');
     foreach($files as $key => $value){
         $filename = $value['tmp_name']; //当前文件存储路径
-        $target = 'img/headPhoto/'.getFN($value['name']);
+        $tarFile = getFN($value['name']);
+        $target = $dir.$album_name.$tarFile;
         $suc = move_uploaded_file($filename, $target);
         if($suc){
             $uploadFileResult['code'] = 0;
             $uploadFileResult['msg'] = 'success';
-            $uploadFileResult['imgPath'] = $target;
-            //上传成功后，将user表中的head_img设置成$target
-
+            $uploadFileResult['imgPath'][] = $target;
+            //上传成功后，设置相册的默认缩略图，如果原来相册的缩略图，没有设置过的话,thumbnail_option = 2说明是主动编辑过该相册缩略图的
+            $dir = 'img/'.$album_name.$tarFile;
+            $data = [
+                'album_thumbnail'=>$dir
+            ];
+            $albumDir = $_GET['album_name'];
+            $where = 'thumbnail_option!=2 and album_dir='.$albumDir;
+            $conn->update('album',$data,$where);
         }
-        echo json_encode($uploadFileResult);
     }
+    echo json_encode($uploadFileResult);
 }
+//上传照片的目的路径
+$dir = '../img/';
+$album_name = $_GET['album_name'].'/';
 
+if(empty($album_name)){
+    $album_name = "default/";
+}
 uploadFile();
 
 ?>

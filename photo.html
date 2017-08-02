@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="zyupload/skins/zyupload-1.0.0.min.css " type="text/css">
     <title>多用户管理系统——相册</title>
 </head>
 <style>
@@ -346,9 +347,42 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!--上传照片模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="uploadPhotoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">上传照片</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">选择相册</label>
+                        <div class="albumNameWrap">
+                            <select class="form-control" name="albumName" >
+                                <option value="1">相册1</option>
+                                <option value="2">相册2</option>
+                                <option value="3">相册3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">上传照片</label>
+                        <div>
+                            <div id="zyupload" class="zyupload"></div>
+                        </div>
+                    </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 
 <script src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="zyupload/zyupload.basic-1.0.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/login_register.js"></script>
@@ -384,6 +418,12 @@
             </div>
         </div>
     </div>
+    <%}%>
+</script>
+<!--相册名称模板-->
+<script id="photoTemplate" type="text/html">
+    <%for(var i = 0; i < data.length; i++) {%>
+        <option value="<%:=data[i].album_dir%>"><%:=data[i].album_name%></option>
     <%}%>
 </script>
 
@@ -554,6 +594,13 @@
                 $createAlbumModal.modal('show');
             }
         });
+        $("body").on('click','#createPhotoAlbum',function () {
+            var loginFlag =  validateLogin2();
+            if(loginFlag){
+                $createAlbumModal.modal('show');
+            }
+        });
+
         //提交相册相关内容
 
         $albumForm.submit(function (e) {
@@ -682,7 +729,8 @@
         showAlbum(1);
 
         //编辑相册
-        $(".photoBox").on('click','.updateAlbum',function (e) {
+        var $photoBox = $(".photoBox");
+        $photoBox.on('click','.updateAlbum',function (e) {
             e.preventDefault();
             var $thumbnail = $(this).parents(".thumbnail");
             var album_name = $thumbnail.find(".photoDesc").eq(0).attr("title"),
@@ -710,12 +758,81 @@
             }
         });
         //删除相册
-        $(".photoBox").on('click','.deleteAlbum',function (e) {
+        $photoBox.on('click','.deleteAlbum',function (e) {
             e.preventDefault();
             var $thumbnail = $(this).parents(".thumbnail");
             id = $thumbnail.attr('data-id');
             deleteConfirm();
         });
+
+        //单击上传照片
+        var $uploadPhotoModal = $("#uploadPhotoModal");
+        var album_name = "";//如果没有任何相册，那么自动创建一个默认相册
+        $("#uploadPhoto").click(function () {
+            $uploadPhotoModal.modal('show');
+            //获取相册名
+            $.ajax({
+                url:"data/getAlbumName.php",
+                async:false,
+                dataType:"JSON",
+                success:function (rsp) {
+                    if(rsp.code==0){
+                        var data = rsp.info;
+                        var dataHtml = document.getElementById("photoTemplate").innerHTML;
+                        var html = template(dataHtml,{data:data});
+                        $(".albumNameWrap>select").html(html);
+                        album_name = $uploadPhotoModal.find("select").val();
+                        $("#zyupload").html("");
+                        initZyupload(album_name);
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $("#loginModal").modal('show');
+                    }else if(rsp.code==-1){
+                       //没有获取到相册名，创建一个,如果不创建，那么上传到默认的相册里
+                        $(".albumNameWrap>select").html("<a href='#' id='createPhotoAlbum'>创建一个相册</a>");
+                    }
+                }
+            });
+            //获取相册名对应的目录
+            $uploadPhotoModal.on('change','select[name=albumName]',function () {
+                album_name = $(this).val();
+                $("#zyupload").html("");
+                initZyupload(album_name);
+            });
+
+        });
+
+        function initZyupload(album_name) {
+            $("#zyupload").zyUpload({
+                width            :   "100%",                 // 宽度
+                height           :   "400px",                 // 宽度
+                itemWidth        :   "100px",                 // 文件项的宽度
+                itemHeight       :   "80px",                 // 文件项的高度
+                url              :   "data/upload_multi.php?album_name="+album_name,              // 上传文件的路径
+                fileType         :   ["jpg","png","jpeg","gif","bmp"],// 上传文件的类型
+                fileSize         :   5120000,                // 头像的大小5MB
+                multiple         :   true,                   // 是否可以多个文件上传
+                dragDrop         :   false,                   // 是否可以拖动上传文件
+                tailor           :   false,                   // 是否可以裁剪图片
+                del              :   true,                    // 是否可以删除文件
+                finishDel        :   false,  				  // 是否在上传文件完成后删除预览
+                /* 外部获得的回调接口 */
+                onSuccess: function(file, rsp){          // 文件上传成功的回调方法
+                    var rsp = JSON.parse(rsp);
+                    if( rsp.code == 0 ){
+                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                    }else if( rsp.code == 1 ){
+                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                    }else if( rsp.code == -1 ){
+                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                    }
+                },
+                onFailure: function(file, response){          // 文件上传失败的回调方法
+                    $("#uploadInf").html("<p class='text-danger'>上传失败</p>");
+                }
+            });
+        }
+        initZyupload(album_name);
     })();
 
 </script>
