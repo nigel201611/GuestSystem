@@ -433,6 +433,47 @@
             }
         }
 
+        function deleteConfirm(){
+            noty({
+                text: "确认删除相册",
+                layout: "center",
+                type: "warning",
+                modal: true,
+                buttons: [
+                    {
+                        addClass: 'btn btn-success btn-xs',
+                        text: '确认',
+                        onClick: function ($noty) {
+                            //删除记录
+                            var url = "data/deleteAlbum.php?id="+id ;
+                            $.ajax({
+                                url:url,
+                                dataType:"JSON",
+                                success:function (rsp) {
+                                    if(rsp.code==0){
+                                        location.reload();
+                                    }else if(rsp.code==2){
+                                        //重新登录
+                                        $("#loginModal").modal('show');
+                                    }else if(rsp.code==-1){
+                                        notyInfo("删除失败");
+                                    }
+                                }
+                            });
+                            $noty.close();
+                        }
+                    },
+                    {
+                        addClass: 'btn btn-primary btn-xs',
+                        text: '取消',
+                        onClick: function ($noty) {
+                            $noty.close();
+                        }
+                    }
+                ]
+            });
+        }
+
         $('.headerWrap').load('common.inc/header.html',function () {
             var userInfo;
             if(window.localStorage.getItem('userInfo')){
@@ -669,10 +710,11 @@
             }
         });
         //删除相册
-
         $(".photoBox").on('click','.deleteAlbum',function (e) {
             e.preventDefault();
-            console.log('ok');
+            var $thumbnail = $(this).parents(".thumbnail");
+            id = $thumbnail.attr('data-id');
+            deleteConfirm();
         });
     })();
 
