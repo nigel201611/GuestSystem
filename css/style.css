@@ -21,7 +21,7 @@ body {
 	color: #444;
 	background-color: #EEE;
 	overflow-x: hidden;
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 }
 /*页面滚动条*/
 html::-webkit-scrollbar {

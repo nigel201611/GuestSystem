@@ -125,40 +125,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <img src="img/headPhoto/1.jpg" alt="...">
-                        <div class="caption">
-                            <p class="photoDesc">
-                                旅游家庭旅游之珠海海洋王国71旅游桂林山水
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <img src="img/headPhoto/1.jpg" alt="...">
-                        <div class="caption">
-                            <p class="photoDesc">
-                                旅游家庭旅游之珠海海洋王国71旅游桂林山水
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <img src="img/headPhoto/1.jpg" alt="...">
-                        <div class="caption">
-                            <p class="photoDesc">
-                                旅游家庭旅游之珠海海洋王国71旅游桂林山水
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
         <!--分页list-->
@@ -204,7 +170,7 @@
                                     <div class="ececk_warning passwordInput"><span>请检查密码是否输入正确</span></div>
                                     <div class="form_check_ipt">
                                         <div class="left check_left">
-                                            <label><input name="autoLogin" data-value="0" type="checkbox"> 下次自动登录</label>
+                                            <label><input name="autoLogin" data-value="1" type="checkbox" checked> 下次自动登录</label>
                                         </div>
                                         <div class="right check_right">
                                             <a href="#">忘记密码</a>
@@ -391,27 +357,25 @@
 <script src="js/noty.min.js"></script>
 <script src="js/template.js"></script>
 <script src="js/myPage.js"></script>
-
-
 <!--相册列表模板-->
 <script id="albumTemplate" type="text/html">
     <%for(var i = 0; i < data.length; i++) {%>
     <div class="col-sm-6 col-md-3">
         <div class="thumbnail" data-id="<%:=data[i].id%>">
             <%if(data[i].album_type==1) {%>
-            <span class="bg4 c-tx4 theme-album">亲子<span class="bor-bg4 mod-arr"></span></span>
+            <span class="bg4 c-tx4 theme-album" data-albumType="1">亲子<span class="bor-bg4 mod-arr"></span></span>
             <%}%>
             <%if(data[i].album_type==2) {%>
-            <span class="bg4 c-tx4 theme-album">旅游<span class="bor-bg4 mod-arr"></span></span>
+            <span class="bg4 c-tx4 theme-album" data-albumType="2">旅游<span class="bor-bg4 mod-arr"></span></span>
             <%}%>
             <div class="dropdown album_dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                     <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">编辑</a></li>
-                    <li><a href="#">制作封面</a></li>
-                    <li><a href="#">删除</a></li>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="updateAlbum"><span class="glyphicon glyphicon-pencil"></span>&nbsp;编辑</a></li>
+                    <li><a href="#" class="makeCover"><span class="glyphicon glyphicon-picture"></span>&nbsp;制作封面</a></li>
+                    <li><a href="#" class="deleteAlbum"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a></li>
                 </ul>
             </div>
             <img src="<%:=data[i].album_thumbnail%>" alt="..." title="<%:=data[i].album_content%>">
@@ -422,8 +386,10 @@
     </div>
     <%}%>
 </script>
+
 <script>
     ;(function () {
+        var id;//用来保存编辑相册时的id
         function notyInfo(data){
             noty({
                 text: data,
@@ -505,6 +471,8 @@
             $createAlbumModal.find("input").val("");
             $createAlbumModal.find("textarea").val("");
             $createAlbumModal.find(".yzcodeImg").attr('src',"data/yzCode.php");
+
+            $createAlbumModal.find('button[type=submit]').removeClass("modify");
         });
         $albumForm.find(".yzcodeImg").click(function () {
             this.src= "data/yzCode.php";
@@ -546,8 +514,10 @@
             }
         });
         //提交相册相关内容
+
         $albumForm.submit(function (e) {
             e.preventDefault();
+            var isModify = $createAlbumModal.find('button[type=submit]').hasClass("modify");
             var data = $(this).serializeArray();
             var albumName = data[0].value,
                 albumContent = data[1].value,
@@ -576,23 +546,35 @@
                 $albumForm.find("button[type=submit]").attr('disabled',false);
             }
             //提交数据
-            $.ajax({
-                type:"POST",
-                url:"data/createAlbum.php",
-                data:{
+            var url = "data/createAlbum.php";
+            var data = {
                     albumName:albumName,
                     albumContent:albumContent,
                     choose_type:choose_type
-                },
+                };
+            if(isModify){ //编辑相册
+                url = "data/modifyAlbum.php";
+                data = {
+                    albumName:albumName,
+                    albumContent:albumContent,
+                    choose_type:choose_type,
+                    id : id
+                };
+            }
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
                 dataType:"JSON",
                 success:function (rsp) {
                     if(rsp.code==1){
                         $createAlbumModal.modal('hide');
+                        location.reload();
                     }else if(rsp.code==2){
                         //重新登录
                         $("#loginModal").modal('show');
                     }else if(rsp.code==-1){
-                        notyInfo("创建失败");
+                        notyInfo("失败");
                     }
                 }
             });
@@ -657,6 +639,41 @@
             });
         }
         showAlbum(1);
+
+        //编辑相册
+        $(".photoBox").on('click','.updateAlbum',function (e) {
+            e.preventDefault();
+            var $thumbnail = $(this).parents(".thumbnail");
+            var album_name = $thumbnail.find(".photoDesc").eq(0).attr("title"),
+                album_content = $thumbnail.find("img").eq(0).attr("title"),
+                album_type = $thumbnail.find(".theme-album").eq(0).attr("data-albumType");
+            id = $thumbnail.attr('data-id');
+            if(album_type==undefined){
+                album_type = '0';
+            }
+            $createAlbumModal.modal('show');
+            $createAlbumModal.find('button[type=submit]').addClass("modify");
+            //回写数据
+            $createAlbumModal.find('input[name=albumName]').val(album_name);
+            $createAlbumModal.find('textarea[name=albumContent]').val(album_content);
+            switch (album_type){
+                case '0':
+                    $createAlbumModal.find('#js-normal input[name=choose-type]:radio').attr("checked", true);
+                    break;
+                case '1':
+                    $createAlbumModal.find('#js-baby input[name=choose-type]:radio').attr("checked", true);
+                    break;
+                case '2':
+                    $createAlbumModal.find('#js-travel input[name=choose-type]:radio').attr("checked", true);
+                    break;
+            }
+        });
+        //删除相册
+
+        $(".photoBox").on('click','.deleteAlbum',function (e) {
+            e.preventDefault();
+            console.log('ok');
+        });
     })();
 
 </script>
