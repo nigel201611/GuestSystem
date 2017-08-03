@@ -134,32 +134,12 @@
     .page .btnSure{padding: 2px 8px;border: solid thin #ddd;outline: none;text-align: center;font-size: 16px;background: #fff;position: relative;}
     .page .btnSure:hover{cursor: pointer;}
 
-    .pageDiv li {
-        /* margin-bottom: 10px; */
-        /* border: 1px solid #dbdbdb; */
-        /* width: 21.5%; */
-        /* margin-right: 1.25%; */
-        /* float: left; */
-        /* margin-top: 10px; */
-        /* padding: 1%; */
-        /* text-align: center; */
-    }
-
 </style>
 <body>
 <div class="headerWrap"></div>
 <div class="container">
     <div class="photoWrap">
         <!--需要增加搜索功能，样式需要优化点-->
-        <div class="photoButton">
-            <button id="uploadPhoto" class="btn btn-danger">
-                <span class="glyphicon glyphicon-picture"></span>
-                上传照片
-            </button>
-            <button class="btn btn-success" id="createAlbum">
-                创建相册
-            </button>
-        </div>
         <div class="album_title">
             <h3>照片列表</h3>
         </div>
@@ -400,6 +380,57 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
+<!--修改照片名称模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="modifyPhotoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">创建相册</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="photoForm" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">修改照片</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="photoName" autocomplete="off">
+                            <input type="hidden" class="form-control" name="originalPhotoName" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck photoNameErr" >
+                            照片名称不能为空
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="yzcode">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
+                            验证码不正确
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-primary">确定</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!--上传照片模态框-->
 <div class="modal fade" tabindex="-1" role="dialog" id="uploadPhotoModal">
     <div class="modal-dialog" role="document">
@@ -508,7 +539,6 @@
             }
             return theRequest;
         }
-        var id;//用来保存编辑相册时的id
         var theRequest = GetRequest();
         var album_id = theRequest['id'];
         function notyInfo(data){
@@ -626,109 +656,83 @@
         $('.footerWrap').load('common.inc/footer.html');
 
         //单击创建相册
-        var $albumForm = $("#albumForm"),
-            $createAlbumModal = $("#createAlbumModal");
+        var $photoForm = $("#photoForm"),
+            $modifyPhotoModal = $("#modifyPhotoModal");
         //隐藏模态框时，清空模态框内容
-        $createAlbumModal.on('hide.bs.modal',function () {
-            $createAlbumModal.find("input").val("");
-            $createAlbumModal.find("textarea").val("");
-            $createAlbumModal.find(".yzcodeImg").attr('src',"data/yzCode.php");
-
-            $createAlbumModal.find('button[type=submit]').removeClass("modify");
+        $modifyPhotoModal.on('hide.bs.modal',function () {
+            $modifyPhotoModal.find("input").val("");
+            $modifyPhotoModal.find(".yzcodeImg").attr('src',"data/yzCode.php");
         });
-        $albumForm.find(".yzcodeImg").click(function () {
+        //验证码和照片名称的相关验证
+        $photoForm.find(".yzcodeImg").click(function () {
             this.src= "data/yzCode.php";
         });
-        $albumForm.on('blur keyup','input[name=yzcode]',function () {
+        $photoForm.on('blur keyup','input[name=yzcode]',function () {
             var yzcode = $(this).val();
             //验证用户输入的验证码是否和服务器端生成的一样
             if(yzcode != getCookie('yzcode')){
                 $(".yzcodeErr").show();
                 //提交禁用
-                $albumForm.find("button[type=submit]").attr('disabled',true);
+                $photoForm.find("button[type=submit]").attr('disabled',true);
                 return;
             }else{
                 $(".yzcodeErr").hide();
-                $albumForm.find("button[type=submit]").attr('disabled',false);
+                $photoForm.find("button[type=submit]").attr('disabled',false);
             }
         });
-        $albumForm.find("input[name=yzcode]").focus(function () {
+        $photoForm.find("input[name=yzcode]").focus(function () {
             $(".yzcodeErr").hide();
         });
-        $albumForm.on('blur keyup','input[name=albumName]',function () {
-            var albumName = $(this).val();
+        $photoForm.on('blur keyup','input[name=photoName]',function () {
+            var photoName = $(this).val();
             //验证用户输入的验证码是否和服务器端生成的一样
-            if(albumName==''){
-                $(".albumNameErr").show();
+            if(photoName==''){
+                $(".photoNameErr").show();
                 //提交禁用
-                $albumForm.find("button[type=submit]").attr('disabled',true);
+                $photoForm.find("button[type=submit]").attr('disabled',true);
                 return;
             }else{
-                $(".albumNameErr").hide();
+                $(".photoNameErr").hide();
                 //提交
-                $albumForm.find("button[type=submit]").attr('disabled',false);
-            }
-        });
-        $("body").on('click','#createAlbum',function () {
-            var loginFlag =  validateLogin2();
-            if(loginFlag){
-                $createAlbumModal.modal('show');
-            }
-        });
-        $("body").on('click','#createPhotoAlbum',function () {
-            var loginFlag =  validateLogin2();
-            if(loginFlag){
-                $createAlbumModal.modal('show');
+                $photoForm.find("button[type=submit]").attr('disabled',false);
             }
         });
 
         //提交相册相关内容
-        $albumForm.submit(function (e) {
+        $photoForm.submit(function (e) {
             e.preventDefault();
-            var isModify = $createAlbumModal.find('button[type=submit]').hasClass("modify");
             var data = $(this).serializeArray();
-            var albumName = data[0].value,
-                albumContent = data[1].value,
-                yzcode = data[3].value,
-                choose_type = $albumForm.find("input[name=choose-type]:checked").attr('data-value');
-            //验证码验证
+            var photoName = data[0].value,
+                originalPhoto_name = data[1].value,
+                yzcode = data[2].value;//验证码验证
             if(yzcode != getCookie('yzcode') || yzcode==''){
                 $(".yzcodeErr").show();
                 //提交禁用
-                $albumForm.find("button[type=submit]").attr('disabled',true);
+                $photoForm.find("button[type=submit]").attr('disabled',true);
                 return;
             }else{
                 $(".yzcodeErr").hide();
                 //提交禁用
-                $albumForm.find("button[type=submit]").attr('disabled',false);
+                $photoForm.find("button[type=submit]").attr('disabled',false);
             }
             //帖子标题不能为空
-            if(albumName==''){
-                $(".albumNameErr").show();
+            if(photoName==''){
+                $(".photoNameErr").show();
                 //提交禁用
-                $albumForm.find("button[type=submit]").attr('disabled',true);
+                $photoForm.find("button[type=submit]").attr('disabled',true);
                 return;
             }else{
-                $(".albumNameErr").hide();
+                $(".photoNameErr").hide();
                 //提交
-                $albumForm.find("button[type=submit]").attr('disabled',false);
+                $photoForm.find("button[type=submit]").attr('disabled',false);
             }
             //提交数据
-            var url = "data/createAlbum.php";
+            var url = "data/modifyPhoto.php";
             var data = {
-                albumName:albumName,
-                albumContent:albumContent,
-                choose_type:choose_type
+                origianlPhotoName:originalPhoto_name,
+                photoName:photoName,
+                id:album_id //相册id用于获取相册的路径
             };
-            if(isModify){ //编辑相册
-                url = "data/modifyAlbum.php";
-                data = {
-                    albumName:albumName,
-                    albumContent:albumContent,
-                    choose_type:choose_type,
-                    id : id
-                };
-            }
             $.ajax({
                 type:"POST",
                 url:url,
@@ -736,13 +740,13 @@
                 dataType:"JSON",
                 success:function (rsp) {
                     if(rsp.code==1){
-                        $createAlbumModal.modal('hide');
+                        $modifyPhotoModal.modal('hide');
                         location.reload();
                     }else if(rsp.code==2){
                         //重新登录
                         $("#loginModal").modal('show');
                     }else if(rsp.code==-1){
-                        notyInfo("失败");
+                        notyInfo("修改照片名称失败");
                     }
                 }
             });
@@ -781,36 +785,20 @@
 
         })
 
-        //编辑相册
+        //1 编辑照片--
         var $photoBox = $(".photoBox");
         $photoBox.on('click','.updateAlbum',function (e) {
             e.preventDefault();
             var $thumbnail = $(this).parents(".thumbnail");
-            var album_name = $thumbnail.find(".photoDesc").eq(0).attr("title"),
-                album_content = $thumbnail.find("img").eq(0).attr("title"),
-                album_type = $thumbnail.find(".theme-album").eq(0).attr("data-albumType");
-            id = $thumbnail.attr('data-id');
-            if(album_type==undefined){
-                album_type = '0';
-            }
-            $createAlbumModal.modal('show');
-            $createAlbumModal.find('button[type=submit]').addClass("modify");
+            var photo_name = $thumbnail.find(".photoDesc").eq(0).attr("title");
+            $modifyPhotoModal.modal('show');
             //回写数据
-            $createAlbumModal.find('input[name=albumName]').val(album_name);
-            $createAlbumModal.find('textarea[name=albumContent]').val(album_content);
-            switch (album_type){
-                case '0':
-                    $createAlbumModal.find('#js-normal input[name=choose-type]:radio').attr("checked", true);
-                    break;
-                case '1':
-                    $createAlbumModal.find('#js-baby input[name=choose-type]:radio').attr("checked", true);
-                    break;
-                case '2':
-                    $createAlbumModal.find('#js-travel input[name=choose-type]:radio').attr("checked", true);
-                    break;
-            }
+            $modifyPhotoModal.find('input[name=photoName]').val(photo_name);
+            $modifyPhotoModal.find('input[name=originalPhotoName]').val(photo_name);
         });
-        //删除相册
+
+
+        //2 删除照片
         $photoBox.on('click','.deleteAlbum',function (e) {
             e.preventDefault();
             var $thumbnail = $(this).parents(".thumbnail");
@@ -819,86 +807,13 @@
         });
 
 
-
-        //单击上传照片
-        var $uploadPhotoModal = $("#uploadPhotoModal");
-        var album_name = "";//如果没有任何相册，那么自动创建一个默认相册
-        $("#uploadPhoto").click(function () {
-            $uploadPhotoModal.modal('show');
-            initZyupload(album_name);
-            //获取相册名
-            $.ajax({
-                url:"data/getAlbumName.php",
-                async:false,
-                dataType:"JSON",
-                success:function (rsp) {
-                    if(rsp.code==0){
-                        var data = rsp.info;
-                        var dataHtml = document.getElementById("photoTemplate").innerHTML;
-                        var html = template(dataHtml,{data:data});
-                        $(".albumNameWrap>select").html(html);
-                        album_name = $uploadPhotoModal.find("select").val();
-                        $("#zyupload").html("");
-                        initZyupload(album_name);
-                    }else if(rsp.code==2){
-                        //重新登录
-                        $("#loginModal").modal('show');
-                    }else if(rsp.code==-1){
-                        //没有获取到相册名，创建一个,如果不创建，那么上传到默认的相册里
-                        $(".albumNameWrap>select").html("<a href='#' id='createPhotoAlbum'>创建一个相册</a>");
-                    }
-                }
-            });
-            //获取相册名对应的目录
-            $uploadPhotoModal.on('change','select[name=albumName]',function () {
-                album_name = $(this).val();
-                $("#zyupload").html("");
-                initZyupload(album_name);
-            });
-
-
-
-        });
-        function initZyupload(album_name) {
-            $("#zyupload").zyUpload({
-                width            :   "100%",                 // 宽度
-                height           :   "400px",                 // 宽度
-                itemWidth        :   "100px",                 // 文件项的宽度
-                itemHeight       :   "80px",                 // 文件项的高度
-                url              :   "data/upload_multi.php?album_name="+album_name,              // 上传文件的路径
-                fileType         :   ["jpg","png","jpeg","gif","bmp"],// 上传文件的类型
-                fileSize         :   5120000,                // 头像的大小5MB
-                multiple         :   true,                   // 是否可以多个文件上传
-                dragDrop         :   false,                   // 是否可以拖动上传文件
-                tailor           :   false,                   // 是否可以裁剪图片
-                del              :   true,                    // 是否可以删除文件
-                finishDel        :   false,  				  // 是否在上传文件完成后删除预览
-                /* 外部获得的回调接口 */
-                onSuccess: function(file, rsp){          // 文件上传成功的回调方法
-                    var rsp = JSON.parse(rsp);
-                    if( rsp.code == 0 ){
-                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
-                        $uploadPhotoModal.modal('hide');
-                        location.reload();
-                    }else if( rsp.code == 1 ){
-                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
-                    }else if( rsp.code == -1 ){
-                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
-                    }
-                },
-                onFailure: function(file, response){          // 文件上传失败的回调方法
-                    $("#uploadInf").html("<p class='text-danger'>上传失败</p>");
-                }
-            });
-        }
-
     })();
 
 </script>
 
 <script>
     ;(function () {
-        //制作相册封面
+        //3 将指定的照片设置为指定相册id的封面
         var $photoBox = $(".photoBox");
         var $makeAlbumCoverModal = $("#makeAlbumCoverModal");
         function initmakeAlbumCover(cover_id) {
