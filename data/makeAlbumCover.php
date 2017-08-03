@@ -54,6 +54,7 @@ $targetDir_file = $targetDir.$coverImgName;
 if ( move_uploaded_file($_FILES['file']['tmp_name'], $targetDir_file)  ) {
     $data = [
         'thumbnail_option'=>2,
+        'album_modify_cover_time'=>$datetime,
         'album_thumbnail'=>'img/'.$album_dir.'/'.$coverImgName
     ];
     $where = 'id=\''.$id.'\'';

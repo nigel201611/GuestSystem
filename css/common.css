@@ -150,10 +150,11 @@
 	border-radius: 5px;
 }
 .modal{
-	z-index:110;
+	z-index:999;
 }
 .modal-backdrop{
 	z-index:100;
+	position: relative;
 }
 
 .froala-editor button.fr-bttn,

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="zyupload/skins/zyupload-1.0.0.min.css " type="text/css">
-    <title>多用户管理系统——相册</title>
+    <title>多用户管理系统——查看相册照片</title>
 </head>
 <style>
     .photoButton{
@@ -108,6 +108,42 @@
         font-size: 20px;
         padding:0 0 20px 20px;
     }
+/*page.json*/
+    ul,li{margin: 0;padding: 0;list-style: none;}
+    .pageMenu li::selection{background:transparent;}
+    .clearfix{zoom:1;}
+    .clearfix:after{content:"";display: block;clear: both;}
+    .pageBox{width:800px;background: #eee;border:1px solid #ebebeb;padding: 10px;margin: 0 auto;}
+    .pageDiv{width: 98.75%;background: #fff;padding-left: 1.25%;margin-bottom: 10px;}
+    .hide{display: none;}
+    .notContent{padding: 15px 0;text-align: center;}
+
+    .page{text-align: center;width: 100%;margin: 0 auto;}
+    .pageMenu{display: inline-block;}
+
+    .pageMenu li{border: solid thin #ddd;margin: 3px;float: left;padding: 5px 10px;cursor: pointer;background: #fff;}
+    .pageMenu li.firstPage{}
+    .pageMenu li.prevPage{}
+    .pageMenu li.pageNum{}
+    .pageMenu li.nextPage{}
+    .pageMenu li.lastPage{}
+    .pageMenu li.disabled{ background-color: #DDDDDD;   cursor: not-allowed;}
+    .pageMenu li.active{ border: solid thin #0099FF;background-color: #0099FF;color: white;}
+    .pageMenu li.last{background: transparent;border:0;position: relative;top: -4px;}
+    .page .keuInput{padding: 0 5px;width: 50px;border: solid thin #ddd;height: 29px;outline: none;text-align: center;font-size: 16px;}
+    .page .btnSure{padding: 2px 8px;border: solid thin #ddd;outline: none;text-align: center;font-size: 16px;background: #fff;position: relative;}
+    .page .btnSure:hover{cursor: pointer;}
+
+    .pageDiv li {
+        /* margin-bottom: 10px; */
+        /* border: 1px solid #dbdbdb; */
+        /* width: 21.5%; */
+        /* margin-right: 1.25%; */
+        /* float: left; */
+        /* margin-top: 10px; */
+        /* padding: 1%; */
+        /* text-align: center; */
+    }
 
 </style>
 <body>
@@ -125,27 +161,30 @@
             </button>
         </div>
         <div class="album_title">
-            <h3>相册列表</h3>
+            <h3>照片列表</h3>
         </div>
         <div class="photoBox">
-            <!--相册列表-->
-            <div class="row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <img src="img/headPhoto/1.jpg" alt="...">
-                        <div class="caption">
-                            <p class="photoDesc" title="dssskk">dssskk</p>
-                        </div>
-                    </div>
-                </div>
+            <ul class="pageDiv clearfix">
 
+            </ul>
+            <div class="notContent hide">
+                无数据
             </div>
-        </div>
-        <!--分页list-->
-        <div class="pagelist text-center">
-            <nav aria-label="Page navigation" class="Page">
+            <div class="page">
+                <ul class="pageMenu clearfix">
+                    <li class="firstPage">首页</li>
+                    <li class="prevPage"> < 上一页 </li>
+                    <div class="pageObj ">
 
-            </nav>
+                    </div>
+                    <li class="nextPage"> 下一页 > </li>
+                    <li class="lastPage">尾页</li>
+                    <li class="last" style="font-size: 14px;">
+                        共<span class="totalPage"></span>页，跳转至 <input type="number" class="keuInput" value="1">
+                        <button type="button" class="btnSure">确定</button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -372,22 +411,22 @@
                 <h4 class="modal-title">上传照片</h4>
             </div>
             <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label">选择相册</label>
-                        <div class="albumNameWrap">
-                            <select class="form-control" name="albumName" >
-                                <option value="1">相册1</option>
-                                <option value="2">相册2</option>
-                                <option value="3">相册3</option>
-                            </select>
-                        </div>
+                <div class="form-group">
+                    <label class="control-label">选择相册</label>
+                    <div class="albumNameWrap">
+                        <select class="form-control" name="albumName" >
+                            <option value="1">相册1</option>
+                            <option value="2">相册2</option>
+                            <option value="3">相册3</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">上传照片</label>
-                        <div>
-                            <div id="zyupload" class="zyupload"></div>
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">上传照片</label>
+                    <div>
+                        <div id="zyupload" class="zyupload"></div>
                     </div>
+                </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -424,18 +463,12 @@
 <script src="js/themes/default.js"></script>
 <script src="js/noty.min.js"></script>
 <script src="js/template.js"></script>
-<script src="js/myPage.js"></script>
+<script src="js/page.js"></script>
 <!--相册列表模板-->
-<script id="albumTemplate" type="text/html">
+<script id="photoWrap" type="text/html">
     <%for(var i = 0; i < data.length; i++) {%>
     <div class="col-sm-6 col-md-3">
-        <div class="thumbnail" data-id="<%:=data[i].id%>">
-            <%if(data[i].album_type==1) {%>
-            <span class="bg4 c-tx4 theme-album" data-albumType="1">亲子<span class="bor-bg4 mod-arr"></span></span>
-            <%}%>
-            <%if(data[i].album_type==2) {%>
-            <span class="bg4 c-tx4 theme-album" data-albumType="2">旅游<span class="bor-bg4 mod-arr"></span></span>
-            <%}%>
+        <div class="thumbnail" data-name="<%:=data[i]['img_name']%>">
             <div class="dropdown album_dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                     <span class="caret"></span>
@@ -446,9 +479,9 @@
                     <li><a href="#" class="deleteAlbum"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a></li>
                 </ul>
             </div>
-            <img src="<%:=data[i].album_thumbnail%>" alt="..." title="<%:=data[i].album_content%>" height="191px">
+            <img src="<%:=data[i]['path']%>" title="<%:=data[i]['img_name']%>" height="191px">
             <div class="caption">
-                <p class="photoDesc" title="<%:=data[i].album_name%>"><%:=data[i].album_name%></p>
+                <p class="photoDesc" title="<%:=data[i]['img_name']%>"><%:=data[i]['img_name']%></p>
             </div>
         </div>
     </div>
@@ -457,13 +490,27 @@
 <!--相册名称模板-->
 <script id="photoTemplate" type="text/html">
     <%for(var i = 0; i < data.length; i++) {%>
-        <option value="<%:=data[i].album_dir%>"><%:=data[i].album_name%></option>
+    <option value="<%:=data[i].album_dir%>"><%:=data[i].album_name%></option>
     <%}%>
 </script>
 
 <script>
     ;(function () {
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                for(var i = 0; i < strs.length; i ++) {
+                    theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
         var id;//用来保存编辑相册时的id
+        var theRequest = GetRequest();
+        var album_id = theRequest['id'];
         function notyInfo(data){
             noty({
                 text: data,
@@ -636,7 +683,6 @@
         });
 
         //提交相册相关内容
-
         $albumForm.submit(function (e) {
             e.preventDefault();
             var isModify = $createAlbumModal.find('button[type=submit]').hasClass("modify");
@@ -670,10 +716,10 @@
             //提交数据
             var url = "data/createAlbum.php";
             var data = {
-                    albumName:albumName,
-                    albumContent:albumContent,
-                    choose_type:choose_type
-                };
+                albumName:albumName,
+                albumContent:albumContent,
+                choose_type:choose_type
+            };
             if(isModify){ //编辑相册
                 url = "data/modifyAlbum.php";
                 data = {
@@ -701,66 +747,39 @@
                 }
             });
         });
+
         //显示相册
-        function initAction($wrap){
-            var $pagelist = $wrap.find(".pagelist").eq(0);
-            $pagelist.on('click','li>a:not(.prev,.next)',function (e) {
-                e.preventDefault();
-                var curPage = parseInt($(this).attr('data-page'));
-                showAlbum(curPage);
-            });
-            //上一页，下一页
-            $pagelist.on('click','.prev',function (e) {
-                e.preventDefault();
-                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
-                curPage--;
-                if(curPage>0){
-                    showAlbum(curPage);
-                }else{
-                    showAlbum(1);
-                }
-            });
-            $pagelist.on('click','.next',function (e) {
-                e.preventDefault();
-                //获取当前页curPage
-                var totalPages = $pagelist.find(".totalPage").attr('data-total');
-                var curPage = parseInt($pagelist.find(".nowPage.active>a").attr("data-page"));
-                curPage++;
-                if(curPage<=totalPages){
-                    showAlbum(curPage);
-                }else{
-                    //获取中页数
-                    showAlbum(totalPages);
-                }
-            });
-        }
-        initAction($(".photoWrap"));
-        function showAlbum(curPage) {
-            $.ajax({
-                type:"GET",
-                url:"data/getAlbum.php?page="+curPage,
-                dataType:"JSON",
-                async:false,
-                success:function (rsp) {
-                    if(rsp.code==0){
-                        var totalPages = rsp.pagesCount;
-                        //显示消息数据
-                        var data = rsp.info;
-                        var dataHtml = document.getElementById("albumTemplate").innerHTML;
-                        var html = template(dataHtml,{data:data});
-                        $(".photoBox>.row").html(html);
-                        //生成分页list
-                        $(".pagelist .Page").html(pages(totalPages,curPage));
-                    }else if(rsp.code==2){
-                        //重新登录
-                        $("#loginModal").modal('show');
-                    }else{
-                        $(".photoBox>.row").html("<a href='#' id='createAlbum'>您没有创建相册</a>");
-                    }
-                }
-            });
-        }
-        showAlbum(1);
+        $(".photoBox").pageFun({  /*在本地服务器上才能访问哦*/
+            interFace:"data/showPhoto.php?id="+album_id,  /*接口*/
+            displayCount:8,  /*每页显示总条数*/
+            maxPage:5,/*每次最多加载多少页*/
+            dataFun:function(data){
+                var dataHtml = `<div class="col-sm-6 col-md-3">
+                                    <div class="thumbnail" data-name="${data.img_name}">
+                                        <div class="dropdown album_dropdown">
+                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="updateAlbum"><span class="glyphicon glyphicon-pencil"></span>&nbsp;编辑</a></li>
+                                                <li><a href="#" class="makeCover"><span class="glyphicon glyphicon-picture"></span>&nbsp;制作封面</a></li>
+                                                <li><a href="#" class="deleteAlbum"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a></li>
+                                            </ul>
+                                        </div>
+                                        <img src="${data.path}" title="${data.path}" height="191px">
+                                        <div class="caption">
+                                            <p class="photoDesc" title="${data.img_name}">${data.img_name}</p>
+                                        </div>
+                                    </div>
+                            </div>`;
+                return dataHtml;
+            },
+            pageFun:function(i){
+                var pageHtml = '<li class="pageNum">'+i+'</li>';
+                return pageHtml;
+            }
+
+        })
 
         //编辑相册
         var $photoBox = $(".photoBox");
@@ -825,7 +844,7 @@
                         //重新登录
                         $("#loginModal").modal('show');
                     }else if(rsp.code==-1){
-                       //没有获取到相册名，创建一个,如果不创建，那么上传到默认的相册里
+                        //没有获取到相册名，创建一个,如果不创建，那么上传到默认的相册里
                         $(".albumNameWrap>select").html("<a href='#' id='createPhotoAlbum'>创建一个相册</a>");
                     }
                 }
@@ -925,13 +944,6 @@
             var cover_id = $thumbnail.attr('data-id');
             $("#makeAlbumCover").html("");
             initmakeAlbumCover(cover_id);
-        });
-
-        //单击相册封面进入查看该相册的照片
-        $photoBox.on('click','.thumbnail img',function () {
-            var cover_id = $(this).parent().attr('data-id');
-            console.log(cover_id);
-            location.href = 'photoImg.html?id='+cover_id;
         });
     })();
 </script>
