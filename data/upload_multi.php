@@ -42,7 +42,7 @@ function uploadFile(){
     foreach($files as $key => $value){
         $filename = $value['tmp_name']; //当前文件存储路径
         $tarFile = getFN($value['name']);
-        $target = $dir.$album_name.$tarFile;
+        $target = $dir.$album_name.$tarFile;//目标路径
         $suc = move_uploaded_file($filename, $target);
         if($suc){
             $uploadFileResult['code'] = 0;

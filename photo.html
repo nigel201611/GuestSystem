@@ -99,6 +99,10 @@
     .photoBox .thumbnail:hover .album_dropdown{
         display: block;
     }
+    .photoBox .thumbnail > img,
+    .photoBox .thumbnail a > img {
+        height: 191px;
+    }
 
 </style>
 <body>
@@ -126,6 +130,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!--分页list-->
@@ -379,6 +384,27 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!--制作封面模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="makeAlbumCoverModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">制作相册封面</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label">上传照片</label>
+                    <div>
+                        <div id="makeAlbumCover"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 
 <script src="js/jquery-1.11.3.js"></script>
@@ -412,7 +438,7 @@
                     <li><a href="#" class="deleteAlbum"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a></li>
                 </ul>
             </div>
-            <img src="<%:=data[i].album_thumbnail%>" alt="..." title="<%:=data[i].album_content%>">
+            <img src="<%:=data[i].album_thumbnail%>" alt="..." title="<%:=data[i].album_content%>" height="191px">
             <div class="caption">
                 <p class="photoDesc" title="<%:=data[i].album_name%>"><%:=data[i].album_name%></p>
             </div>
@@ -765,11 +791,14 @@
             deleteConfirm();
         });
 
+
+
         //单击上传照片
         var $uploadPhotoModal = $("#uploadPhotoModal");
         var album_name = "";//如果没有任何相册，那么自动创建一个默认相册
         $("#uploadPhoto").click(function () {
             $uploadPhotoModal.modal('show');
+            initZyupload(album_name);
             //获取相册名
             $.ajax({
                 url:"data/getAlbumName.php",
@@ -800,8 +829,9 @@
                 initZyupload(album_name);
             });
 
-        });
 
+
+        });
         function initZyupload(album_name) {
             $("#zyupload").zyUpload({
                 width            :   "100%",                 // 宽度
@@ -821,6 +851,8 @@
                     var rsp = JSON.parse(rsp);
                     if( rsp.code == 0 ){
                         $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                        $uploadPhotoModal.modal('hide');
+                        location.reload();
                     }else if( rsp.code == 1 ){
                         $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
                     }else if( rsp.code == -1 ){
@@ -832,9 +864,61 @@
                 }
             });
         }
-        initZyupload(album_name);
+
     })();
 
+</script>
+
+<script>
+    ;(function () {
+        //制作相册封面
+        var $photoBox = $(".photoBox");
+        var $makeAlbumCoverModal = $("#makeAlbumCoverModal");
+        function initmakeAlbumCover(cover_id) {
+            $("#makeAlbumCover").zyUpload({
+                width            :   "100%",                 // 宽度
+                height           :   "400px",                 // 宽度
+                itemWidth        :   "100px",                 // 文件项的宽度
+                itemHeight       :   "80px",                 // 文件项的高度
+                url              :   "data/makeAlbumCover.php?id="+cover_id,              // 上传文件的路径
+                fileType         :   ["jpg","png","jpeg","gif","bmp"],// 上传文件的类型
+                fileSize         :   5120000,                // 头像的大小5MB
+                multiple         :   false,                   // 是否可以多个文件上传
+                dragDrop         :   false,                   // 是否可以拖动上传文件
+                tailor           :   false,                   // 是否可以裁剪图片
+                del              :   true,                    // 是否可以删除文件
+                finishDel        :   false,  				  // 是否在上传文件完成后删除预览
+                /* 外部获得的回调接口 */
+                onSuccess: function(file, rsp){          // 文件上传成功的回调方法
+                    var rsp = JSON.parse(rsp);
+                    if( rsp.code == 0 ){
+                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                        $makeAlbumCoverModal.modal('hide');
+                        location.reload();
+                    }else if( rsp.code == 1 ){
+                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                    }else if( rsp.code == -1 ){
+                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
+                    }else if(rsp.code==2){
+                        //重新登录
+                        $makeAlbumCoverModal.modal('hide');
+                        $("#loginModal").modal('show');
+                    }
+                },
+                onFailure: function(file, response){          // 文件上传失败的回调方法
+                    $("#uploadInf").html("<p class='text-danger'>上传失败</p>");
+                }
+            });
+        }
+        $photoBox.on('click','.makeCover',function (e) {
+            e.preventDefault();
+            $makeAlbumCoverModal.modal('show');
+            var $thumbnail = $(this).parents(".thumbnail");
+            var cover_id = $thumbnail.attr('data-id');
+            $("#makeAlbumCover").html("");
+            initmakeAlbumCover(cover_id);
+        });
+    })();
 </script>
 
 
