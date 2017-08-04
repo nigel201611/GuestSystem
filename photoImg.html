@@ -462,27 +462,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!--制作封面模态框-->
-<div class="modal fade" tabindex="-1" role="dialog" id="makeAlbumCoverModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">制作相册封面</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="control-label">上传照片</label>
-                    <div>
-                        <div id="makeAlbumCover"></div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 </body>
 
 <script src="js/jquery-1.11.3.js"></script>
@@ -526,21 +505,21 @@
 </script>
 
 <script>
-    ;(function () {
-        function GetRequest() {
-            var url = location.search; //获取url中"?"符后的字串
-            var theRequest = new Object();
-            if (url.indexOf("?") != -1) {
-                var str = url.substr(1);
-                var strs = str.split("&");
-                for(var i = 0; i < strs.length; i ++) {
-                    theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
-                }
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
             }
-            return theRequest;
         }
-        var theRequest = GetRequest();
-        var album_id = theRequest['id'];
+        return theRequest;
+    }
+    var theRequest = GetRequest();
+    var album_id = theRequest['id'];
+    ;(function () {
         function notyInfo(data){
             noty({
                 text: data,
@@ -811,53 +790,53 @@
 </script>
 
 <script>
+    function makeCoverConfirm(photoName) {
+        noty({
+            text: "确认设置该照片为封面",
+            layout: "center",
+            type: "warning",
+            modal: true,
+            buttons: [
+                {
+                    addClass: 'btn btn-success btn-xs',
+                    text: '确认',
+                    onClick: function ($noty) {
+                        //删除记录
+                        var url = "data/makeCoverOfAlbum.php?id="+album_id+"&photoName="+photoName ;
+                        $.ajax({
+                            url:url,
+                            dataType:"JSON",
+                            success:function (rsp) {
+                                if(rsp.code==0){
+                                    location.href = 'photo.html';
+                                }else if(rsp.code==2){
+                                    //重新登录
+                                    $("#loginModal").modal('show');
+                                }else if(rsp.code==-1){
+                                    notyInfo("删除失败");
+                                }
+                            }
+                        });
+                        $noty.close();
+                    }
+                },
+                {
+                    addClass: 'btn btn-primary btn-xs',
+                    text: '取消',
+                    onClick: function ($noty) {
+                        $noty.close();
+                    }
+                }
+            ]
+        });
+    }
     ;(function () {
         //3 将指定的照片设置为指定相册id的封面
         var $photoBox = $(".photoBox");
-        var $makeAlbumCoverModal = $("#makeAlbumCoverModal");
-        function initmakeAlbumCover(cover_id) {
-            $("#makeAlbumCover").zyUpload({
-                width            :   "100%",                 // 宽度
-                height           :   "400px",                 // 宽度
-                itemWidth        :   "100px",                 // 文件项的宽度
-                itemHeight       :   "80px",                 // 文件项的高度
-                url              :   "data/makeAlbumCover.php?id="+cover_id,              // 上传文件的路径
-                fileType         :   ["jpg","png","jpeg","gif","bmp"],// 上传文件的类型
-                fileSize         :   5120000,                // 头像的大小5MB
-                multiple         :   false,                   // 是否可以多个文件上传
-                dragDrop         :   false,                   // 是否可以拖动上传文件
-                tailor           :   false,                   // 是否可以裁剪图片
-                del              :   true,                    // 是否可以删除文件
-                finishDel        :   false,  				  // 是否在上传文件完成后删除预览
-                /* 外部获得的回调接口 */
-                onSuccess: function(file, rsp){          // 文件上传成功的回调方法
-                    var rsp = JSON.parse(rsp);
-                    if( rsp.code == 0 ){
-                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
-                        $makeAlbumCoverModal.modal('hide');
-                        location.reload();
-                    }else if( rsp.code == 1 ){
-                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
-                    }else if( rsp.code == -1 ){
-                        $("#uploadInf").html("<p class='text-success'>"+rsp.msg+"</p>");
-                    }else if(rsp.code==2){
-                        //重新登录
-                        $makeAlbumCoverModal.modal('hide');
-                        $("#loginModal").modal('show');
-                    }
-                },
-                onFailure: function(file, response){          // 文件上传失败的回调方法
-                    $("#uploadInf").html("<p class='text-danger'>上传失败</p>");
-                }
-            });
-        }
         $photoBox.on('click','.makeCover',function (e) {
             e.preventDefault();
-            $makeAlbumCoverModal.modal('show');
-            var $thumbnail = $(this).parents(".thumbnail");
-            var cover_id = $thumbnail.attr('data-id');
-            $("#makeAlbumCover").html("");
-            initmakeAlbumCover(cover_id);
+            var photoName = $(this).parents(".thumbnail").find('img').eq(0).attr('title');
+            makeCoverConfirm(photoName);
         });
     })();
 </script>
