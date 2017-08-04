@@ -11,7 +11,6 @@ require_once 'phpClass/MySQL.class.php';
 
 $db = MySQL::getObj('localhost','root','root','nigel');
 
-//分页获取别人发给自己的信息
 $photoArr = [
     "status"=>"error",
     "message"=>"fail",
@@ -45,6 +44,7 @@ $album_dir = $result['album_dir'];
 //从指定相册目录下读取照片，只是读取名称而已
 $dir = '../img/'.$album_dir.'/';
 $sum=0;
+$filetime = [];
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
@@ -56,11 +56,13 @@ if (is_dir($dir)) {
                 ];
                 $arr['path'] = "img/".$album_dir.'/'.$file;
                 $arr['img_name'] = $file;
+                $filetime[] = date("Y-m-d H:i:s",filemtime($dir.$file));//获取文件最近修改日期
                 $photoArr['datas'][]= $arr;
             }
         }
         $photoArr['status'] = 'ok';
         $photoArr['message'] = 'success';
+        array_multisort($filetime,SORT_DESC,SORT_STRING, $photoArr['datas']);//按时间排序
         closedir($dh);
     }
 }

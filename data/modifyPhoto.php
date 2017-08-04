@@ -11,8 +11,8 @@ session_start();
 require_once 'phpClass/MySQL.class.php';
 date_default_timezone_set('prc');
 
-@$albumName = $_POST['albumName'];
-@$albumName = $_POST['origianlPhotoName'];
+@$photoName = $_POST['photoName'];
+@$originalPhotoName = $_POST['origianlPhotoName'];
 $id = $_POST['id'];//相册id
 
 
@@ -38,10 +38,12 @@ $result = $conn->fetchOne('album',$config);
 $album_dir = $result['album_dir'];
 
 //修改指定目录下的照片名字rename
-
+$oldImg = '../img/'.$album_dir.'/'.$originalPhotoName;
+$newImg = '../img/'.$album_dir.'/'.$photoName;
+$flag = rename($oldImg,$newImg);
 //创建一个相册目录
 
-if($num == 1){
+if($flag){
     $modifyRsp['code'] = 1;
     $modifyRsp['msg'] = "modify success";
 }else{
