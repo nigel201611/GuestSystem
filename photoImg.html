@@ -301,85 +301,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!--创建相册模态框-->
-<div class="modal fade" tabindex="-1" role="dialog" id="createAlbumModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">创建相册</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" id="albumForm" >
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">相册名称</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="albumName" autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-6 errcheck albumNameErr" >
-                            相册名称不能为空
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">相册描述</label>
-                        <div class="col-sm-6">
-                            <textarea type="text" class="form-control" name="albumContent" autocomplete="off"
-                                      placeholder="说说这个相册的故事...(非必填)"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">主题</label>
-                        <div class="col-sm-6">
-                            <p class="line_theme_check">
-                                <span id="js-normal">
-                                    <input type="radio" id="js-normal-checkbox" name="choose-type" checked="checked" class="v_radiobutton" data-value="0">
-                                    <label class="type-name" for="js-normal-checkbox">普通</label>
-                                </span>
-                                <span id="js-baby">
-                                    <input type="radio" id="js-baby-checkbox" name="choose-type" class="v_radiobutton" data-value="1">
-                                    <label class="type-name" for="js-baby-checkbox">
-                                        <i class="icon-child"></i>亲子
-                                    </label>
-                                </span>
-                                <span id="js-travel">
-                                    <input type="radio" id="js-travel-checkbox" name="choose-type" class="v_radiobutton" data-value="2">
-                                    <label class="type-name" for="js-travel-checkbox">
-                                        <i class="icon-travel"></i>旅游
-                                    </label>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">验证码</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="yzcode">
-                        </div>
-                        <div class="col-sm-2">
-                            <img class="yzcodeImg" src="data/yzCode.php" alt="单击刷新验证码" title="单击刷新验证码">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-6 errcheck yzcodeErr" >
-                            验证码不正确
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-6">
-                            <button type="submit" class="btn btn-primary">确定</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 
 <!--修改照片名称模态框-->
 <div class="modal fade" tabindex="-1" role="dialog" id="modifyPhotoModal">
@@ -426,38 +347,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<!--上传照片模态框-->
-<div class="modal fade" tabindex="-1" role="dialog" id="uploadPhotoModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">上传照片</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="control-label">选择相册</label>
-                    <div class="albumNameWrap">
-                        <select class="form-control" name="albumName" >
-                            <option value="1">相册1</option>
-                            <option value="2">相册2</option>
-                            <option value="3">相册3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">上传照片</label>
-                    <div>
-                        <div id="zyupload" class="zyupload"></div>
-                    </div>
-                </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -782,6 +671,11 @@
             e.preventDefault();
             var photoName = $(this).parents(".thumbnail").find('img').eq(0).attr('title');
             deleteConfirm(photoName);
+        });
+
+        //单击照片缩略图进入浏览模式
+        $photoBox.on('click','.thumbnail>img',function (e) {
+            location.href = 'checkPhoto.html?id='+album_id;
         });
 
 
