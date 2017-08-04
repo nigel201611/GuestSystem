@@ -584,9 +584,9 @@
             }
         }
 
-        function deleteConfirm(){
+        function deleteConfirm(photoName){
             noty({
-                text: "确认删除相册",
+                text: "确认删除该照片",
                 layout: "center",
                 type: "warning",
                 modal: true,
@@ -596,7 +596,7 @@
                         text: '确认',
                         onClick: function ($noty) {
                             //删除记录
-                            var url = "data/deleteAlbum.php?id="+id ;
+                            var url = "data/deletePhoto.php?photoName="+photoName ;
                             $.ajax({
                                 url:url,
                                 dataType:"JSON",
@@ -793,7 +793,7 @@
             var photo_name = $thumbnail.find(".photoDesc").eq(0).attr("title");
             $modifyPhotoModal.modal('show');
             //回写数据
-            $modifyPhotoModal.find('input[name=photoName]').val(photo_name);
+            $modifyPhotoModal.find('input[name=photoName]').val(photo_name);//只显示名字，不显示后缀名
             $modifyPhotoModal.find('input[name=originalPhotoName]').val(photo_name);
         });
 
@@ -801,9 +801,8 @@
         //2 删除照片
         $photoBox.on('click','.deleteAlbum',function (e) {
             e.preventDefault();
-            var $thumbnail = $(this).parents(".thumbnail");
-            id = $thumbnail.attr('data-id');
-            deleteConfirm();
+            var photoName = $(this).parents(".thumbnail").find('img').eq(0).attr('title');
+            deleteConfirm(photoName);
         });
 
 
